@@ -1,0 +1,15 @@
+.input__error {
+  font-size: 14px;
+  line-height: 16px;
+  color: #FF0000;
+  margin-bottom: 16px;
+  display: block;
+  width: 100%;
+  text-align: left;
+  visibility: hidden;
+  height: 17px;
+}
+
+.input__error_type_visible {
+  visibility: visible;
+}

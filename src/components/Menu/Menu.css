@@ -1,0 +1,41 @@
+.menu {
+  display: flex;
+  flex: 1 1 auto;
+  max-width: 914px;
+}
+
+.menu__items {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.menu__item_type_hidden {
+  display: none;
+}
+
+.menu__link {
+  font-weight: bold;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 1600px) {
+  .menu {
+    max-width: 600px;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .menu {
+    max-width: 460px;
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  .menu {
+    display: none;
+  }
+}

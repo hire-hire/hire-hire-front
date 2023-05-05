@@ -1,0 +1,9 @@
+.main {
+  max-width: 1920px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-grow: 1;
+  box-sizing: border-box;
+}
