@@ -3,7 +3,7 @@ import { Contributor } from '../../store/reducers/contributors/contributorsActio
 
 import Telegram from '../../images/Telegram.png';
 import GitHub from '../../images/Github.png';
-import Instagram from '../../images/Instagram.png';
+import LinkedIn from '../../images/LinkedIn.png';
 
 type PropsType = {
   contributor: Contributor
@@ -33,9 +33,9 @@ const TeamCard: FC<PropsType> = ({ contributor }) => {
                        ?
                        GitHub
                        :
-                       contact.social_network === 'Instagram'
+                       contact.social_network === 'LinkedIn'
                        ?
-                       Instagram
+                       LinkedIn
                        :
                        undefined
                   } 
