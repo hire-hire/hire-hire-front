@@ -1,0 +1,138 @@
+.contributors {
+  gap: 80px;
+  padding-bottom: 80px;
+  background-image: url(../../images/teamTopLeft.png), url(../../images/teamTopRight.png), url(../../images/teamBottomLeft.png), url(../../images/teamBottomRight.png);
+  background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
+  background-size: 215px, 222px, 270px, 312px;
+  background-position: 6% 2%, 93% 3%, 12% 96%, 87% 98%;
+}
+
+.contributors__section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 30px;
+  gap: 100px;
+}
+
+.contibutors__title {
+  padding: 40px 0 0;
+}
+
+.contributors__subtitle {
+  font-size: 64px;
+  line-height: 100%;
+}
+
+.contributors__items {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+  max-width: 1440px;
+  flex-wrap: wrap;
+}
+
+.contributors__solo-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+}
+
+@media screen and (max-width: 1599px) {
+  .contributors {
+    gap: 60px;
+    background-size: 163px, 180px, 200px, 222px;
+  }
+
+  .contributors__section {
+    gap: 90px;
+  }
+
+  .contibutors__title {
+    padding: 20px 0 0;
+  }
+
+  .contributors__items {
+    max-width: 1080px;
+    gap: 24px;
+  }
+
+  .contributors__solo-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 25px;
+    grid-row-gap: 60px;
+  }
+}
+
+@media screen and (max-width: 1364px) {
+  .contributors {
+    gap: 40px;
+    background-size: 130px, 160px, 139px, 161px;
+  }
+
+  .contributors__section {
+    gap: 40px;
+  }
+
+  .contributors__subtitle {
+    font-size: 44px;
+    line-height: 145%;
+  }
+
+  .contributors__items {
+    max-width: 768px;
+  }
+
+  .contributors__solo-section {
+    grid-row-gap: 40px;
+  }
+}
+
+@media screen and (max-width: 1023px) {
+  .contributors {
+    background-image: none;
+  }
+}
+
+@media screen and (max-width: 920px) {
+  .contributors {
+    gap: 16px;
+    padding-left: 25px;
+    padding-right: 25px;
+    box-sizing: border-box;
+  }
+
+  .contributors__section {
+    gap: 16px;
+  }
+
+  .contibutors__title {
+    font-size: 28px;
+    line-height: 142%;
+    padding: 0;
+  }
+
+  .contributors__section {
+    padding-top: 10px;
+  }
+
+  .contributors__subtitle {
+    font-size: 20px;
+    line-height: 200%;
+  }
+
+  .contributors__items {
+    max-width: 768px;
+  }
+
+  .contributors__solo-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+}

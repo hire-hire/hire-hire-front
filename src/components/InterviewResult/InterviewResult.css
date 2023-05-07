@@ -1,0 +1,114 @@
+.interview-result {
+  background-image: url(../../images/interviewFinishedLeft.png), url(../../images/interviewFinishedRight.png);
+  background-repeat: no-repeat no-repeat;
+  background-size: 290px, 300px;
+  background-position: 5% 60%, 95% 85%;
+  flex-grow: 1;
+}
+
+.interview-result__title {
+  font-size: 100px;
+  line-height: 100%;
+  margin-bottom: 220px;
+}
+
+.interview-result__subtitle {
+  font-size: 48px;
+  line-height: 100%;
+  margin-bottom: 60px;
+}
+
+.interview-result__links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 60px;
+}
+
+.interview-result__link {
+  width: 220px;
+  padding: 12px 0;
+  font-size: 20px;
+  line-height: 136%;
+}
+
+.interview-result__link_type_white {
+  border: 2px solid #748CDB;
+  color: #748CDB;
+  background-color: #fff;
+}
+
+@media screen and (max-width: 1599px) {
+  .interview-result {
+    background-size: 225px, 210px;
+  }
+
+  .interview-result__title {
+    font-size: 64px;
+    line-height: 125%;
+    margin-bottom: 115px;
+  }
+
+  .interview-result__subtitle {
+    font-size: 36px;
+    line-height: 111%;
+    margin-bottom: 40px;
+  }
+
+  .interview-result__links {
+    gap: 40px;
+  }
+}
+
+@media screen and (max-width: 1175px) {
+  .interview-result {
+    background-size: 165px, 155px;
+  }
+
+  .interview-result__title {
+    font-size: 48px;
+    line-height: 100%;
+    margin-bottom: 70px;
+  }
+
+  .interview-result__subtitle {
+    font-size: 28px;
+    line-height: 128%;
+    margin-bottom: 20px;
+  }
+
+  .interview-result__links {
+    gap: 20px;
+  }
+}
+
+@media screen and (max-width: 1023px) {
+  .interview-result {
+    background-image: none, none;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .interview-result {
+    background-image: none, none;
+  }
+
+  .interview-result__title {
+    font-size: 24px;
+    line-height: 183%;
+    margin-bottom: 30px;
+  }
+
+  .interview-result__subtitle {
+    font-size: 20px;
+    line-height: 120%;
+    margin-bottom: 10px;
+    max-width: 235px;
+    text-align: center;
+  }
+
+  .interview-result__links {
+    flex-direction: column;
+    gap: 10px;
+  }
+}

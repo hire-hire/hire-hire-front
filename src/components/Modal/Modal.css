@@ -1,0 +1,11 @@
+.modal__container {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(25, 45, 69, 0.8);
+  display: flex;
+  justify-content: flex-end;
+  z-index: 200;
+}

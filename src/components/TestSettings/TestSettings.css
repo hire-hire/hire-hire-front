@@ -1,0 +1,202 @@
+.test-settings {
+  gap: 80px;
+  padding-bottom: 80px;
+  box-sizing: border-box;
+}
+
+.test-settings__title {
+  font-size: 120px;
+  line-height: 100%;
+  max-width: 1470px;
+  text-align: left;
+}
+
+.test-settings__content {
+  max-width: 1470px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.test-settings-form {
+  max-width: 465px;
+  align-self: flex-start;
+  padding-left: 6%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 40px;
+}
+
+.test-settings-form__subtitle {
+  font-size: 36px;
+  line-height: 100%;
+}
+
+.test-settings-form__span {
+  font-weight: 700;
+  color: #163B88;
+}
+
+.test-settings-form__label {
+  font-size: 16px;
+  line-height: 118%;
+  color: #163B88;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+}
+
+.test-settings-form__select {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  padding: 12px 24px;
+  border: 2px solid #163B88;
+  font-size: 20px;
+  line-height: 136%;
+  color: #3B3E45;
+  background-image: url(../../images/selectArrow.png);
+  background-repeat: no-repeat;
+  background-size: 12px 6px;
+  background-position: 95% 55%;
+}
+
+.test-settings-form__select_type_disabled {
+  border: 2px solid #7990A3;
+  color: #D1D1D1;
+}
+
+.test-settings__button {
+  width: 56%;
+  align-self: flex-end;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  font-size: 20px;
+  line-height: 136%;
+  border: none;
+}
+
+.test-settings__button_type_disabled {
+  opacity: .5;
+}
+
+.test-settings__image {
+  width: 545px;
+}
+
+@media screen and (max-width: 1599px) {
+  .test-settings {
+    gap: 125px;
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+
+  .test-settings__title {
+    font-size: 88px;
+    max-width: 1125px;
+  }
+
+  .test-settings__content {
+    max-width: 1125px;
+    padding-bottom: 70px;
+  }
+
+  .test-settings-form {
+    max-width: 380px;
+    gap: 20px;
+  }
+
+  .test-settings-form__subtitle {
+    font-size: 32px;
+  }
+
+  .test-settings__image {
+    width: 420px;
+  }
+}
+
+@media screen and (max-width: 1151px) {
+  .test-settings {
+    gap: 40px;
+  }
+
+  .test-settings__title {
+    font-size: 60px;
+    max-width: 820px;
+  }
+
+  .test-settings__content {
+    max-width: 840px;
+    padding-bottom: 60px;
+  }
+
+  .test-settings-form {
+    max-width: 335px;
+  }
+
+  .test-settings-form__subtitle {
+    font-size: 28px;
+    line-height: 114%;
+  }
+
+  .test-settings__image {
+    width: 290px;
+  }
+}
+
+@media screen and (max-width: 799px) {
+  .test-settings {
+    gap: 20px;
+  }
+
+  .test-settings__content {
+    max-width: 100%;
+    padding-bottom: 40px;
+  }
+
+  .test-settings-form {
+    max-width: 100%;
+    width: 100%;
+    padding-left: 0;
+  }
+
+  .test-settings-form__subtitle {
+    font-size: 28px;
+    line-height: 114%;
+  }
+
+  .test-settings__image {
+    display: none;
+  }
+
+  .test-settings__button {
+    width: 200px;
+  }
+}
+
+@media screen and (max-width: 699px) {
+  .test-settings {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+
+  .test-settings__title {
+    font-size: 26px;
+    line-height: 138%;
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .test-settings-form__subtitle {
+    font-size: 24px;
+    line-height: 133%;
+  }
+
+  .test-settings__select {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+}

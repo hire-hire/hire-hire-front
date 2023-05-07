@@ -1,0 +1,180 @@
+.info {
+  align-items: center;
+  flex-direction: row;
+  gap: 68px;
+  justify-content: center;
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
+.info__content {
+  max-width: 1100px;
+}
+
+.info__image {
+  width: 410px;
+}
+
+.info__title {
+  font-size: 118px;
+  line-height: 100%;
+}
+
+.directions {
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
+.directions__header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+.directions__image {
+  width: 420px;
+}
+
+.directions__cards {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  justify-content: center;
+  padding-top: 80px;
+}
+
+@media screen and (max-width: 1700px) {
+  .info {
+    gap: 60px;
+    padding-top: 60px;
+  }
+  
+  .info__content {
+    max-width: 800px;
+  }
+  
+  .info__title {
+    font-size: 88px;
+    line-height: 100%;
+    margin-bottom: 60px;
+  }
+
+  .directions__header {
+    justify-content: space-between;
+    max-width: 1270px;
+    width: 100%;
+  }
+
+  .directions__title {
+    font-size: 56px;
+    line-height: 100%;
+  }
+}
+
+@media screen and (max-width: 1439px) {
+  .info__image {
+    width: 250px;
+  }
+
+  .directions__header {
+    max-width: 1110px;
+  }
+
+  .directions__image {
+    width: 330px;
+  }
+
+  .directions__cards {
+    padding-top: 60px;
+  }
+  
+}
+
+@media screen and (max-width: 1279px) {
+  .info {
+    gap: 30px;
+    padding-top: 40px;
+  }
+  
+  .info__content {
+    max-width: 600px;
+  }
+  
+  .info__title {
+    font-size: 60px;
+    margin-bottom: 40px;
+  }
+
+  .info__image {
+    width: 200px;
+  }
+
+  .directions__header {
+    max-width: 830px;
+  }
+
+  .directions__title {
+    font-size: 36px;
+    line-height: 111%;
+  }
+
+  .directions__image {
+    width: 270px;
+  }
+
+  .directions__cards {
+    padding-top: 40px;
+  }
+  
+}
+
+@media screen and (max-width: 950px) {
+  .info {
+    gap: 30px;
+    padding: 20px 25px 0;
+  }
+  
+  .info__content {
+    max-width: 100%;
+  }
+  
+  .info__title {
+    margin-bottom: 20px;
+  }
+
+  .info__image {
+    display: none;
+  }
+
+  .directions {
+    padding-left: 25px;
+    padding-right: 25px;
+  }
+
+  .directions__header {
+    justify-content: center;
+  }
+
+  .directions__image {
+    display: none;
+  }
+  
+}
+
+@media screen and (max-width: 640px) {
+  .info__title {
+    font-size: 26px;
+    line-height: 138%;
+  }
+
+  .directions__title {
+    font-size: 20px;
+    line-height: 180%;
+  }
+
+  .directions__cards {
+    flex-direction: column;
+    gap: 8px;
+  }
+}

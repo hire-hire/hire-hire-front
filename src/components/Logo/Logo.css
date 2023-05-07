@@ -1,0 +1,23 @@
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo__title {
+  font-family: 'Xolonium';
+  font-size: 24px;
+  line-height: 100%;
+  color: #192D45;
+  margin: 0;
+}
+
+.logo__image {
+  margin-right: 13px;
+  width: 54px;
+}
+
+@media screen and (max-width: 389px) {
+  .logo__title_place_header {
+    display: none;
+  }
+}
