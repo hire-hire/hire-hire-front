@@ -21,8 +21,8 @@ const TeamCard: FC<PropsType> = ({ contributor }) => {
           {
             contributor.contacts.map((contact) => {
               return (
-                <li className='contributor__contact'>
-                  <a href={contact.contact} className='contributor__link'>
+                <li key={contact.contact} className='contributor__contact'>
+                  <a target='_blank' href={contact.contact} className='contributor__link' rel='noreferrer'>
                     <img 
                     src={
                       contact.social_network === 'Telegram'
