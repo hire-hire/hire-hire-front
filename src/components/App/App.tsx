@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import { useAppDispatch } from '../../hooks/redux';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { getUser } from '../../store/reducers/user/userActionCreator';
 import Category from '../Category/Category';
 import Footer from '../Footer/Footer';
@@ -19,10 +19,13 @@ import InterviewRedirect from '../InterviewRedirect/InterviewRedirect';
 import Interview from '../Interview/Interview';
 import Team from '../Team/Team';
 import NotFound from '../NotFound/NotFound';
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 function App() {
 
   const dispatch = useAppDispatch();
+
+  const user = useAppSelector(state => state.user.user);
 
   useEffect(() => {
     const token = JSON.parse(localStorage.getItem('token')!);
@@ -116,52 +119,60 @@ function App() {
             </>
           } />
           <Route path='/:categoryTitle/:languageTitle' element={
-            <>
-              <Header
-                key={'header'}
-                handleOpenMobileMenu={handleOpenMobileMenu}
-              />
-              <Main key={'main'}>
-                <TestSettings />
-              </Main>
-              <Footer key={'footer'} />
-            </>
+            <ProtectedRoute isLoggedIn={!!user}>
+              <>
+                <Header
+                  key={'header'}
+                  handleOpenMobileMenu={handleOpenMobileMenu}
+                />
+                <Main key={'main'}>
+                  <TestSettings />
+                </Main>
+                <Footer key={'footer'} />
+              </>
+            </ProtectedRoute>
           } />
           <Route path='/:categoryTitle/:languageTitle/interview' element={
-            <>
-              <Header
-                key={'header'}
-                handleOpenMobileMenu={handleOpenMobileMenu}
-              />
-              <Main key={'main'}>
-                <InterviewRedirect />
-              </Main>
-              <Footer key={'footer'} />
-            </>
+            <ProtectedRoute isLoggedIn={!!user}>
+              <>
+                <Header
+                  key={'header'}
+                  handleOpenMobileMenu={handleOpenMobileMenu}
+                />
+                <Main key={'main'}>
+                  <InterviewRedirect />
+                </Main>
+                <Footer key={'footer'} />
+              </>
+            </ProtectedRoute>
           } />
           <Route path='/:categoryTitle/:languageTitle/interview/:interviewId' element={
-            <>
-              <Header
-                key={'header'}
-                handleOpenMobileMenu={handleOpenMobileMenu}
-              />
-              <Main key={'main'}>
-                <Interview />
-              </Main>
-              <Footer key={'footer'} />
-            </>
+            <ProtectedRoute isLoggedIn={!!user}>
+              <>
+                <Header
+                  key={'header'}
+                  handleOpenMobileMenu={handleOpenMobileMenu}
+                />
+                <Main key={'main'}>
+                  <Interview />
+                </Main>
+                <Footer key={'footer'} />
+              </>
+            </ProtectedRoute>
           } />
           <Route path='/:categoryTitle/:languageTitle/interview/:interviewId/interview-result' element={
-            <>
-              <Header
-                key={'header'}
-                handleOpenMobileMenu={handleOpenMobileMenu}
-              />
-              <Main key={'main'}>
-                <InterviewResult />
-              </Main>
-              <Footer key={'footer'} />
-            </>
+            <ProtectedRoute isLoggedIn={!!user}>
+              <>
+                <Header
+                  key={'header'}
+                  handleOpenMobileMenu={handleOpenMobileMenu}
+                />
+                <Main key={'main'}>
+                  <InterviewResult />
+                </Main>
+                <Footer key={'footer'} />
+              </>
+            </ProtectedRoute>
           } />
           <Route path='/team' element={
             <>
