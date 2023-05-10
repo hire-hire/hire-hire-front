@@ -1,4 +1,4 @@
-import { FormEvent } from 'react';
+import { ChangeEvent, FormEvent, useRef } from 'react';
 import { useFormWithValidation } from '../../hooks/useFormWithValidation';
 import Form from '../Form/Form';
 import FormSubmitButton from '../FormSubmitButton/FormSubmitButton';
@@ -22,6 +22,8 @@ const RegisterForm = () => {
   const usernamePattern = '^[\\w.@+-]+$';
   const passwordPattern = '\(?=.*[0-9])(?=.*[a-zA-Z])[0-9a-zA-Z]{8,}';
 
+  const passwordRef: any = useRef();
+
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (values.password !== values.repeatPassword) {
@@ -36,6 +38,17 @@ const RegisterForm = () => {
     }
   };
 
+  const handleChangeValidation = (e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLSelectElement>) => {
+    handleChange(e);
+    if (values.username && values.password && values.username.length === values.password.length && values.username === values.password) {
+      resetForm({ ...values, password: '', repeatPassword: '' }, { ...errors, password: 'Логин и пароль не должны совпадать', repeatPassword: '' }, false);
+      passwordRef.current.focus();
+    }
+    if (values.password && values.repeatPassword && values.password.length === values.repeatPassword.length && values.password !== values.repeatPassword) {
+      resetForm({ ...values, repeatPassword: '', password: '' }, { ...errors, repeatPassword: 'Пароли не совпадают' }, false);
+    }
+  };
+
   return (
     <Form type='register' onSubmit={handleSubmit} title='Регистрация'>
       <Label title='Логин'>
@@ -45,9 +58,9 @@ const RegisterForm = () => {
             name='username'
             error={errors.username}
             value={values.username || ''}
-            handleChange={handleChange}
-            maxLength={150}
-            minLength={1}
+            handleChange={handleChangeValidation}
+            maxLength={25}
+            minLength={2}
             pattern={usernamePattern} />
         </LabelContainer>
         <InputError error={errors.username} />
@@ -59,10 +72,11 @@ const RegisterForm = () => {
             name='password'
             error={errors.password}
             value={values.password || ''}
-            handleChange={handleChange}
+            handleChange={handleChangeValidation}
             pattern={passwordPattern}
-            maxLength={128}
-            minLength={8} />
+            maxLength={40}
+            minLength={8} 
+            inputRef={passwordRef} />
         </LabelContainer>
         <InputError error={errors.password} />
       </Label>
@@ -73,7 +87,7 @@ const RegisterForm = () => {
             name='repeatPassword'
             error={errors.repeatPassword}
             value={values.repeatPassword || ''}
-            handleChange={handleChange}
+            handleChange={handleChangeValidation}
             pattern={passwordPattern}
             maxLength={128}
             minLength={8} />
