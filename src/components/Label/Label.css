@@ -1,5 +1,6 @@
 .form__label {
-  max-width: 512px;
+  max-width: 464px;
   width: 100%;
   position: relative;
+  color: #163B88;
 }

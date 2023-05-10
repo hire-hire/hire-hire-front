@@ -37,9 +37,6 @@
 /* FormSubmitButton */
 @import url(../src/components//FormSubmitButton/FormSubmitButton.css);
 
-/* FormLink */
-@import url(../src/components/FormLink/FormLink.css);
-
 /* RegisterForm */
 @import url(../src/components/RegisterForm/RegisterForm.css);
 

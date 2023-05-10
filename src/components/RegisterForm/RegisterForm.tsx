@@ -1,7 +1,6 @@
 import { FormEvent } from 'react';
 import { useFormWithValidation } from '../../hooks/useFormWithValidation';
 import Form from '../Form/Form';
-import FormLink from '../FormLink/FormLink';
 import FormSubmitButton from '../FormSubmitButton/FormSubmitButton';
 import Input from '../Input/Input';
 import InputError from '../InputError/InputError';
@@ -38,9 +37,9 @@ const RegisterForm = () => {
   };
 
   return (
-    <Form onSubmit={handleSubmit} title='Регистрация'>
-      <Label title='Юзернейм'>
-        <LabelContainer hint='Придумайте юзернейм'>
+    <Form type='register' onSubmit={handleSubmit} title='Регистрация'>
+      <Label title='Логин'>
+        <LabelContainer hint='прописные и строчные латинские буквы, цифры, нижнее подчеркивание, точка, запятая, +,-, без пробелов и иных символов, min количество символов - 2, max - 25'>
           <Input
             type='text'
             name='username'
@@ -53,8 +52,8 @@ const RegisterForm = () => {
         </LabelContainer>
         <InputError error={errors.username} />
       </Label>
-      <Label title='Придумайте пароль'>
-        <LabelContainer hint='Пароль должен содержать 8 символов и иметь хотя бы 1 цифру и 1 заглавную букву'>
+      <Label title='Придумай пароль'>
+        <LabelContainer hint='прописные и строчные латинские буквы, символов min 8, max 40, цифры (но не должен состоять из одних цифр), спецсимволы. Логин и пароль не должны совпадать.'>
           <Input
             type='password'
             name='password'
@@ -67,8 +66,8 @@ const RegisterForm = () => {
         </LabelContainer>
         <InputError error={errors.password} />
       </Label>
-      <Label title='Повторите пароль'>
-        <LabelContainer hint='Повторите пароль введеный выше'>
+      <Label title='Повтори пароль'>
+        <LabelContainer hint='повтори пароль введеный выше'>
           <Input
             type='password'
             name='repeatPassword'
@@ -82,8 +81,6 @@ const RegisterForm = () => {
         <InputError error={errors.repeatPassword} />
       </Label>
       <FormSubmitButton title='Зарегистрироваться' disabled={!isFormValid} />
-      <p className='login-form__hint page__text'>Уже есть аккаунт?</p>
-      <FormLink path='/login' title='Войти' />
     </Form>
   )
 };

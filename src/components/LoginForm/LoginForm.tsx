@@ -1,7 +1,6 @@
 import { FormEvent, useEffect } from 'react';
 import { useFormWithValidation } from '../../hooks/useFormWithValidation';
 import Form from '../Form/Form';
-import FormLink from '../FormLink/FormLink';
 import FormSubmitButton from '../FormSubmitButton/FormSubmitButton';
 import Input from '../Input/Input';
 import InputError from '../InputError/InputError';
@@ -37,7 +36,7 @@ const LoginForm = () => {
   };
 
   return (
-    <Form onSubmit={handleSubmit} title='Вход'>
+    <Form type='auth' onSubmit={handleSubmit} title='Вход'>
       <Label title='Юзернейм'>
         <Input
           type='text'
@@ -61,8 +60,6 @@ const LoginForm = () => {
         <InputError error={errors.password} />
       </Label>
       <FormSubmitButton title='Войти' disabled={!isFormValid} />
-      <p className='login-form__hint page__text'>В первый раз здесь?</p>
-      <FormLink path='/register' title='Зарегистрироваться' />
     </Form>
   )
 };
