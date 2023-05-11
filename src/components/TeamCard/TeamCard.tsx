@@ -4,6 +4,7 @@ import { Contributor } from '../../store/reducers/contributors/contributorsActio
 import Telegram from '../../images/Telegram.png';
 import GitHub from '../../images/Github.png';
 import LinkedIn from '../../images/LinkedIn.png';
+import Email from '../../images/Email.png';
 
 type PropsType = {
   contributor: Contributor
@@ -22,20 +23,24 @@ const TeamCard: FC<PropsType> = ({ contributor }) => {
             contributor.contacts.map((contact) => {
               return (
                 <li key={contact.contact} className='contributor__contact'>
-                  <a target='_blank' href={contact.contact} className='contributor__link' rel='noreferrer'>
+                  <a target='_blank' href={`${contact.social_network === 'Email' ? `mailto:${contact.contact}` : `${contact.contact}`}`} className='contributor__link' rel='noreferrer'>
                     <img 
                     src={
-                      contact.social_network === 'Telegram'
+                      contact.social_network.toLowerCase() === 'telegram'
                        ?
                        Telegram
                        :
-                       contact.social_network === 'GitHub'
+                       contact.social_network.toLowerCase() === 'github'
                        ?
                        GitHub
                        :
-                       contact.social_network === 'LinkedIn'
+                       contact.social_network.toLowerCase() === 'linkedin'
                        ?
                        LinkedIn
+                       :
+                       contact.social_network.toLowerCase() === 'email'
+                       ?
+                       Email
                        :
                        undefined
                   } 
