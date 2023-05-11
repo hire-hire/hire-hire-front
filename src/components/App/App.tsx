@@ -20,6 +20,7 @@ import Interview from '../Interview/Interview';
 import Team from '../Team/Team';
 import NotFound from '../NotFound/NotFound';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
+import Preloader from '../Preloader/Preloader';
 
 function App() {
 

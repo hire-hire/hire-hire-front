@@ -1,10 +1,33 @@
+import preloader from '../../images/preloader.png';
+
 const Preloader = () => {
     return (
-        <div className='preloader'>
-            <div className="preloader__container">
-                <span className="preloader__round"></span>
-            </div>
-        </div>
+        <section className='preloader sections'>
+            <svg className='preloader__image' width="208" height="208" viewBox="0 0 208 208" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g className='preloader__image' filter="url(#filter0_d_550_2542)">
+                    <path id='path1' className='preloader__path1' d="M141.004 0L126.375 36.2195H79.0351L64.4062 0H141.004Z" fill="#C1DFF9" />
+                    <path id='path2' className='preloader__path2' d="M202.048 56.2281L165.444 71.4598L132.204 38.4496L148.264 2.81641L202.048 56.2281Z" fill="#748CDB" />
+                    <path id='path3' className='preloader__path3' d="M203.297 137.557L166.314 123.23V76.8678L203.297 62.541V137.557Z" fill="#163B88" />
+                    <path id='path6' className='preloader__path4' d="M6.87759 143.672L43.5261 128.543L76.6702 161.646L60.5059 197.234L6.87759 143.672Z" fill="#E3E3E3" />
+                    <path id='path7' className='preloader__path5' d="M4 61.9723L40.9831 76.2991L40.9831 122.662L4 136.988L4 61.9723Z" fill="#E3E3E3" />
+                    <path id='path4' className='preloader__path7' d="M151.938 197.957L134.754 162.83L166.93 128.823L204 142.932L151.938 197.957Z" fill="#E3E3E3" />
+                    <path id='path5' className='preloader__path8' d="M67.4778 200L81.913 163.706L129.252 163.463L144.074 199.607L67.4778 200Z" fill="#E3E3E3" />
+                    <path id='path8' className='preloader__path6' d="M57.6455 2.81731L73.7984 38.4102L40.6437 71.5034L4 56.3633L57.6455 2.81731Z" fill="#E3E3E3" />
+                </g>
+                <defs>
+                    <filter id="filter0_d_550_2542" x="0" y="0" width="208" height="208" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                        <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                        <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+                        <feOffset dy="4" />
+                        <feGaussianBlur stdDeviation="2" />
+                        <feComposite in2="hardAlpha" operator="out" />
+                        <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0" />
+                        <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_550_2542" />
+                        <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_550_2542" result="shape" />
+                    </filter>
+                </defs>
+            </svg>
+        </section>
     )
 };
 
