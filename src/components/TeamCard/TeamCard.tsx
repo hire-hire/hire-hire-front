@@ -11,9 +11,12 @@ type PropsType = {
 }
 
 const TeamCard: FC<PropsType> = ({ contributor }) => {
+
+  const baseURL = 'https://test-hire-hire.proninteam.ru/';
+
   return (
     <li className='contributor'>
-      <img src={contributor.thumbnail_image} alt={`${contributor.first_name} ${contributor.last_name}`} className='contributor__image' />
+      <img src={`${baseURL}${contributor.thumbnail_image}`} alt={`${contributor.first_name} ${contributor.last_name}`} className='contributor__image' />
       <div className='contributor__content'>
         <h3 className='contributor__title page__text'>
           {contributor.first_name} {contributor.last_name}
