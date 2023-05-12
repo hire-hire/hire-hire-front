@@ -45,7 +45,7 @@ const MobileMenu: FC<PropsType> = ({ children, handleCloseMobileMenu }) => {
             </Link>
           </li>
           <li className='mobile-menu__item'>
-            <Link onClick={handleCloseMenu} to='#' className='mobile-menu__link page__link page__text'>
+            <Link onClick={handleCloseMenu} to='/team' className='mobile-menu__link page__link page__text'>
               Команда
             </Link>
           </li>

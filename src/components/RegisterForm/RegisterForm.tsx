@@ -1,7 +1,6 @@
-import { FormEvent } from 'react';
+import { ChangeEvent, FormEvent, useRef } from 'react';
 import { useFormWithValidation } from '../../hooks/useFormWithValidation';
 import Form from '../Form/Form';
-import FormLink from '../FormLink/FormLink';
 import FormSubmitButton from '../FormSubmitButton/FormSubmitButton';
 import Input from '../Input/Input';
 import InputError from '../InputError/InputError';
@@ -23,6 +22,8 @@ const RegisterForm = () => {
   const usernamePattern = '^[\\w.@+-]+$';
   const passwordPattern = '\(?=.*[0-9])(?=.*[a-zA-Z])[0-9a-zA-Z]{8,}';
 
+  const passwordRef: any = useRef();
+
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (values.password !== values.repeatPassword) {
@@ -37,44 +38,56 @@ const RegisterForm = () => {
     }
   };
 
+  const handleChangeValidation = (e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLSelectElement>) => {
+    handleChange(e);
+    if (values.username && values.password && values.username.length === values.password.length && values.username === values.password) {
+      resetForm({ ...values, password: '', repeatPassword: '' }, { ...errors, password: 'Логин и пароль не должны совпадать', repeatPassword: '' }, false);
+      passwordRef.current.focus();
+    }
+    if (values.password && values.repeatPassword && values.password.length === values.repeatPassword.length && values.password !== values.repeatPassword) {
+      resetForm({ ...values, repeatPassword: '', password: '' }, { ...errors, repeatPassword: 'Пароли не совпадают' }, false);
+    }
+  };
+
   return (
-    <Form onSubmit={handleSubmit} title='Регистрация'>
-      <Label title='Юзернейм'>
-        <LabelContainer hint='Придумайте юзернейм'>
+    <Form type='register' onSubmit={handleSubmit} title='Регистрация'>
+      <Label title='Логин'>
+        <LabelContainer hint='прописные и строчные латинские буквы, цифры, нижнее подчеркивание, точка, запятая, +,-, без пробелов и иных символов, min количество символов - 2, max - 25'>
           <Input
             type='text'
             name='username'
             error={errors.username}
             value={values.username || ''}
-            handleChange={handleChange}
-            maxLength={150}
-            minLength={1}
+            handleChange={handleChangeValidation}
+            maxLength={25}
+            minLength={2}
             pattern={usernamePattern} />
         </LabelContainer>
         <InputError error={errors.username} />
       </Label>
-      <Label title='Придумайте пароль'>
-        <LabelContainer hint='Пароль должен содержать 8 символов и иметь хотя бы 1 цифру и 1 заглавную букву'>
+      <Label title='Придумай пароль'>
+        <LabelContainer hint='прописные и строчные латинские буквы, символов min 8, max 40, цифры (но не должен состоять из одних цифр), спецсимволы. Логин и пароль не должны совпадать.'>
           <Input
             type='password'
             name='password'
             error={errors.password}
             value={values.password || ''}
-            handleChange={handleChange}
+            handleChange={handleChangeValidation}
             pattern={passwordPattern}
-            maxLength={128}
-            minLength={8} />
+            maxLength={40}
+            minLength={8} 
+            inputRef={passwordRef} />
         </LabelContainer>
         <InputError error={errors.password} />
       </Label>
-      <Label title='Повторите пароль'>
-        <LabelContainer hint='Повторите пароль введеный выше'>
+      <Label title='Повтори пароль'>
+        <LabelContainer hint='повтори пароль введеный выше'>
           <Input
             type='password'
             name='repeatPassword'
             error={errors.repeatPassword}
             value={values.repeatPassword || ''}
-            handleChange={handleChange}
+            handleChange={handleChangeValidation}
             pattern={passwordPattern}
             maxLength={128}
             minLength={8} />
@@ -82,8 +95,6 @@ const RegisterForm = () => {
         <InputError error={errors.repeatPassword} />
       </Label>
       <FormSubmitButton title='Зарегистрироваться' disabled={!isFormValid} />
-      <p className='login-form__hint page__text'>Уже есть аккаунт?</p>
-      <FormLink path='/login' title='Войти' />
     </Form>
   )
 };

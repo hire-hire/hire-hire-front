@@ -4,11 +4,18 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  border-radius: 32px;
   box-sizing: border-box;
-  width: 672px;
+  width: 100%;
+  background-image: url(../../images/formLeft.png), url(../../images/formRight.png);
+  background-repeat: no-repeat;
+  background-size: 290px 290px;
+  background-position: 6% 43%, 92% 88%;
 }
 
 .form__title {
-  margin-bottom: 40px;
+  margin-bottom: 30px;
+  font-size: 100px;
+  line-height: 100%;
+  font-weight: normal;
+  color: #748CDB;
 }

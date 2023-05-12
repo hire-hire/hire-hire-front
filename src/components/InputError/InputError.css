@@ -1,13 +1,13 @@
 .input__error {
   font-size: 14px;
   line-height: 16px;
-  color: #FF0000;
-  margin-bottom: 16px;
+  color: #88161D;
+  margin-bottom: 4px;
   display: block;
   width: 100%;
   text-align: left;
   visibility: hidden;
-  height: 17px;
+  height: 44px;
 }
 
 .input__error_type_visible {

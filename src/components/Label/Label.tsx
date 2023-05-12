@@ -7,7 +7,7 @@ type PropsType = {
 
 const Label:FC<PropsType> = ({ title, children }) => {
   return (
-    <label className="form__label page__text">
+    <label className='form__label page__text'>
       { title }
       { children }
     </label>

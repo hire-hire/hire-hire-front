@@ -1,16 +1,17 @@
 .submitButton {
-  width: 100%;
-  padding: 12px 0;
-  border: 2px solid #000AFF;
+  padding: 12px 9px;
+  border: none;
   color: #fff;
-  border-radius: 12px;
-  background-color: rgba(0, 10, 255, 1);
-  font-weight: bold;
+  background-color: #748CDB;
   cursor: pointer;
+  font-size: 20px;
+  line-height: 160%;
+  font-weight: 600;
+  min-width: 220px;
+  box-sizing: border-box;
 }
 
 .submitButton_type_disabled {
-  background-color: rgba(191, 191, 191, 1);
-  border: 2px solid rgba(191, 191, 191, 1);
+  background-color: #B7CBFF;
 }
 
