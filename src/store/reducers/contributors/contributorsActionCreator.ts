@@ -7,6 +7,7 @@ export type Contributor = {
   last_name: string
   middle_name: string
   photo: string
+  thumbnail_image: string
   role: string
   contacts: ContributorContact[]
 };
