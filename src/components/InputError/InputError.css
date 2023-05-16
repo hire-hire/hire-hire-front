@@ -13,3 +13,22 @@
 .input__error_type_visible {
   visibility: visible;
 }
+
+@media screen and (max-width: 1599px) {
+  .input__error {
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 1151px) {
+  .input__error {
+    font-size: 10px;
+    height: 34px;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .input__error {
+    height: 28px;
+  }
+}

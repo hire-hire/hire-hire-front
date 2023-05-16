@@ -15,3 +15,24 @@
   background-color: #B7CBFF;
 }
 
+@media screen and (max-width: 1599px) {
+  .submitButton {
+    padding: 10px 20px;
+    font-size: 16px;
+    line-height: 200%;
+    min-width: 200px;
+  }
+}
+
+@media screen and (max-width: 1151px) {
+  .submitButton {
+    padding: 4px 20px;
+  }
+}
+
+@media screen and (max-width: 1151px) {
+  .submitButton {
+    margin-bottom: 24px;
+  }
+}
+
