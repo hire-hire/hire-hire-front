@@ -1,0 +1,27 @@
+.register {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  background-image: url(../../images/formLeft.png), url(../../images/formRight.png);
+  background-repeat: no-repeat;
+  background-size: 290px, 290px;
+  background-position: 6% 43%, 92% 88%;
+}
+
+@media screen and (max-width: 1599px) {
+  .register {
+    background-size: 200px, 180px;
+  }
+}
+
+@media screen and (max-width: 1151px) {
+  .register {
+    background-size: 160px, 155px;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .register {
+    background-image: none, none;
+  }
+}

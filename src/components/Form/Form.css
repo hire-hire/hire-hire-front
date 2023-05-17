@@ -1,15 +1,9 @@
 .form {
   padding: 80px;
-  background-color: #fff;
   display: flex;
   flex-direction: column;
   align-items: center;
   box-sizing: border-box;
-  width: 100%;
-  background-image: url(../../images/formLeft.png), url(../../images/formRight.png);
-  background-repeat: no-repeat;
-  background-size: 290px, 290px;
-  background-position: 6% 43%, 92% 88%;
 }
 
 .form__title {
@@ -23,7 +17,6 @@
 @media screen and (max-width: 1599px) {
   .form {
     padding: 50px;
-    background-size: 200px, 180px;
   }
 
   .form__title {
@@ -36,7 +29,6 @@
 @media screen and (max-width: 1151px) {
   .form {
     padding: 30px;
-    background-size: 160px, 155px;
   }
 
   .form__title {
@@ -49,7 +41,6 @@
 @media screen and (max-width: 900px) {
   .form {
     padding: 15px;
-    background-image: none, none;
   }
 
   .form__title {

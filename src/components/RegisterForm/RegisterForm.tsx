@@ -50,52 +50,54 @@ const RegisterForm = () => {
   };
 
   return (
-    <Form type='register' onSubmit={handleSubmit} title='Регистрация'>
-      <Label title='Логин'>
-        <LabelContainer hint='прописные и строчные латинские буквы, цифры, нижнее подчеркивание, точка, запятая, +,-, без пробелов и иных символов, min количество символов - 2, max - 25'>
-          <Input
-            type='text'
-            name='username'
-            error={errors.username}
-            value={values.username || ''}
-            handleChange={handleChangeValidation}
-            maxLength={25}
-            minLength={2}
-            pattern={usernamePattern} />
-        </LabelContainer>
-        <InputError error={errors.username} />
-      </Label>
-      <Label title='Придумай пароль'>
-        <LabelContainer hint='прописные и строчные латинские буквы, символов min 8, max 40, цифры (но не должен состоять из одних цифр), спецсимволы. Логин и пароль не должны совпадать.'>
-          <Input
-            type='password'
-            name='password'
-            error={errors.password}
-            value={values.password || ''}
-            handleChange={handleChangeValidation}
-            pattern={passwordPattern}
-            maxLength={40}
-            minLength={8} 
-            inputRef={passwordRef} />
-        </LabelContainer>
-        <InputError error={errors.password} />
-      </Label>
-      <Label title='Повтори пароль'>
-        <LabelContainer hint='повтори пароль введеный выше'>
-          <Input
-            type='password'
-            name='repeatPassword'
-            error={errors.repeatPassword}
-            value={values.repeatPassword || ''}
-            handleChange={handleChangeValidation}
-            pattern={passwordPattern}
-            maxLength={128}
-            minLength={8} />
-        </LabelContainer>
-        <InputError error={errors.repeatPassword} />
-      </Label>
-      <FormSubmitButton title='Зарегистрироваться' disabled={!isFormValid} />
-    </Form>
+    <section className='register'>
+      <Form type='register' onSubmit={handleSubmit} title='Регистрация'>
+        <Label title='Логин'>
+          <LabelContainer hint='прописные и строчные латинские буквы, цифры, нижнее подчеркивание, точка, запятая, +,-, без пробелов и иных символов, min количество символов - 2, max - 25'>
+            <Input
+              type='text'
+              name='username'
+              error={errors.username}
+              value={values.username || ''}
+              handleChange={handleChangeValidation}
+              maxLength={25}
+              minLength={2}
+              pattern={usernamePattern} />
+          </LabelContainer>
+          <InputError error={errors.username} />
+        </Label>
+        <Label title='Придумай пароль'>
+          <LabelContainer hint='прописные и строчные латинские буквы, символов min 8, max 40, цифры (но не должен состоять из одних цифр), спецсимволы. Логин и пароль не должны совпадать.'>
+            <Input
+              type='password'
+              name='password'
+              error={errors.password}
+              value={values.password || ''}
+              handleChange={handleChangeValidation}
+              pattern={passwordPattern}
+              maxLength={40}
+              minLength={8}
+              inputRef={passwordRef} />
+          </LabelContainer>
+          <InputError error={errors.password} />
+        </Label>
+        <Label title='Повтори пароль'>
+          <LabelContainer hint='повтори пароль введеный выше'>
+            <Input
+              type='password'
+              name='repeatPassword'
+              error={errors.repeatPassword}
+              value={values.repeatPassword || ''}
+              handleChange={handleChangeValidation}
+              pattern={passwordPattern}
+              maxLength={128}
+              minLength={8} />
+          </LabelContainer>
+          <InputError error={errors.repeatPassword} />
+        </Label>
+        <FormSubmitButton title='Зарегистрироваться' disabled={!isFormValid} />
+      </Form>
+    </section>
   )
 };
 
