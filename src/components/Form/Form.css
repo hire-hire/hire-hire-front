@@ -8,7 +8,7 @@
   width: 100%;
   background-image: url(../../images/formLeft.png), url(../../images/formRight.png);
   background-repeat: no-repeat;
-  background-size: 290px 290px;
+  background-size: 290px, 290px;
   background-position: 6% 43%, 92% 88%;
 }
 
@@ -18,4 +18,43 @@
   line-height: 100%;
   font-weight: normal;
   color: #748CDB;
+}
+
+@media screen and (max-width: 1599px) {
+  .form {
+    padding: 50px;
+    background-size: 200px, 180px;
+  }
+
+  .form__title {
+    margin-bottom: 50px;
+    font-size: 64px;
+    line-height: 125%;
+  }
+}
+
+@media screen and (max-width: 1151px) {
+  .form {
+    padding: 30px;
+    background-size: 160px, 155px;
+  }
+
+  .form__title {
+    margin-bottom: 30px;
+    font-size: 48px;
+    line-height: 100%;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .form {
+    padding: 15px;
+    background-image: none, none;
+  }
+
+  .form__title {
+    margin-bottom: 15px;
+    font-size: 24px;
+    line-height: 44px;
+  }
 }

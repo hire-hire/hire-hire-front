@@ -4,3 +4,23 @@
   position: relative;
   color: #163B88;
 }
+
+@media screen and (max-width: 1599px) {
+  .form__label {
+    max-width: 410px;
+  }
+}
+
+@media screen and (max-width: 1151px) {
+  .form__label {
+    max-width: 368px;
+    font-size: 16px;
+    line-height: 100%;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .form__label {
+    max-width: 284px;
+  }
+}

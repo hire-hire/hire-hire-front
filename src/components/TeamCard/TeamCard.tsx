@@ -12,7 +12,7 @@ type PropsType = {
 
 const TeamCard: FC<PropsType> = ({ contributor }) => {
 
-  const baseURL = 'https://test-hire-hire.proninteam.ru/';
+  const baseURL = 'https://test-hire-hire.proninteam.ru';
 
   return (
     <li className='contributor'>
@@ -26,7 +26,7 @@ const TeamCard: FC<PropsType> = ({ contributor }) => {
             contributor.contacts.map((contact) => {
               return (
                 <li key={contact.contact} className='contributor__contact'>
-                  <a target='_blank' href={`${contact.social_network === 'Email' ? `mailto:${contact.contact}` : `${contact.contact}`}`} className='contributor__link' rel='noreferrer'>
+                  <a target='_blank' href={`${contact.social_network.toLowerCase() === 'email' ? `mailto:${contact.contact.replace('http://', '')}` : `${contact.contact}`}`} className='contributor__link' rel='noreferrer'>
                     <img 
                     src={
                       contact.social_network.toLowerCase() === 'telegram'
