@@ -8,6 +8,7 @@ import Label from '../Label/Label';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { useNavigate } from 'react-router-dom';
 import { userLogIn } from '../../store/reducers/user/userActionCreator';
+import LabelContainer from '../LabelContainer/LabelContainer';
 
 const LoginForm = () => {
 
@@ -20,8 +21,8 @@ const LoginForm = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    if(userName) {
-      resetForm({...values, userName}, errors, false);
+    if (userName) {
+      resetForm({ ...values, userName }, errors, false);
     }
   }, []);
 
@@ -36,31 +37,37 @@ const LoginForm = () => {
   };
 
   return (
-    <Form type='auth' onSubmit={handleSubmit} title='Вход'>
-      <Label title='Юзернейм'>
-        <Input
-          type='text'
-          name='username'
-          error={errors.username}
-          value={values.username || ''}
-          handleChange={handleChange}
-          maxLength={150}
-          minLength={1} />
-        <InputError error={errors.username} />
-      </Label>
-      <Label title='Пароль'>
-        <Input
-          type='password'
-          name='password'
-          error={errors.password}
-          value={values.password || ''}
-          handleChange={handleChange}
-          maxLength={128}
-          minLength={8} />
-        <InputError error={errors.password} />
-      </Label>
-      <FormSubmitButton title='Войти' disabled={!isFormValid} />
-    </Form>
+    <section className='login'>
+      <Form type='auth' onSubmit={handleSubmit} title='Вход'>
+        <Label title='Юзернейм'>
+          <LabelContainer hint='прописные и строчные латинские буквы, цифры, нижнее подчеркивание, точка, запятая, +,-, без пробелов и иных символов, min количество символов - 2, max - 25'>
+            <Input
+              type='text'
+              name='username'
+              error={errors.username}
+              value={values.username || ''}
+              handleChange={handleChange}
+              maxLength={150}
+              minLength={1} />
+          </LabelContainer>
+          <InputError error={errors.username} />
+        </Label>
+        <Label title='Пароль'>
+          <LabelContainer hint='прописные и строчные латинские буквы, символов min 8, max 40, цифры (но не должен состоять из одних цифр), спецсимволы. Логин и пароль не должны совпадать.'>
+            <Input
+              type='password'
+              name='password'
+              error={errors.password}
+              value={values.password || ''}
+              handleChange={handleChange}
+              maxLength={128}
+              minLength={8} />
+          </LabelContainer>
+          <InputError error={errors.password} />
+        </Label>
+        <FormSubmitButton title='Войти' disabled={!isFormValid} />
+      </Form>
+    </section>
   )
 };
 

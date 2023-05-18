@@ -1,5 +1,27 @@
-.login-form__hint {
+.login {
+  display: flex;
+  justify-content: center;
   width: 100%;
-  text-align: left;
-  margin-top: 64px;
+  background-image: url(../../images/loginLeft.png), url(../../images/loginRight.png);
+  background-repeat: no-repeat;
+  background-size: 290px, 290px;
+  background-position: 6% 43%, 92% 88%;
+}
+
+@media screen and (max-width: 1599px) {
+  .login {
+    background-size: 200px, 180px;
+  }
+}
+
+@media screen and (max-width: 1151px) {
+  .login {
+    background-size: 160px, 155px;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .login {
+    background-image: none, none;
+  }
 }
