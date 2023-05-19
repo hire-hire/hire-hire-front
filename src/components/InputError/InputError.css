@@ -22,7 +22,6 @@
 
 @media screen and (max-width: 1151px) {
   .input__error {
-    font-size: 10px;
     height: 34px;
   }
 }

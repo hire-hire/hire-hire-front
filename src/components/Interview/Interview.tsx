@@ -89,7 +89,6 @@ const Interview = () => {
     navigate(`interview-result`);
   };
 
-
   return (
     <section className='interview sections'>
       <h1 className='interview__title page__title'>Испытание <span className='page__span'>{`${languageTitle![0].toUpperCase()}${languageTitle?.slice(1)}`}</span></h1>

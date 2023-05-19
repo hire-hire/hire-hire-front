@@ -1,5 +1,79 @@
-.login-form__hint {
+.login {
+  display: flex;
+  justify-content: center;
   width: 100%;
-  text-align: left;
-  margin-top: 64px;
+  background-image: url(../../images/loginLeft.png), url(../../images/loginRight.png);
+  background-repeat: no-repeat;
+  background-size: 290px, 290px;
+  background-position: 6% 43%, 92% 88%;
+}
+
+.login__text {
+  font-size: 24px;
+  line-height: 100%;
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+
+.login__link {
+  width: 344px;
+  padding: 12px;
+  font-size: 20px;
+  line-height: 136%;
+  box-sizing: border-box;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, .25);
+}
+
+@media screen and (max-width: 1599px) {
+  .login {
+    background-size: 200px, 180px;
+  }
+
+  .login__text {
+    font-size: 20px;
+  }
+
+  .login__link {
+    align-self: center;
+    width: 280px;
+  }
+}
+
+@media screen and (max-width: 1151px) {
+  .login {
+    background-size: 160px, 155px;
+  }
+
+  .login__text {
+    margin-top: 6px;
+    font-size: 18px;
+    line-height: 20px;
+  }
+
+  .login__link {
+    width: 240px;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .login {
+    background-image: none, none;
+  }
+}
+
+@media screen and (max-width: 599px) {
+
+  .login__text {
+    margin-top: 0;
+    font-size: 16px;
+    line-height: 20px;
+    margin-bottom: 10px;
+  }
+
+  .login__link {
+    width: 200px;
+    font-size: 16px;
+    line-height: 32px;
+    margin-bottom: 5px;
+  }
 }
