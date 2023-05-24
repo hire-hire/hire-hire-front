@@ -20,6 +20,7 @@ import Interview from '../Interview/Interview';
 import Team from '../Team/Team';
 import NotFound from '../NotFound/NotFound';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
+import Profile from '../Profile/Profile';
 
 function App() {
 
@@ -185,6 +186,20 @@ function App() {
               </Main>
               <Footer key={'footer'} />
             </>
+          } />
+          <Route path='/profile/:userName' element={
+            <ProtectedRoute isLoggedIn={!!user}>
+              <>
+                <Header
+                  key={'header'}
+                  handleOpenMobileMenu={handleOpenMobileMenu}
+                />
+                <Main key={'main'}>
+                  <Profile />
+                </Main>
+                <Footer key={'footer'} />
+              </>
+            </ProtectedRoute>
           } />
           <Route path='*' element={
             <NotFound />

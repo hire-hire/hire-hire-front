@@ -1,4 +1,4 @@
-import { ChangeEvent, FormEvent, useRef } from 'react';
+import { ChangeEvent, FormEvent, useEffect, useRef } from 'react';
 import { useFormWithValidation } from '../../hooks/useFormWithValidation';
 import Form from '../Form/Form';
 import FormSubmitButton from '../FormSubmitButton/FormSubmitButton';
@@ -8,7 +8,7 @@ import Label from '../Label/Label';
 import LabelContainer from '../LabelContainer/LabelContainer';
 import { postUser } from '../../store/reducers/user/userActionCreator';
 import { useNavigate } from 'react-router-dom';
-import { useAppDispatch } from '../../hooks/redux';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 
 const RegisterForm = () => {
 
@@ -22,6 +22,14 @@ const RegisterForm = () => {
   const usernamePattern = '^[\\w.@+-]+$';
   const passwordPattern = '\(?=.*[0-9])(?=.*[a-zA-Z])[0-9a-zA-Z]{8,}';
 
+  const user = useAppSelector(state => state.user.user);
+
+  useEffect(() => {
+    if(user) {
+      navigate(`/profile/${user.username.toLowerCase()}`);
+    }
+  }, [ user ]);
+
   const passwordRef: any = useRef();
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -34,7 +42,6 @@ const RegisterForm = () => {
         password: values.password
       };
       dispatch(postUser(newUser));
-      navigate('/login');
     }
   };
 
@@ -53,7 +60,7 @@ const RegisterForm = () => {
     <section className='register'>
       <Form type='register' onSubmit={handleSubmit} title='Регистрация'>
         <Label title='Логин'>
-          <LabelContainer hint='прописные и строчные латинские буквы, цифры, нижнее подчеркивание, точка, запятая, +,-, без пробелов и иных символов, min количество символов - 2, max - 25'>
+          <LabelContainer hint='От 2 до 25 символов, только латинские буквы, только арабские цифры, нижнее подчеркивание, точка, запятая, +,-, без пробелов'>
             <Input
               type='text'
               name='username'
@@ -67,7 +74,7 @@ const RegisterForm = () => {
           <InputError error={errors.username} />
         </Label>
         <Label title='Придумай пароль'>
-          <LabelContainer hint='прописные и строчные латинские буквы, символов min 8, max 40, цифры (но не должен состоять из одних цифр), спецсимволы. Логин и пароль не должны совпадать.'>
+          <LabelContainer hint={`От 8 до 40 символов, только латинские буквы, как минимум одна заглавная или строчная буква, как минимум одна цифра, только арабские цифры, без пробелов, другие допустимые символы - ~ ! ? @ # $ % ^ & * _ - + ( ) [ ] { } > < / \ | " ' . , : ;')`}>
             <Input
               type='password'
               name='password'
@@ -90,7 +97,7 @@ const RegisterForm = () => {
               value={values.repeatPassword || ''}
               handleChange={handleChangeValidation}
               pattern={passwordPattern}
-              maxLength={128}
+              maxLength={40}
               minLength={8} />
           </LabelContainer>
           <InputError error={errors.repeatPassword} />

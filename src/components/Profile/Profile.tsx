@@ -17,18 +17,9 @@ const Profile = () => {
 
   return (
     <section className='profile sections'>
-      <h1 className='profile__title sections__main-title'>
-        Личный кабинет
+      <h1 className='profile__title page__title'>
+        <span className='page__span'>Личный</span> кабинет
       </h1>
-      <p className="page__text">
-        Username: {user?.username}
-      </p>
-      <p className="page__text">
-        Id: {user?.id}
-      </p>
-      <button onClick={handleLogOut} className='profile__exit-button page__text'>
-        Выйти
-      </button>
     </section>
   )
 };

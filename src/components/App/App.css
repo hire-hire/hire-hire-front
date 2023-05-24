@@ -34,12 +34,7 @@
 .page__link {
   text-decoration: none;
   color: inherit;
-  transition: all .3s linear;
   text-align: center;
-}
-
-.page__link:hover {
-  opacity: 0.6;
 }
 
 .page__text {
