@@ -20,6 +20,8 @@ import Interview from '../Interview/Interview';
 import Team from '../Team/Team';
 import NotFound from '../NotFound/NotFound';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
+import Profile from '../Profile/Profile';
+import ExitConfirm from '../ExitConfirm/ExitConfirm';
 
 function App() {
 
@@ -38,6 +40,7 @@ function App() {
   }, []);
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isExitConfirmOpen, setIsExitConfirmOpen] = useState(false);
 
   const handleOpenMobileMenu = () => {
     setIsMobileMenuOpen(true);
@@ -47,12 +50,23 @@ function App() {
     setIsMobileMenuOpen(false);
   };
 
+  const handleOpenExitConfirm = () => {
+    setIsExitConfirmOpen(true);
+  };
+
+  const handleCloseExitConfirm = () => {
+    setIsExitConfirmOpen(false);
+  };
+
   return (
     <>
-      <Modal isModalOpen={isMobileMenuOpen} handleCloseMobileMenu={handleCloseMobileMenu}>
+      <Modal isModalOpen={isMobileMenuOpen} handleCloseModal={handleCloseMobileMenu}>
         <MobileMenu handleCloseMobileMenu={handleCloseMobileMenu}>
           <Logo />
         </MobileMenu>
+      </Modal>
+      <Modal isModalOpen={isExitConfirmOpen} handleCloseModal={handleCloseExitConfirm}>
+        <ExitConfirm handleCloseExitConfirm={handleCloseExitConfirm} />
       </Modal>
       <div className={`page ${isMobileMenuOpen ? 'page_disabled' : ''}`}>
 
@@ -62,6 +76,7 @@ function App() {
               <Header
                 key={'header'}
                 handleOpenMobileMenu={handleOpenMobileMenu}
+                handleOpenExitConfirm={handleOpenExitConfirm}
               />
               <Main key={'main'}>
                 <MainPage />
@@ -74,6 +89,7 @@ function App() {
               <Header
                 key={'header'}
                 handleOpenMobileMenu={handleOpenMobileMenu}
+                handleOpenExitConfirm={handleOpenExitConfirm}
               />
               <Main key={'main'}>
                 <LoginForm />
@@ -87,6 +103,7 @@ function App() {
               <Header
                 key={'header'}
                 handleOpenMobileMenu={handleOpenMobileMenu}
+                handleOpenExitConfirm={handleOpenExitConfirm}
               />
               <Main key={'main'}>
                 <RegisterForm />
@@ -99,6 +116,7 @@ function App() {
               <Header
                 key={'header'}
                 handleOpenMobileMenu={handleOpenMobileMenu}
+                handleOpenExitConfirm={handleOpenExitConfirm}
               />
               <Main key={'main'}>
                 <SuggestQuestion />
@@ -111,6 +129,7 @@ function App() {
               <Header
                 key={'header'}
                 handleOpenMobileMenu={handleOpenMobileMenu}
+                handleOpenExitConfirm={handleOpenExitConfirm}
               />
               <Main key={'main'}>
                 <Category />
@@ -124,6 +143,7 @@ function App() {
                 <Header
                   key={'header'}
                   handleOpenMobileMenu={handleOpenMobileMenu}
+                  handleOpenExitConfirm={handleOpenExitConfirm}
                 />
                 <Main key={'main'}>
                   <TestSettings />
@@ -138,6 +158,7 @@ function App() {
                 <Header
                   key={'header'}
                   handleOpenMobileMenu={handleOpenMobileMenu}
+                  handleOpenExitConfirm={handleOpenExitConfirm}
                 />
                 <Main key={'main'}>
                   <InterviewRedirect />
@@ -152,6 +173,7 @@ function App() {
                 <Header
                   key={'header'}
                   handleOpenMobileMenu={handleOpenMobileMenu}
+                  handleOpenExitConfirm={handleOpenExitConfirm}
                 />
                 <Main key={'main'}>
                   <Interview />
@@ -166,6 +188,7 @@ function App() {
                 <Header
                   key={'header'}
                   handleOpenMobileMenu={handleOpenMobileMenu}
+                  handleOpenExitConfirm={handleOpenExitConfirm}
                 />
                 <Main key={'main'}>
                   <InterviewResult />
@@ -179,12 +202,28 @@ function App() {
               <Header
                 key={'header'}
                 handleOpenMobileMenu={handleOpenMobileMenu}
+                handleOpenExitConfirm={handleOpenExitConfirm}
               />
               <Main key={'main'}>
                 <Team />
               </Main>
               <Footer key={'footer'} />
             </>
+          } />
+          <Route path='/profile/:userName' element={
+            <ProtectedRoute isLoggedIn={!!user}>
+              <>
+                <Header
+                  key={'header'}
+                  handleOpenMobileMenu={handleOpenMobileMenu}
+                  handleOpenExitConfirm={handleOpenExitConfirm}
+                />
+                <Main key={'main'}>
+                  <Profile />
+                </Main>
+                <Footer key={'footer'} />
+              </>
+            </ProtectedRoute>
           } />
           <Route path='*' element={
             <NotFound />

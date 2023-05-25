@@ -8,23 +8,22 @@ import Label from '../Label/Label';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { userLogIn } from '../../store/reducers/user/userActionCreator';
-import LabelContainer from '../LabelContainer/LabelContainer';
 
 const LoginForm = () => {
 
-  const { values, handleChange, isFormValid, resetForm, errors } = useFormWithValidation();
+  const { values, handleChange, isFormValid, errors } = useFormWithValidation();
 
-  const userName = useAppSelector(state => state.user.user?.username);
+  const user = useAppSelector(state => state.user.user);
 
   const navigate = useNavigate();
 
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    if (userName) {
-      resetForm({ ...values, userName }, errors, false);
+    if (user) {
+      navigate(`/profile/${user.username.toLowerCase()}`)
     }
-  }, []);
+  }, [ user ]);
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -33,7 +32,6 @@ const LoginForm = () => {
       password: values.password
     };
     dispatch(userLogIn(user));
-    navigate('/');
   };
 
   return (
@@ -46,8 +44,8 @@ const LoginForm = () => {
             error={errors.username}
             value={values.username || ''}
             handleChange={handleChange}
-            maxLength={150}
-            minLength={1} />
+            maxLength={25}
+            minLength={2} />
           <InputError error={errors.username} />
         </Label>
         <Label title='Пароль'>
@@ -57,7 +55,7 @@ const LoginForm = () => {
             error={errors.password}
             value={values.password || ''}
             handleChange={handleChange}
-            maxLength={128}
+            maxLength={40}
             minLength={8} />
           <InputError error={errors.password} />
         </Label>

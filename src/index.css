@@ -87,3 +87,6 @@
 
 /* NotFound */
 @import url(../src/components/NotFound/NotFound.css);
+
+/* ExitConfirm */
+@import url(../src/components/ExitConfirm/ExitConfirm.css);
