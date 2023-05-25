@@ -36,3 +36,20 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+.mobile-menu__ext-button {
+  padding: 12px;
+  border: none;
+  font-size: 16px;
+  line-height: 32px;
+  margin-top: 30px;
+  width: 200px;
+}
+
+@media screen and (max-width: 949px) {
+  .mobile-menu__ext-button {
+    padding: 4px;
+    width: 160px;
+    align-self: flex-start;
+  }
+}

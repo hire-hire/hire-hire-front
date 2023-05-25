@@ -53,6 +53,9 @@ const MobileMenu: FC<PropsType> = ({ children, handleCloseMobileMenu }) => {
       </nav>
       <button onClick={handleCloseMenu} type='button' className='mobile-menu__button'></button>
       <UserLink handleCloseMobileMenu={handleCloseMobileMenu} />
+      <button type='button' className='mobile-menu__ext-button sections__link'>
+        Выйти
+      </button>
     </div>
   )
 };
