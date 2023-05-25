@@ -6,9 +6,10 @@ import UserLink from '../UserLink/UserLink';
 
 type PropsType = {
   handleOpenMobileMenu: () => void
+  handleOpenExitConfirm: () => void
 };
 
-const Header: FC<PropsType> = ({ handleOpenMobileMenu }) => {
+const Header: FC<PropsType> = ({ handleOpenMobileMenu, handleOpenExitConfirm }) => {
 
   const user = useAppSelector(state => state.user.user);
 
@@ -21,7 +22,7 @@ const Header: FC<PropsType> = ({ handleOpenMobileMenu }) => {
           user ?
             <div className='header__container'>
               <UserLink place='header'/>
-              <button className='header__ext-button'></button>
+              <button onClick={handleOpenExitConfirm} type='button' className='header__ext-button'></button>
             </div>
             :
             <UserLink place='header'/>

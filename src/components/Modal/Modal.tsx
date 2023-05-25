@@ -6,16 +6,14 @@ const modal = document.querySelector('#modal');
 type PropsType = {
   children: ReactElement
   isModalOpen: boolean
-  handleCloseMobileMenu: () => void
+  handleCloseModal: () => void
 };
 
-const Modal: FC<PropsType> = ({ children, isModalOpen, handleCloseMobileMenu }) => {
+const Modal: FC<PropsType> = ({ children, isModalOpen, handleCloseModal }) => {
 
   const modalContainer = useMemo(() => {
     return document.createElement('div');
   }, []);
-
-  // modalContainer.classList.add('modal__container');
 
   useEffect(() => {
     if (isModalOpen) {
@@ -28,7 +26,7 @@ const Modal: FC<PropsType> = ({ children, isModalOpen, handleCloseMobileMenu }) 
 
   const handleClose = (e: any) => {
     if(e.target.classList.contains('modal__container') && !e.target.classList.contains('mobile-menu')) {
-      handleCloseMobileMenu();
+      handleCloseModal();
     } else {
       return
     }
