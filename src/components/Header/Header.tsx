@@ -20,16 +20,8 @@ const Header: FC<PropsType> = ({ handleOpenMobileMenu }) => {
         {
           user ?
             <div className='header__container'>
-              {
-                false
-                  ?
-                  <img src='#' alt={`аватар ${user!.username}`} className='header__image' />
-                  :
-                  <p className='page__text header__image'>
-                    {user.username.slice(0, 2).toUpperCase()}
-                  </p>
-              }
               <UserLink place='header'/>
+              <button className='header__ext-button'></button>
             </div>
             :
             <UserLink place='header'/>
