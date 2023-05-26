@@ -32,7 +32,7 @@ export function useFormWithValidation ():useFormWithValidationTypes {
   const resetForm = useCallback((
     newValues = {}, 
     newErrors = {}, 
-    newIsFormValid = (false)) => {
+    newIsFormValid = false) => {
     setValues(newValues);
     setErrors(newErrors);
     setIsFormValid(newIsFormValid);
