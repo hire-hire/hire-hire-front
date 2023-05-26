@@ -3,14 +3,13 @@ import {
     SyntheticEvent,
     useEffect,
     useRef,
-    useState
+    useState,
 } from 'react';
 
 import {useNavigate, useParams} from 'react-router-dom';
 
 import interviewImage from '../../images/interviewImage.png';
 import {QAType} from "./interfaces";
-import {useFormWithValidation} from '../../hooks/useFormWithValidation';
 import {
     fetchAnswer,
     fetchInterview,
@@ -22,8 +21,6 @@ const Interview = () => {
     const [interview, setInterview] = useState<InterviewType>();
     const [questionCount, setQuestionCount] = useState(0);
     const [userAnswer, setUserAnswer] = useState('')
-
-    const {values} = useFormWithValidation();
 
     const {languageTitle, interviewId} = useParams();
 
@@ -44,7 +41,7 @@ const Interview = () => {
                     return
                 });
         }
-    }, []);
+    });
 
     const changeInput = (e: ChangeEvent<HTMLTextAreaElement>) => {
         setUserAnswer(e.target.value);
@@ -58,7 +55,6 @@ const Interview = () => {
         if (interview) {
             qa = {
                 question: interview.questions[questionCount].text,
-                userAnswer: values.interview || '',
             }
         }
 
