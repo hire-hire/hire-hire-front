@@ -10,12 +10,16 @@ import bottomSquare from '../../images/BottomSquare.png';
 import questionTopSquare from '../../images/questionTopSquare.png';
 import questionMiddleSquare from '../../images/questionMiddleSquare.png';
 import questionLeftSquare from '../../images/questionLeftSquare.png';
-import questionBottomSquare from '../../images/questionBottomSquare.png'
+import questionBottomSquare from '../../images/questionBottomSquare.png';
+
+import sqares from '../../images/gamesBG.png';
 
 const MainPage = () => {
 
   const { categories, isLoading, error } = useAppSelector(state => state.categories);
   const dispatch = useAppDispatch();
+
+  const user = useAppSelector(state => state.user.user);
 
   useEffect(() => {
     dispatch(fetchCategories());
@@ -72,6 +76,28 @@ const MainPage = () => {
           }
         </div>
       </section>
+      {
+        user
+          ?
+          <section className='games sections'>
+            <h2 className='games__title sections__title'>
+              Голодные игры
+            </h2>
+            <div className='games__container'>
+              <img src={sqares} alt='Опять квадраты' className='games__image' />
+              <div className='games__content'>
+                <p className='games__text sections__text'>
+                  Испытание, которое поможет выявить лучшего среди лучших. И пусть удача всегда будет с вами!
+                </p>
+                <Link to='/games' className='games__link sections__link'>
+                  Провести соревнование
+                </Link>
+              </div>
+            </div>
+          </section>
+          :
+          null
+      }
       <section className='suggest-question sections'>
         <div className='suggest-question__content'>
           <h1 className='suggest-question__title sections__title'>

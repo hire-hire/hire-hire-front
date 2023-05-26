@@ -77,7 +77,7 @@
 
 .sections__link {
   width: 464px;
-  padding: 24px 0;
+  padding: 24px;
   text-decoration: none;
   color: #C1DFF9;
   background-color: #748CDB;
@@ -156,7 +156,7 @@
 
   .sections__link {
     width: 200px;
-    padding: 6px 0;
+    padding: 6px;
     font-size: 16px;
     line-height: 225%;
     align-self: center;

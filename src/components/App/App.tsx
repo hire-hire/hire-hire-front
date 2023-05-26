@@ -22,6 +22,7 @@ import NotFound from '../NotFound/NotFound';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import Profile from '../Profile/Profile';
 import ExitConfirm from '../ExitConfirm/ExitConfirm';
+import Duel from '../Duel/Duel';
 
 function App() {
 
@@ -220,6 +221,21 @@ function App() {
                 />
                 <Main key={'main'}>
                   <Profile />
+                </Main>
+                <Footer key={'footer'} />
+              </>
+            </ProtectedRoute>
+          } />
+          <Route path='/games' element={
+            <ProtectedRoute isLoggedIn={!!user}>
+              <>
+                <Header
+                  key={'header'}
+                  handleOpenMobileMenu={handleOpenMobileMenu}
+                  handleOpenExitConfirm={handleOpenExitConfirm}
+                />
+                <Main key={'main'}>
+                  <Duel />
                 </Main>
                 <Footer key={'footer'} />
               </>
