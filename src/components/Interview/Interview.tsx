@@ -5,13 +5,14 @@ import {
     useState,
 } from 'react';
 
-import {useParams} from 'react-router-dom';
+import {useNavigate, useParams} from 'react-router-dom';
 
 import interviewImage from 'images/interviewImage.png';
 import InterviewUserAnswer from '../InterviewUserAnswer/InterviewUserAnswer';
-import useDeleteInterviewAndNavigateToNotFound
-    from 'hooks/useNavigateToIntreviewResult';
 import useNavigateToNotFound from 'hooks/useNavigateToNotFound';
+import {
+    deleteInterviewAndNavigateToNotFound
+} from 'utils/deleteInterviewAndNavigateToNotFound';
 import {
     fetchAnswer,
     fetchInterview,
@@ -26,8 +27,8 @@ const Interview = () => {
 
     const {languageTitle, interviewId} = useParams();
 
+    const navigate = useNavigate();
     const navigateTo404 = useNavigateToNotFound();
-    const navigateToInterviewResult = useDeleteInterviewAndNavigateToNotFound();
 
     const answerRef: any = useRef();
 
@@ -70,7 +71,7 @@ const Interview = () => {
 
     const handleInterviewFinished = (e: SyntheticEvent) => {
         e.preventDefault();
-        navigateToInterviewResult();
+        deleteInterviewAndNavigateToNotFound(navigate);
     };
 
 

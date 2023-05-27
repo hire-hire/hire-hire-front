@@ -24,6 +24,7 @@
       "hooks/*": ["hooks/*"],
       "store/*": ["store/*"],
       "images/*": ["images/*"],
+      "utils/*": ["utils/*"],
     }
   },
   "include": [
