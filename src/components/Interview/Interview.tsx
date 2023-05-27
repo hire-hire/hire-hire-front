@@ -6,15 +6,18 @@ import {
     useState,
 } from 'react';
 
-import {useNavigate, useParams} from 'react-router-dom';
+import {useParams} from 'react-router-dom';
 
-import interviewImage from '../../images/interviewImage.png';
-import {QAType} from "./interfaces";
+import interviewImage from 'images/interviewImage.png';
+import useDeleteInterviewAndNavigateToNotFound
+    from "hooks/useNavigateToIntreviewResult";
+import useNavigateToNotFound from "hooks/useNavigateToNotFound";
 import {
     fetchAnswer,
     fetchInterview,
     InterviewType,
-} from '../../store/reducers/interview/interviewActionCreator';
+} from 'store/reducers/interview/interviewActionCreator';
+
 
 const Interview = () => {
     const [answer, setAnswer] = useState(null);
@@ -24,65 +27,39 @@ const Interview = () => {
 
     const {languageTitle, interviewId} = useParams();
 
-    const navigate = useNavigate();
+    const navigateTo404 = useNavigateToNotFound();
+    const navigateToInterviewResult = useDeleteInterviewAndNavigateToNotFound();
 
     const answerRef: any = useRef();
 
     const token = JSON.parse(localStorage.getItem('token')!);
 
     useEffect(() => {
-        if (interviewId) {
-            fetchInterview(interviewId, token)
-                .then((interview) => {
-                    setInterview(interview)
-                })
-                .catch((err) => {
-                    navigate('/404');
-                    return
-                });
-        }
-    });
+        fetchInterview(interviewId!, token)
+            .then((interview) => {
+                setInterview(interview)
+            })
+            .catch((err) => {
+                console.log(err);
+                navigateTo404();
+            });
+
+    }, []);
 
     const changeInput = (e: ChangeEvent<HTMLTextAreaElement>) => {
         setUserAnswer(e.target.value);
     }
     const handleShowAnswer = (e: SyntheticEvent) => {
         e.preventDefault();
-        const userInterviewArr = JSON.parse(localStorage.getItem('userInterview')!);
 
-        let qa = {} as QAType;
+        fetchAnswer(interview!.questions[questionCount].id, token)
+            .then(res => setAnswer(res.answer))
+            .catch(err => console.log(err));
 
-        if (interview) {
-            qa = {
-                question: interview.questions[questionCount].text,
-            }
-        }
-
-
-        if (!userInterviewArr) {
-            const qaArr: QAType[] = [];
-            qaArr.push(qa);
-            localStorage.setItem('userInterview', JSON.stringify(qaArr));
-        } else {
-            const newUserInterviewArr: QAType[] = userInterviewArr.map((item: QAType) => item);
-            newUserInterviewArr.push(qa);
-            localStorage.setItem('userInterview', JSON.stringify(newUserInterviewArr));
-        }
-
-
-        if (interview) {
-            fetchAnswer(interview.questions[questionCount].id, token)
-                .then(res => setAnswer(res.answer))
-                .catch(err => console.log(err));
-        }
-
-        if (answerRef.current) {
-            answerRef.current.scrollIntoView({
-                behavior: 'smooth',
-                block: 'nearest'
-            })
-        }
-
+        answerRef.current.scrollIntoView({
+            behavior: 'smooth',
+            block: 'nearest',
+        })
     };
 
     const handleGoToNextQuestion = (e: SyntheticEvent) => {
@@ -96,8 +73,7 @@ const Interview = () => {
 
     const handleInterviewFinished = (e: SyntheticEvent) => {
         e.preventDefault();
-        localStorage.removeItem('userInterview');
-        navigate(`interview-result`);
+        navigateToInterviewResult();
     };
 
     return (
