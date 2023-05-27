@@ -7,12 +7,11 @@ import {
 
 import {useNavigate, useParams} from 'react-router-dom';
 
+import deleteInterviewAndNavigateToNotFound
+    from 'utils/deleteInterviewAndNavigateToNotFound';
 import interviewImage from 'images/interviewImage.png';
 import InterviewUserAnswer from '../InterviewUserAnswer/InterviewUserAnswer';
 import useNavigateToNotFound from 'hooks/useNavigateToNotFound';
-import {
-    deleteInterviewAndNavigateToNotFound
-} from 'utils/deleteInterviewAndNavigateToNotFound';
 import {
     fetchAnswer,
     fetchInterview,
