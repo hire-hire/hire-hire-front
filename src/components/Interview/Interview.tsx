@@ -8,6 +8,7 @@ import {
 import {useParams} from 'react-router-dom';
 
 import interviewImage from 'images/interviewImage.png';
+import InterviewUserAnswer from "../InterviewUserAnswer/InterviewUserAnswer";
 import useDeleteInterviewAndNavigateToNotFound
     from "hooks/useNavigateToIntreviewResult";
 import useNavigateToNotFound from "hooks/useNavigateToNotFound";
@@ -16,7 +17,6 @@ import {
     fetchInterview,
     InterviewType,
 } from 'store/reducers/interview/interviewActionCreator';
-import InterviewUserAnswer from "../InterviewUserAnswer/InterviewUserAnswer";
 
 
 const Interview = () => {
