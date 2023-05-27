@@ -17,6 +17,7 @@ import {
     fetchInterview,
     InterviewType,
 } from 'store/reducers/interview/interviewActionCreator';
+import InterviewUserAnswer from "../InterviewUserAnswer/InterviewUserAnswer";
 
 
 const Interview = () => {
@@ -114,14 +115,8 @@ const Interview = () => {
                     <h2 className='interview__subtitle page__text'>
                         Ответ <span className='interview__span page__text'>(Не обязательно для заполнения)</span>
                     </h2>
-                    <textarea placeholder='Ввести ответ'
-                              className='interview__user-answer page__text'
-                              name='interview'
-                              value={userAnswer}
-                              onChange={changeInput}
-                    >
+                    <InterviewUserAnswer questionNumber={questionNumber}/>
 
-                    </textarea>
                     <button
                         onClick={button_handler}
                         type='button'
