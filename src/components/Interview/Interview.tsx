@@ -24,7 +24,6 @@ const Interview = () => {
     const [answer, setAnswer] = useState(null);
     const [interview, setInterview] = useState<InterviewType>();
     const [questionCount, setQuestionCount] = useState(0);
-    const [userAnswer, setUserAnswer] = useState('')
 
     const {languageTitle, interviewId} = useParams();
 
@@ -49,9 +48,6 @@ const Interview = () => {
 
     }, []);
 
-    const changeInput = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        setUserAnswer(e.target.value);
-    }
     const handleShowAnswer = (e: SyntheticEvent) => {
         e.preventDefault();
 
@@ -69,7 +65,6 @@ const Interview = () => {
         e.preventDefault();
         if (interview?.questions.length !== questionNumber) {
             setAnswer(null);
-            setUserAnswer('')
             setQuestionCount(questionNumber);
         }
     };
