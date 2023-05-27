@@ -7,13 +7,13 @@ import {
 const InterviewUserAnswer: React.FC<{ questionNumber: number }> = ({questionNumber}) => {
     const [userAnswer, setUserAnswer] = useState('')
 
-    const changeInput = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        setUserAnswer(e.target.value);
-    }
     useEffect(() => {
         setUserAnswer('');
     }, [questionNumber])
 
+    const changeInput = (e: ChangeEvent<HTMLTextAreaElement>) => {
+        setUserAnswer(e.target.value);
+    }
 
     return (
         <textarea
