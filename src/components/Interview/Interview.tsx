@@ -74,9 +74,9 @@ const Interview = () => {
     };
 
 
-    const button_handler = answer ? interview?.questions.length === questionNumber ?
+    const buttonHandler = answer ? interview?.questions.length === questionNumber ?
         handleInterviewFinished : handleGoToNextQuestion : handleShowAnswer
-    const button_text = answer ? interview?.questions.length === questionNumber ?
+    const buttonText = answer ? interview?.questions.length === questionNumber ?
         'Завершить испытание' : 'Следующий вопрос' : 'Показать правильный ответ'
 
     return (
@@ -112,17 +112,17 @@ const Interview = () => {
                     <InterviewUserAnswer questionNumber={questionNumber}/>
 
                     <button
-                        onClick={button_handler}
+                        onClick={buttonHandler}
                         type='button'
-                        className='interview__button sections__link interview__button_type_desktop'>{button_text}
+                        className='interview__button sections__link interview__button_type_desktop'>{buttonText}
                     </button>
                 </form>
                 <img src={interviewImage} alt='Квадратики'
                      className='interview__image'/>
                 <button
-                    onClick={button_handler}
+                    onClick={buttonHandler}
                     type='button'
-                    className='interview__button interview__button_type_mobile sections__link'>{button_text}
+                    className='interview__button interview__button_type_mobile sections__link'>{buttonText}
                 </button>
             </div>
         </section>
