@@ -31,6 +31,12 @@
   text-align: center;
   visibility: hidden;
   opacity: 0;
+  box-sizing: border-box;
+}
+
+.label-container__info_position_games {
+  transform: translate(-50%, -175%);
+  min-width: 370px;
 }
 
 .label-container__hint {

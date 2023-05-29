@@ -3,6 +3,7 @@ import contributorsSlice from './reducers/contributors/contributorsSlice';
 import categoriesSlice from './reducers/categories/categoriesSlice';
 import interviewSlice from './reducers/interview/interviewSlice';
 import userSlice from './reducers/user/userSlice';
+import duelSlice from './reducers/duel/duelSlice';
 
 export const baseUrl = 'https://test-hire-hire.proninteam.ru/api/v1/';
 
@@ -12,6 +13,7 @@ export const store = configureStore({
     categories: categoriesSlice,
     interview: interviewSlice,
     user: userSlice,
+    duel: duelSlice,
   },
 });
 

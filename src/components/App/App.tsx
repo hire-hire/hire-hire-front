@@ -22,7 +22,7 @@ import NotFound from '../NotFound/NotFound';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import Profile from '../Profile/Profile';
 import ExitConfirm from '../ExitConfirm/ExitConfirm';
-import Duel from '../Duel/Duel';
+import DuelSettings from '../DuelSettings/DuelSettings';
 
 function App() {
 
@@ -235,7 +235,7 @@ function App() {
                   handleOpenExitConfirm={handleOpenExitConfirm}
                 />
                 <Main key={'main'}>
-                  <Duel />
+                  <DuelSettings />
                 </Main>
                 <Footer key={'footer'} />
               </>
