@@ -59,8 +59,7 @@ const MobileMenu: FC<PropsType> = ({ children, handleCloseMobileMenu }) => {
       {
         user
           ?
-          <button type='button' className='mobile-menu__ext-button sections__link'>
-            Выйти
+          <button type='button' className='mobile-menu__ext-button'>
           </button>
           : null
       }
