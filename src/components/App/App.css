@@ -124,6 +124,7 @@
   text-decoration: none;
   color: #C1DFF9;
   background-color: #748CDB;
+  border: 2px solid #748CDB;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -131,6 +132,20 @@
   font-size: 24px;
   line-height: 128%;
   font-weight: bold;
+  box-sizing: border-box;
+}
+
+.sections__link:hover {
+  border: 2px solid #163B88;
+}
+
+.sections__link_type_disabled {
+  border: 2px solid #ACBAE9;
+  background-color: #ACBAE9;
+}
+
+.sections__link_type_disabled:hover {
+  border: 2px solid #ACBAE9;
 }
 
 @media screen and (max-width: 1599px) {

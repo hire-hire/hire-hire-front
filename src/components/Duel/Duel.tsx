@@ -1,4 +1,4 @@
-import { FormEvent, useEffect, useState } from 'react';
+import { FormEvent, useEffect, useRef, useState } from 'react';
 import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { getDuel, patchDuel } from '../../store/reducers/duel/duelActionCreator';
@@ -180,9 +180,9 @@ const Duel = () => {
             <div className='duel__buttons'>
               {
                 questionNumber === 1
-                ?
-                <button onClick={handleGoBack} type='button' className='duel__link page__button page__button_type_white page__text'>Назад</button>
-                :null
+                  ?
+                  <button onClick={handleGoBack} type='button' className='duel__link page__button page__button_type_white page__text'>Назад</button>
+                  : null
               }
               <button disabled={!winner} type='submit' className={`page__button duel__button_type_submit ${winner ? '' : 'page__button_type_disabled'} page__text`}>{questions?.length === questionNumber ? 'Завершить соревнование' : 'Следующий вопрос'} <img src={arrowToRight} alt='->' className='duel__button-image' /></button>
             </div>

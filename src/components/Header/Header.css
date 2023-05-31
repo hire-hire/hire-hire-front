@@ -62,6 +62,10 @@
   cursor: pointer;
 }
 
+.header__ext-button:hover {
+  background-image: url(../../images/hoveredExitButton.png);
+}
+
 @media screen and (max-width: 1200px) {
   .header__container {
     gap: 20px;

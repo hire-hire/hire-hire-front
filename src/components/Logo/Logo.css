@@ -11,6 +11,10 @@
   margin: 0;
 }
 
+.logo__title:hover {
+  text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+}
+
 .logo__image {
   margin-right: 13px;
   width: 54px;

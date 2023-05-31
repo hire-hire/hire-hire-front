@@ -19,14 +19,30 @@ const RegisterForm = () => {
   const dispatch = useAppDispatch();
 
   const emailPattern = '\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*\\.\\w{2,4}';
-  const usernamePattern = '^[\\w.@+-]+$';
-  const passwordPattern = '\(?=.*[0-9])(?=.*[a-zA-Z])[0-9a-zA-Z]{8,}';
+  const usernamePattern = '^[\da-zA-Z.@+-_]+$';
+  const passwordPattern = '^.*(?=.{8,40})(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z0-9!#$%&?].*$';
 
-  const user = useAppSelector(state => state.user.user);
+  const user = useAppSelector(state => state.user);
 
   useEffect(() => {
-    if(user) {
-      navigate(`/profile/${user.username.toLowerCase()}`);
+    if(user.user) {
+      navigate(`/profile/${user.user.username.toLowerCase()}`);
+    }
+    if(user.error) {
+      const errKeys = Object.keys(user.error);
+      const errObj: any = {};
+      errKeys.forEach((key) => {
+        errObj[key] = user.error[key][0];
+      });
+      resetForm(
+        {
+          ...values
+        },
+        {
+          ...errObj
+        },
+        false
+      )
     }
   }, [ user ]);
 
@@ -56,6 +72,10 @@ const RegisterForm = () => {
     }
   };
 
+  const usernameErrorMessage = errors.username === 'Введите данные в указанном формате.' ? 'Логин не отвечает требованиям' : errors.username;
+
+  const passwordErrorMessage = errors.password === 'Введите данные в указанном формате.' ? 'Пароль не отвечает требованиям' : errors.password;
+
   return (
     <section className='register'>
       <Form type='register' onSubmit={handleSubmit} title='Регистрация'>
@@ -64,21 +84,21 @@ const RegisterForm = () => {
             <Input
               type='text'
               name='username'
-              error={errors.username}
+              error={usernameErrorMessage}
               value={values.username || ''}
               handleChange={handleChangeValidation}
               maxLength={25}
               minLength={2}
               pattern={usernamePattern} />
           </LabelContainer>
-          <InputError error={errors.username} />
+          <InputError error={usernameErrorMessage} />
         </Label>
         <Label title='Придумай пароль'>
           <LabelContainer hint={`От 8 до 40 символов, только латинские буквы, как минимум одна заглавная или строчная буква, как минимум одна цифра, только арабские цифры, без пробелов, другие допустимые символы - ~ ! ? @ # $ % ^ & * _ - + ( ) [ ] { } > < / \ | " ' . , : ;')`}>
             <Input
               type='password'
               name='password'
-              error={errors.password}
+              error={passwordErrorMessage}
               value={values.password || ''}
               handleChange={handleChangeValidation}
               pattern={passwordPattern}
@@ -86,7 +106,7 @@ const RegisterForm = () => {
               minLength={8}
               inputRef={passwordRef} />
           </LabelContainer>
-          <InputError error={errors.password} />
+          <InputError error={passwordErrorMessage} />
         </Label>
         <Label title='Повтори пароль'>
           <LabelContainer hint='повтори пароль введеный выше'>

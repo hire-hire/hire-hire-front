@@ -11,19 +11,29 @@ import { userLogIn } from '../../store/reducers/user/userActionCreator';
 
 const LoginForm = () => {
 
-  const { values, handleChange, isFormValid, errors } = useFormWithValidation();
+  const { values, handleChange, isFormValid, errors, resetForm } = useFormWithValidation();
 
-  const user = useAppSelector(state => state.user.user);
+  const user = useAppSelector(state => state.user);
 
   const navigate = useNavigate();
 
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    if (user) {
-      navigate(`/profile/${user.username.toLowerCase()}`)
+    if (user.user) {
+      navigate(`/profile/${user.user.username.toLowerCase()}`)
     }
-  }, [ user ]);
+    if (user.error) {
+      resetForm(
+        { ...values },
+        {
+          username: 'Неверный логин или пароль',
+          password: 'Неверный логин или пароль'
+        },
+        false
+      );
+    }
+  }, [user.user]);
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();

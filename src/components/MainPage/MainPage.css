@@ -173,11 +173,11 @@
 
 .games {
   max-width: 1400px;
+  padding-bottom: 60px;
 }
 
 .games__container {
   display: flex;
-  align-items: center;
   justify-content: space-between;
   width: 100%;
 }
@@ -191,8 +191,13 @@
   max-width: 600px;
 }
 
+.games__image {
+  width: 350px;
+}
+
 .games__title {
   align-self: flex-end;
+  padding: 0;
 }
 
 .games__text {

@@ -48,34 +48,40 @@ const MainPage = () => {
           <img src={bottomSquare} alt='Анимация' className='about__square about__bottom-square' />
         </div>
       </section>
-      <section className='categories sections'>
-        <h2 className='categories__title sections__title'>
-          Пройти собеседование
-        </h2>
-        <div className='categories__content'>
-          <ul className='cards page__list'>
-            {
-              error ? error :
-                isLoading ? <Preloader /> :
-                  categories.map((category) => {
-                    return <CategoryCard key={category.id} category={category} />
-                  })
-            }
-          </ul>
-          {
-            categories.length === 1
-              ?
-              <p className='categories__hint sections__text'>
-                На данный момент доступна только подготовка к собеседованию по Python.
-                <span>
-                  Не расстраивайся, если это не то, что тебе нужно. Мы работаем над этим и в будущем добавим новые разделы.
-                </span>
-              </p>
-              :
-              null
-          }
-        </div>
-      </section>
+      {
+        user?.is_duel_moderator
+          ?
+          <section className='categories sections'>
+            <h2 className='categories__title sections__title'>
+              Пройти собеседование
+            </h2>
+            <div className='categories__content'>
+              <ul className='cards page__list'>
+                {
+                  error ? error :
+                    isLoading ? <Preloader /> :
+                      categories.map((category) => {
+                        return <CategoryCard key={category.id} category={category} />
+                      })
+                }
+              </ul>
+              {
+                categories.length === 1
+                  ?
+                  <p className='categories__hint sections__text'>
+                    На данный момент доступна только подготовка к собеседованию по Python.
+                    <span>
+                      Не расстраивайся, если это не то, что тебе нужно. Мы работаем над этим и в будущем добавим новые разделы.
+                    </span>
+                  </p>
+                  :
+                  null
+              }
+            </div>
+          </section>
+          :
+          null
+      }
       {
         user
           ?
