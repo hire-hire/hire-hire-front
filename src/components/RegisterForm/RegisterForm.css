@@ -8,6 +8,12 @@
   background-position: 6% 43%, 92% 88%;
 }
 
+.register__text {
+  color: #7990A3;
+  font-size: 16px;
+  margin-top: 15px;
+}
+
 @media screen and (max-width: 1599px) {
   .register {
     background-size: 200px, 180px;

@@ -123,6 +123,7 @@ const RegisterForm = () => {
           <InputError error={errors.repeatPassword} />
         </Label>
         <FormSubmitButton title='Зарегистрироваться' disabled={!isFormValid} />
+        <p className='register__text page__text'>Все поля обязательны для заполнения</p>
       </Form>
     </section>
   )
