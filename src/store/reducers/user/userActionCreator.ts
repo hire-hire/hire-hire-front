@@ -5,6 +5,7 @@ import { userLoading, userError, userReceived, userCreated, userPatched, userLog
 export type User = {
   username: string
   id: number
+  is_duel_moderator?: boolean
 }
 
 export type UserRequestType = {

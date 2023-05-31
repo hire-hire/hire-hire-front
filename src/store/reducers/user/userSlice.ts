@@ -26,9 +26,9 @@ export const userSlice = createSlice({
       state.error = action.payload;
     },
     userReceived: (state, action: PayloadAction<User>) => {
-      state.isLoading = false;
       state.user = action.payload;
       state.error = '';
+      state.isLoading = false;
     },
     userCreated: (state, action: PayloadAction<User>) => {
       state.isLoading = false;

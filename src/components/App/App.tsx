@@ -23,6 +23,8 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import Profile from '../Profile/Profile';
 import ExitConfirm from '../ExitConfirm/ExitConfirm';
 import DuelSettings from '../DuelSettings/DuelSettings';
+import Duel from '../Duel/Duel';
+import DuelResult from '../DuelResult/DuelResult';
 
 function App() {
 
@@ -227,19 +229,43 @@ function App() {
             </ProtectedRoute>
           } />
           <Route path='/games' element={
-            <ProtectedRoute isLoggedIn={!!user}>
-              <>
-                <Header
-                  key={'header'}
-                  handleOpenMobileMenu={handleOpenMobileMenu}
-                  handleOpenExitConfirm={handleOpenExitConfirm}
-                />
-                <Main key={'main'}>
-                  <DuelSettings />
-                </Main>
-                <Footer key={'footer'} />
-              </>
-            </ProtectedRoute>
+            <>
+              <Header
+                key={'header'}
+                handleOpenMobileMenu={handleOpenMobileMenu}
+                handleOpenExitConfirm={handleOpenExitConfirm}
+              />
+              <Main key={'main'}>
+                <DuelSettings />
+              </Main>
+              <Footer key={'footer'} />
+            </>
+          } />
+          <Route path='/games/:duelId' element={
+            <>
+              <Header
+                key={'header'}
+                handleOpenMobileMenu={handleOpenMobileMenu}
+                handleOpenExitConfirm={handleOpenExitConfirm}
+              />
+              <Main key={'main'}>
+                <Duel />
+              </Main>
+              <Footer key={'footer'} />
+            </>
+          } />
+          <Route path='/games/:duelId/result' element={
+            <>
+              <Header
+                key={'header'}
+                handleOpenMobileMenu={handleOpenMobileMenu}
+                handleOpenExitConfirm={handleOpenExitConfirm}
+              />
+              <Main key={'main'}>
+                <DuelResult />
+              </Main>
+              <Footer key={'footer'} />
+            </>
           } />
           <Route path='*' element={
             <NotFound />

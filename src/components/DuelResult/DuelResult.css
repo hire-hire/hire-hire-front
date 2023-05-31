@@ -1,0 +1,28 @@
+.duel-result {
+  gap: 60px;
+  flex: 1 1 auto;
+  background-image: url(../../images/duelResultLeft.png), url(../../images/duelResultPhyton.png);
+  background-repeat: no-repeat;
+  background-size: 285px, 280px;
+  background-position: 6% 65%, 94% 18%;
+}
+
+.duel-result_type_docker {
+  background-image: url(../../images/duelResultLeft.png), url(../../images/duelResultDocker.png);
+}
+
+.duel-result__title {
+  font-size: 96px;
+  line-height: 100%;
+}
+
+.duel-result__links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 80px;
+}
+
+.duel-result__link {
+  text-decoration: none;
+}

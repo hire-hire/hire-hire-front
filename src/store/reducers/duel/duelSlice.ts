@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import { DuelResType } from './duelActionCreator';
+import { DuelPatchResType, DuelResType } from './duelActionCreator';
 
 type InitialStateType = {
   duel: DuelResType | null
@@ -35,9 +35,15 @@ export const duelSlice = createSlice({
       state.duel = null;
       state.error = '';
     },
+    duelPatched: (state, action: PayloadAction<DuelPatchResType>) => {
+      state.isLoading = false;
+      state.duel!.players = action.payload.players;
+      state.duel!.wrong_answers_count = action.payload.wrong_answers_count;
+      state.error = '';
+    }
   },
 });
 
-export const { duelLoading, duelLoaded, duelLoadingError, duelReset } = duelSlice.actions;
+export const { duelLoading, duelLoaded, duelLoadingError, duelReset, duelPatched } = duelSlice.actions;
 
 export default duelSlice.reducer;
