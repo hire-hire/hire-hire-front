@@ -1,4 +1,4 @@
-import { FormEvent, useEffect, useRef, useState } from 'react';
+import { FormEvent, useEffect, useState } from 'react';
 import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { getDuel, patchDuel } from '../../store/reducers/duel/duelActionCreator';
@@ -69,6 +69,11 @@ const Duel = () => {
 
   const handleGoToResultPage = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const result = {
+      winner_id: winner,
+      question_id: questions![questionCount].id,
+    };
+    dispatch(patchDuel(duelId!, token, result));
     localStorage.removeItem('currentDuelQuestion');
     navigate(`/games/${duelId}/result`);
     dispatch(duelReset());
@@ -165,7 +170,7 @@ const Duel = () => {
                   name='duel' type='radio'
                   className='duel__input' />
               </label>
-              <label className={`duel__label duel__no-one page__text ${winner === -1 ? 'duel__label_type_checked' : ''} ${answer ? '' : 'duel__label_type_disabled'}`}>
+              <label className={`duel__label duel__no-one page__text ${winner === -1 ? 'duel__label_type_checked' : ''} ${answer ? '' : 'duel__no-one_type_disabled'}`}>
                 Нет правильного ответа
                 <input
                   checked={winner === -1}

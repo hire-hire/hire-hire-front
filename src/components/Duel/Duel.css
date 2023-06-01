@@ -49,7 +49,7 @@
 
 .duel__players {
   display: flex;
-  gap: 160px;
+  gap: 100px;
 }
 
 .duel__player {
@@ -122,11 +122,11 @@
 
 .duel__answer {
   padding: 12px 24px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
-  background-color: #E4F1FD;
+  background-color: #fff;
   height: 240px;
   overflow: auto;
   max-width: 660px;
+  border: 2px solid #3B3E45;
 }
 
 .duel__lang {
@@ -173,8 +173,8 @@
 
 .duel__label {
   width: 464px;
+  height: 84px;
   background-color: #C1DFF9;
-  padding: 24px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -182,12 +182,11 @@
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
   box-sizing: border-box;
   font-weight: bold;
-  transition: all .2s linear;
   cursor: pointer;
 }
 
 .duel__label:hover {
-  border: inset 2px solid #163B88;
+  border: 2px inset #163B88;
 }
 
 .duel__label_type_checked {
