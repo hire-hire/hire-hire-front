@@ -188,7 +188,7 @@ const DuelSettings = () => {
                 <button
                   type='button'
                   onClick={handleSubmit}
-                  className={`duel-settings__button ${isFormValid ? '' : 'duel-settings__button_type_disabled'} sections__link`}
+                  className={`duel-settings__button page__button ${isFormValid ? '' : 'page__button_type_disabled'}`}
                   disabled={!isFormValid}
                 >Далее</button>
               </form>
