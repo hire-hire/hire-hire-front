@@ -60,6 +60,10 @@
   box-sizing: border-box;
   cursor: pointer;
   padding: 0;
+  font-family: 'Raleway', sans-serif;
+  font-size: 24px;
+  line-height: 128%;
+  font-weight: bold;
 }
 
 .page__button:hover {

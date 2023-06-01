@@ -14,6 +14,9 @@ const DuelResult = () => {
 
   useEffect(() => {
     dispatch(getDuel(duelId!, token));
+    return () => {
+      dispatch(duelReset());
+    }
   }, []);
 
   const currentCategory: ExtendedCategory = JSON.parse(localStorage.getItem('duelCategory')!);
