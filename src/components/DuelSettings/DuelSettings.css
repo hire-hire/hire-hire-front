@@ -1,0 +1,114 @@
+.duel-settings {
+  flex: 1 1 auto;
+}
+
+.duel-settings__form {
+  min-width: 1350px;
+}
+
+.duel-settings__title {
+  font-size: 100px;
+  line-height: 100%;
+}
+
+.duel-settings__top-title {
+  font-size: 64px;
+  text-align: center;
+  margin-top: 80px;
+}
+
+.duel-settings__bottom-title {
+  font-size: 56px;
+  text-align: center;
+}
+
+.duel-settings__container {
+  display: flex;
+  justify-content: space-between;
+  padding: 60px 0 0;
+  width: 100%;
+}
+
+.duel-settings__header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  row-gap: 120px;
+  justify-content: space-between;
+  background-image: url(../../images/gameSettingsBG.png);
+  background-repeat: no-repeat;
+  background-size: 650px;
+  background-position: 92% 88%;
+  padding-right: 150px;
+  padding-bottom: 250px;
+  padding-top: 80px;
+}
+
+.duel-settings__footer {
+  justify-items: center;
+}
+
+.duel-settings__label {
+  color: #163B88;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+}
+
+.duel-settings__item_justify_right {
+  justify-self: end;
+}
+
+.duel-settings__select {
+  border: 2px solid rgba(22, 59, 136, 0.6);
+  width: 465px;
+  color: #163B88;
+  padding: 18px;
+  font-size: 24px;
+  line-height: 100%;
+  box-sizing: border-box;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  background-image: url(../../images/selectArrow.png);
+  background-repeat: no-repeat;
+  background-size: 12px 6px;
+  background-position: 95% 55%;
+}
+
+.duel-settings__select:focus {
+  outline: none;
+  border: 2px solid #163B88;
+}
+
+.duel-settings__select_type_error {
+  border: 2px solid #88161D;
+}
+
+.duel-settings__select_type_error:focus {
+  border: 2px solid #88161D;
+}
+
+.duel-settings__button {
+  margin: 15px auto;
+  border: none;
+  padding: 24px;
+}
+
+.duel-settings__button_type_disabled {
+  background-color: #748CDB99;
+  color: #C1DFF9;
+}
+
+.duel-settings__error {
+  font-size: 16px;
+  line-height: 16px;
+  color: #88161D;
+  width: 100%;
+  text-align: left;
+  visibility: hidden;
+  height: 18px;
+}
+
+.duel__error_type_visible {
+  visibility: visible;
+}

@@ -1,6 +1,7 @@
 import { FC, ReactElement, useState } from "react";
 import { Link } from "react-router-dom";
 import UserLink from "../UserLink/UserLink";
+import { useAppSelector } from "hooks/redux";
 
 type PropsType = {
   children: ReactElement
@@ -8,6 +9,8 @@ type PropsType = {
 };
 
 const MobileMenu: FC<PropsType> = ({ children, handleCloseMobileMenu }) => {
+
+  const user = useAppSelector(state => state.user.user);
 
   const [touchStart, setTouchStart] = useState(0);
   const [touchEnd, setTouchEnd] = useState(0);
@@ -53,9 +56,13 @@ const MobileMenu: FC<PropsType> = ({ children, handleCloseMobileMenu }) => {
       </nav>
       <button onClick={handleCloseMenu} type='button' className='mobile-menu__button'></button>
       <UserLink handleCloseMobileMenu={handleCloseMobileMenu} />
-      <button type='button' className='mobile-menu__ext-button sections__link'>
-        Выйти
-      </button>
+      {
+        user
+          ?
+          <button type='button' className='mobile-menu__ext-button'>
+          </button>
+          : null
+      }
     </div>
   )
 };

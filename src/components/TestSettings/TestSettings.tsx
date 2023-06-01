@@ -67,7 +67,7 @@ const TestSettings = () => {
                 <option value='30'>30 вопросов</option>
               </select>
             </label>
-            <button disabled={!isFormValid} type='submit' className={`test-settings__button ${isFormValid ? '' : 'test-settings__button_type_disabled'} sections__link`}>Далее</button>
+            <button disabled={!isFormValid} type='submit' className={`test-settings__button ${isFormValid ? '' : 'sections__link_type_disabled'} sections__link`}>Далее</button>
           </form>
           <img src={testSettingsImage} alt='Картиночка' className='test-settings__image' />
         </div>

@@ -5,6 +5,7 @@ import { userLoading, userError, userReceived, userCreated, userPatched, userLog
 export type User = {
   username: string
   id: number
+  is_duel_moderator?: boolean
 }
 
 export type UserRequestType = {
@@ -48,9 +49,9 @@ export const getUsers = async (token: string) => {
 
 export const postUser = (user: UserRequestType) => async (dispatch: AppDispatch) => {
   dispatch(userLoading());
-  await axios.post<User>(`${baseUrl}auth/users/`, user)
+  await axios.post<User | any>(`${baseUrl}auth/users/`, user)
     .then((res) => dispatch(userCreated(res.data)))
-    .catch((error) => dispatch(userError(error.message)));
+    .catch((error) => dispatch(userError(error.response.data)));
 };
 
 export const patchUser = (user: any) => async (dispatch: AppDispatch) => {

@@ -3,11 +3,13 @@ import { FC, ReactElement } from 'react';
 type PropsType = {
   title: string
   children: ReactElement | ReactElement[]
+  position?: string
 }
 
-const Label:FC<PropsType> = ({ title, children }) => {
+const Label:FC<PropsType> = ({ title, children, position }) => {
+
   return (
-    <label className='form__label page__text'>
+    <label className={`form__label ${position === 'games' ? 'form__label_position_games' : ''} page__text`}>
       { title }
       { children }
     </label>

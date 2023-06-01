@@ -4,6 +4,10 @@
   color: #163B88;
 }
 
+.form__label_position_games {
+  width: 496px;
+}
+
 @media screen and (max-width: 1599px) {
   .form__label {
     width: 410px;

@@ -21,11 +21,20 @@ const Header: FC<PropsType> = ({ handleOpenMobileMenu, handleOpenExitConfirm }) 
         {
           user ?
             <div className='header__container'>
-              <UserLink place='header'/>
+              {
+                false
+                  ?
+                  <img src='#' alt={`аватар ${user!.username}`} className='header__image' />
+                  :
+                  <p className='page__text header__image'>
+                    {user.username.slice(0, 2).toUpperCase()}
+                  </p>
+              }
+              <UserLink place='header' />
               <button onClick={handleOpenExitConfirm} type='button' className='header__ext-button'></button>
             </div>
             :
-            <UserLink place='header'/>
+            <UserLink place='header' />
         }
         <button type='button' onClick={handleOpenMobileMenu} className='header__menu-btn'></button>
       </div>

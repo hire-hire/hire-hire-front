@@ -20,6 +20,11 @@
   border: 0;
   background: none;
   cursor: pointer;
+  transition: all 0.1s linear;
+}
+
+.menu__link:hover {
+  text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 @media screen and (max-width: 1600px) {

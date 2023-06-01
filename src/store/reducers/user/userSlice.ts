@@ -5,7 +5,7 @@ import { User } from './userActionCreator';
 type InitialStateType = {
   user: User | null
   isLoading: boolean
-  error: string
+  error: any
 };
 
 const initialState: InitialStateType = {
@@ -21,14 +21,14 @@ export const userSlice = createSlice({
     userLoading: (state) => {
       state.isLoading = true;
     },
-    userError: (state, action: PayloadAction<string>) => {
+    userError: (state, action: PayloadAction<any>) => {
       state.isLoading = false;
       state.error = action.payload;
     },
     userReceived: (state, action: PayloadAction<User>) => {
-      state.isLoading = false;
       state.user = action.payload;
       state.error = '';
+      state.isLoading = false;
     },
     userCreated: (state, action: PayloadAction<User>) => {
       state.isLoading = false;

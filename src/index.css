@@ -90,3 +90,12 @@
 
 /* ExitConfirm */
 @import url(../src/components/ExitConfirm/ExitConfirm.css);
+
+/* DuelSettings */
+@import url(../src/components/DuelSettings/DuelSettings.css);
+
+/* Duel */
+@import url(../src/components/Duel/Duel.css);
+
+/* DuelResult */
+@import url(../src/components/DuelResult/DuelResult.css);

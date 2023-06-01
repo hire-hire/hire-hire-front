@@ -23,6 +23,13 @@
 .footer__image {
   width: 64px;
   height: 64px;
+  border-radius: 99em;
+  transition: all 0.1s linear;
+}
+
+.footer__image:hover {
+  border-radius: 100%;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 .footer__links {
