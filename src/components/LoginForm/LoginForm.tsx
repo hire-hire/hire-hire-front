@@ -20,6 +20,7 @@ const LoginForm = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
+    console.log(user)
     if (user.user) {
       navigate(`/profile/${user.user.username.toLowerCase()}`)
     }
@@ -33,7 +34,8 @@ const LoginForm = () => {
         false
       );
     }
-  }, [user.user]);
+  }, [user]);
+  
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();

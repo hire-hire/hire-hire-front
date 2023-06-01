@@ -68,7 +68,7 @@ export const userLogIn = (user: UserLoginType) => async (dispatch: AppDispatch) 
       localStorage.setItem('token', JSON.stringify(res.data.access));
       dispatch(getUser(res.data.access, res.data.refresh));
     })
-    .catch((error) => error);
+    .catch((error) => dispatch(userError(error.response.data)));
 };
 
 export const userLogOut = () => (dispatch: AppDispatch) => {

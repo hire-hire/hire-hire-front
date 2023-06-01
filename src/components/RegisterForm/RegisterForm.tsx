@@ -20,7 +20,7 @@ const RegisterForm = () => {
 
   const emailPattern = '\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*\\.\\w{2,4}';
   const usernamePattern = '^[\da-zA-Z.@+-_]+$';
-  const passwordPattern = '^.*(?=.{8,40})(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z0-9!#$%&?].*$';
+  const passwordPattern = '^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d~!?\@#\$%\^&\*_\-\+\(\)\[\]\{\}<>\\\\|\"\'.,:;]{8,40}$';
 
   const user = useAppSelector(state => state.user);
 
