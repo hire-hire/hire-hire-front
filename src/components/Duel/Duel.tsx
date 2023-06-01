@@ -84,7 +84,15 @@ const Duel = () => {
     navigate('/games');
   };
 
+  const handleDuelComplete = () => {
+    localStorage.removeItem('currentDuelQuestion');
+    dispatch(duelReset());
+    navigate('/games');
+  };
+
   const submitButtonHandler = questionNumber === questions?.length ? handleGoToResultPage : handleGoToNextQuestion;
+
+  const finishedButtonHandler = questionNumber === 1 ? handleGoBack : handleDuelComplete;
 
   return (
     !user
@@ -183,13 +191,21 @@ const Duel = () => {
               </label>
             </div>
             <div className='duel__buttons'>
-              {
-                questionNumber === 1
-                  ?
-                  <button onClick={handleGoBack} type='button' className='duel__link page__button page__button_type_white page__text'>Назад</button>
-                  : null
-              }
-              <button disabled={!winner} type='submit' className={`page__button duel__button_type_submit ${winner ? '' : 'page__button_type_disabled'} page__text`}>{questions?.length === questionNumber ? 'Завершить соревнование' : 'Следующий вопрос'} <img src={arrowToRight} alt='->' className='duel__button-image' /></button>
+              <button
+                onClick={finishedButtonHandler}
+                type='button'
+                className='duel__link page__button page__button_type_white page__text'
+              >
+                {questionNumber === 1 ? 'Назад' : 'Завершить соревнование'}
+              </button>
+              <button
+                disabled={!winner}
+                type='submit'
+                className={`page__button duel__button_type_submit ${winner ? '' : 'page__button_type_disabled'} page__text`}
+              >
+                {questions?.length === questionNumber ? 'Завершить соревнование' : 'Следующий вопрос'}
+                <img src={arrowToRight} alt='->' className='duel__button-image' />
+              </button>
             </div>
           </form>
         </section>
