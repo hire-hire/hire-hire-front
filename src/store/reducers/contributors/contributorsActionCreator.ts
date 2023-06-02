@@ -25,7 +25,7 @@ export const fetchContributors = () => async (dispatch: AppDispatch) => {
 };
 
 export const fetchContributor = async (id: number) => {
-  return await axios.get<Contributor>(`${baseUrl}contributors/${id}`)
+  return await axios.get<Contributor>(`${baseUrl}contributors/${id}/`)
   .then(res => res.data)
   .catch(err => err);
 };

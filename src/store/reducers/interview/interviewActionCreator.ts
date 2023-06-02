@@ -36,7 +36,7 @@ export const createInterview = (questionsCount: string, token: string) => async 
 };
 
 export const fetchInterview = async (id: string, token: string) => {
-  return await axios.get<InterviewType>(`${baseUrl}interview/${id}`, {
+  return await axios.get<InterviewType>(`${baseUrl}interview/${id}/`, {
     headers: {
       Authorization: `JWT ${token}`
     }
@@ -45,7 +45,7 @@ export const fetchInterview = async (id: string, token: string) => {
 };
 
 export const fetchAnswer = async (id: number, token: string) => {
-  return await axios.get<Answer>(`${baseUrl}question/${id}`, 
+  return await axios.get<Answer>(`${baseUrl}question/${id}/`, 
   {
     headers: {
       Authorization: `JWT ${token}`

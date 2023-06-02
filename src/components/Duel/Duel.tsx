@@ -1,13 +1,22 @@
-import { FormEvent, useEffect, useState } from 'react';
-import { Navigate, useNavigate, useParams } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '../../hooks/redux';
-import { getDuel, patchDuel } from '../../store/reducers/duel/duelActionCreator';
+import { 
+  FormEvent, 
+  useEffect, 
+  useState } from 'react';
+import { 
+  Navigate, 
+  useNavigate, 
+  useParams } from 'react-router-dom';
+import { 
+  useAppDispatch, 
+  useAppSelector } from '../../hooks/redux';
+import { 
+  getDuel, 
+  patchDuel } from '../../store/reducers/duel/duelActionCreator';
 import { ExtendedCategory } from '../../store/reducers/categories/categoriesActionCreator';
 import arrowToBottom from '../../images/arrowToBottom.png';
 import arrowToRight from '../../images/rightArrow.png';
 import { fetchAnswer } from '../../store/reducers/interview/interviewActionCreator';
 import { duelReset } from '../../store/reducers/duel/duelSlice';
-import { getUser } from '../../store/reducers/user/userActionCreator';
 import Preloader from '../Preloader/Preloader';
 
 
@@ -16,13 +25,11 @@ const Duel = () => {
   const { duelId } = useParams();
   const dispatch = useAppDispatch();
   const token = JSON.parse(localStorage.getItem('token')!);
-  const refreshToken = JSON.parse(localStorage.getItem('refreshToken')!);
   const duel = useAppSelector(state => state.duel);
   const navigate = useNavigate();
   const user = useAppSelector(state => state.user.user);
 
   useEffect(() => {
-    dispatch(getUser(token, refreshToken));
     dispatch(getDuel(duelId!, token));
     const currentDuelQuestion = localStorage.getItem('currentDuelQuestion');
     if (currentDuelQuestion) {
@@ -114,7 +121,15 @@ const Duel = () => {
               <p className='duel__question page__text'>
                 {duel.duel?.questions[questionCount].question.text}
               </p>
-              <button onClick={handleShowAnswer} type='button' className='page__button page__button_type_white page__text'>Показать правильный ответ <img src={arrowToBottom} alt='Стрелочка' className='duel__question-image' /></button>
+              <button 
+              disabled={!!answer} 
+              onClick={handleShowAnswer} 
+              type='button' 
+              className={`page__button page__button_type_white ${answer ? 'duel__answer-button_type_disabled' : ''} page__text`}
+              >
+                Показать правильный ответ 
+                <img src={arrowToBottom} alt='Стрелочка' className='duel__question-image' />
+                </button>
             </div>
 
             <div className='duel__counter'>
@@ -150,7 +165,10 @@ const Duel = () => {
               </p>
             </div>
             <div className='duel__lang'>
-              <img src={languageImage} alt={currentLanguage?.title} className='duel__lang-image' />
+              <img 
+              src={languageImage} 
+              alt={currentLanguage?.title} 
+              className='duel__lang-image' />
             </div>
           </div>
           <form onSubmit={submitButtonHandler} className='duel__form'>

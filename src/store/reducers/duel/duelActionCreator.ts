@@ -64,7 +64,7 @@ export const createDuel = (settings: DuelReqType, token: string) => async (dispa
 
 export const getDuel = (duelId: string, token: string) => async (dispatch: AppDispatch) => {
   dispatch(duelLoading());
-  await axios.get<DuelResType>(`${baseUrl}duel/${duelId}`,
+  await axios.get<DuelResType>(`${baseUrl}duel/${duelId}/`,
     {
       headers: {
         Authorization: `JWT ${token}`

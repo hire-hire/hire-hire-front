@@ -18,9 +18,9 @@ const LoginForm = () => {
   const navigate = useNavigate();
 
   const dispatch = useAppDispatch();
+  
 
   useEffect(() => {
-    console.log(user)
     if (user.user) {
       navigate(`/profile/${user.user.username.toLowerCase()}`)
     }
