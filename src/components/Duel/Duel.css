@@ -32,11 +32,16 @@
   min-height: 240px;
   max-width: 660px;
   overflow: auto;
+  word-break: break-all;
 }
 
 .duel__question-image {
   width: 24px;
   height: 24px;
+}
+
+.duel__answer-button_type_disabled {
+  opacity: 0.6;
 }
 
 .duel__counter {
@@ -77,6 +82,7 @@
   font-size: 32px;
   line-height: 44px;
   text-align: center;
+  word-break: break-all;
 }
 
 .duel__player-name_type_left {
@@ -127,6 +133,7 @@
   overflow: auto;
   max-width: 660px;
   border: 2px solid #3B3E45;
+  word-break: break-all;
 }
 
 .duel__lang {

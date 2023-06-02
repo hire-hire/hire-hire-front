@@ -30,10 +30,7 @@ export const getUser = (access: string, refresh: string) => async (dispatch: App
       Authorization: `JWT ${access}`
     }
   })
-    .then((res) => {
-      dispatch(userReceived(res.data));
-      refreshToken(refresh);
-    })
+    .then((res) => dispatch(userReceived(res.data)))
     .catch((error) => dispatch(userError(error.message)));
 };
 
@@ -56,7 +53,7 @@ export const postUser = (user: UserRequestType) => async (dispatch: AppDispatch)
 
 export const patchUser = (user: any) => async (dispatch: AppDispatch) => {
   dispatch(userLoading());
-  await axios.patch<User>(`${baseUrl}auth/users/me`, user)
+  await axios.patch<User>(`${baseUrl}auth/users/me/`, user)
     .then((res) => dispatch(userPatched(res.data)))
     .catch((error) => dispatch(userError(error.message)));
 };
