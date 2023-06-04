@@ -6,7 +6,7 @@ const Menu = () => {
     <nav className='menu'>
       <ul className='menu__items page__list'>
         <li className='menu__item'>
-          <Link to='#' className='menu__link page__link page__text'>
+          <Link to='/suggest-question' className='menu__link page__link page__text'>
             Предложить вопрос
           </Link>
         </li>

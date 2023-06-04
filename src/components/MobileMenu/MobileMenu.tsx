@@ -6,9 +6,10 @@ import { useAppSelector } from "hooks/redux";
 type PropsType = {
   children: ReactElement
   handleCloseMobileMenu: () => void
+  handleOpenExitConfirm: () => void
 };
 
-const MobileMenu: FC<PropsType> = ({ children, handleCloseMobileMenu }) => {
+const MobileMenu: FC<PropsType> = ({ children, handleCloseMobileMenu, handleOpenExitConfirm }) => {
 
   const user = useAppSelector(state => state.user.user);
 
@@ -32,6 +33,11 @@ const MobileMenu: FC<PropsType> = ({ children, handleCloseMobileMenu }) => {
 
   const handleCloseMenu = () => {
     handleCloseMobileMenu();
+  };
+
+  const handleConfirmOpen = () => {
+    handleCloseMenu();
+    handleOpenExitConfirm();
   };
 
   return (
@@ -59,7 +65,7 @@ const MobileMenu: FC<PropsType> = ({ children, handleCloseMobileMenu }) => {
       {
         user
           ?
-          <button type='button' className='mobile-menu__ext-button'>
+          <button onClick={handleConfirmOpen} type='button' className='mobile-menu__ext-button'>
           </button>
           : null
       }

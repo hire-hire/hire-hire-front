@@ -34,7 +34,7 @@ const Modal: FC<PropsType> = ({ children, isModalOpen, handleCloseModal }) => {
 
   if (isModalOpen) {
     return createPortal(
-    <div onClick={handleClose} className='modal__container'>
+    <div onClick={handleClose} className={`modal__container`}>
       {children}
     </div>
     , modalContainer);
