@@ -8,6 +8,7 @@ import Label from '../Label/Label';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { userLogIn } from '../../store/reducers/user/userActionCreator';
+import { userErrorReset } from 'store/reducers/user/userSlice';
 
 const LoginForm = () => {
 
@@ -18,12 +19,23 @@ const LoginForm = () => {
   const navigate = useNavigate();
 
   const dispatch = useAppDispatch();
-  
 
   useEffect(() => {
+    
     if (user.user) {
       navigate(`/profile/${user.user.username.toLowerCase()}`)
     }
+    
+  }, [user]);
+  
+
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const userObj = {
+      username: values.username,
+      password: values.password
+    };
+    dispatch(userLogIn(userObj));
     if (user.error) {
       resetForm(
         { ...values },
@@ -33,17 +45,8 @@ const LoginForm = () => {
         },
         false
       );
+      dispatch(userErrorReset());
     }
-  }, [user]);
-  
-
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const user = {
-      username: values.username,
-      password: values.password
-    };
-    dispatch(userLogIn(user));
   };
 
   return (

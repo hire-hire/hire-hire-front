@@ -25,6 +25,10 @@ export const userSlice = createSlice({
       state.isLoading = false;
       state.error = action.payload;
     },
+    userErrorReset: (state) => {
+      state.isLoading = false;
+      state.error = '';
+    },
     userReceived: (state, action: PayloadAction<User>) => {
       state.user = action.payload;
       state.error = '';
@@ -48,6 +52,13 @@ export const userSlice = createSlice({
   },
 });
 
-export const { userLoading, userError, userReceived, userCreated, userPatched, userLoggedOut } = userSlice.actions;
+export const { 
+  userLoading, 
+  userError, 
+  userReceived, 
+  userCreated, 
+  userPatched, 
+  userLoggedOut,
+  userErrorReset } = userSlice.actions;
 
 export default userSlice.reducer;

@@ -63,12 +63,19 @@ function App() {
 
   return (
     <>
-      <Modal isModalOpen={isMobileMenuOpen} handleCloseModal={handleCloseMobileMenu}>
-        <MobileMenu handleCloseMobileMenu={handleCloseMobileMenu}>
+      <Modal
+        isModalOpen={isMobileMenuOpen}
+        handleCloseModal={handleCloseMobileMenu}>
+        <MobileMenu 
+        handleCloseMobileMenu={handleCloseMobileMenu}
+        handleOpenExitConfirm={handleOpenExitConfirm}
+        >
           <Logo />
         </MobileMenu>
       </Modal>
-      <Modal isModalOpen={isExitConfirmOpen} handleCloseModal={handleCloseExitConfirm}>
+      <Modal
+        isModalOpen={isExitConfirmOpen}
+        handleCloseModal={handleCloseExitConfirm}>
         <ExitConfirm handleCloseExitConfirm={handleCloseExitConfirm} />
       </Modal>
       <div className={`page ${isMobileMenuOpen ? 'page_disabled' : ''}`}>

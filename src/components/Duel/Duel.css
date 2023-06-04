@@ -53,8 +53,8 @@
 }
 
 .duel__players {
-  display: flex;
-  gap: 100px;
+  display: grid;
+  grid-template-columns: 330px 330px;
 }
 
 .duel__player {
@@ -82,7 +82,6 @@
   font-size: 32px;
   line-height: 44px;
   text-align: center;
-  word-break: break-all;
 }
 
 .duel__player-name_type_left {
