@@ -11,6 +11,10 @@
   background-image: url(../../images/duelResultLeft.png), url(../../images/duelResultDocker.png);
 }
 
+.duel-result_type_general {
+  background-image: url(../../images/duelResultLeft.png), url(../../images/duelResultGeneral.png);
+}
+
 .duel-result__title {
   font-size: 96px;
   line-height: 100%;
