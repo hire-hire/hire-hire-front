@@ -23,6 +23,8 @@ const DuelResult = () => {
   const currentSubcategoryId = JSON.parse(localStorage.getItem('duelSubCategory')!);
   const currentLanguage = currentCategory.languages.find(language => language.id === Number(currentSubcategoryId));
 
+  console.log(currentLanguage)
+
   const handleLinkClick = () => {
     localStorage.removeItem('duelCategory');
     localStorage.removeItem('duelSubCategory');
@@ -30,7 +32,7 @@ const DuelResult = () => {
   };
 
   return (
-    <section className={`duel-result ${currentLanguage?.id === 1 ? 'duel-result_type_phyton' : 'duel-result_type_docker'} sections`}>
+    <section className={`duel-result ${!currentLanguage ? 'duel-result_type_general' : currentLanguage?.id === 1 ? 'duel-result_type_phyton' :  'duel-result_type_docker'} sections`}>
       <h1 className='duel-result__title page__title'>
         <span className='page__span'>Результаты</span>
       </h1>

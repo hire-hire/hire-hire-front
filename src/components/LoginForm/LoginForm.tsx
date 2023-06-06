@@ -21,11 +21,10 @@ const LoginForm = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    
+    dispatch(userErrorReset());
     if (user.user) {
       navigate(`/profile/${user.user.username.toLowerCase()}`)
     }
-    
   }, [user]);
   
 
