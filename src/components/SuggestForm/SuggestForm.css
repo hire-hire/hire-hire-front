@@ -42,6 +42,26 @@
   flex-direction: column;
 }
 
+.suggest-form__label-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+}
+
+.suggest-form__label-error {
+  font-size: 20px;
+  line-height: 100%;
+  color: #88161D;
+  max-width: 420px;
+  opacity: 0;
+  transition: all .1s linear;
+}
+
+.suggest-form__label-error_type_visible {
+  opacity: 1;
+}
+
 .suggest-form__area {
   margin-top: 10px;
   padding: 12px 24px;
@@ -51,6 +71,11 @@
   overflow: auto;
   border: 2px solid #3B3E45;
   resize: none;
+}
+
+.suggest-form__area_type_error {
+  border: 2px solid #88161D;
+  color: #88161D;
 }
 
 .suggest-form__area::placeholder {
@@ -78,30 +103,30 @@
 }
 
 @media screen and (max-width: 1599px) {
-  
+
   .suggest-form__title {
     font-size: 60px;
     width: 98px;
     height: 98px;
   }
-  
+
   .suggest-form__selects {
     width: 895px;
   }
-  
+
   .suggest-form__areas {
     padding-top: 120px;
   }
-  
+
   .suggest-form__area-label {
     font-size: 28px;
     line-height: 40px;
   }
-  
+
   .suggest-form__area {
     width: 528px;
   }
-  
+
   .suggest-form__buttons {
     margin-top: 30px;
     width: 100%;
@@ -110,34 +135,34 @@
 }
 
 @media screen and (max-width: 1151px) {
-  
+
   .suggest-form__title {
     font-size: 48px;
     width: 74px;
     height: 74px;
   }
-  
+
   .suggest-form__selects {
     margin-top: 45px;
     width: 768px;
   }
-  
+
   .suggest-form__areas {
     padding-top: 160px;
     flex-direction: column;
     gap: 50px;
   }
-  
+
   .suggest-form__area-label {
     font-size: 44px;
     line-height: 100%;
     width: 100%;
   }
-  
+
   .suggest-form__area {
     width: 100%;
   }
-  
+
   .suggest-form__buttons {
     margin-top: 40px;
     padding-bottom: 0;
@@ -149,14 +174,14 @@
 }
 
 @media screen and (max-width: 820px) {
-  
+
   .suggest-form__title {
     font-size: 28px;
     line-height: 30px;
     width: 49px;
     height: 49px;
   }
-  
+
   .suggest-form__selects {
     margin-top: 20px;
     flex-wrap: wrap;
@@ -164,16 +189,16 @@
     width: 100%;
     justify-content: center;
   }
-  
+
   .suggest-form__areas {
     padding-top: 40px;
     gap: 15px;
   }
-  
+
   .suggest-form__area-label {
     font-size: 28px;
   }
-  
+
   .suggest-form__buttons {
     margin-top: 30px;
     flex-wrap: wrap;

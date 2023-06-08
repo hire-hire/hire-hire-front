@@ -1,14 +1,17 @@
 import Select from 'components/Select/Select';
+import { FormDataType } from 'components/SuggestQuestion/SuggestQuestion';
 import { useAppDispatch, useAppSelector } from 'hooks/redux';
 import { useFormWithValidation } from 'hooks/useFormWithValidation';
 import { ChangeEvent, FC } from 'react';
 import { fetchCategory } from 'store/reducers/categories/categoriesActionCreator';
 
 type PropsType = {
-  title: string
+  formNumber: number
+  formData?: FormDataType
+  handleSaveFormsValues: (values: FormDataType) => void
 }
 
-const SuggestForm: FC<PropsType> = ({ title }) => {
+const SuggestForm: FC<PropsType> = ({ formNumber, formData, handleSaveFormsValues }) => {
 
   const dispatch = useAppDispatch();
 
@@ -33,7 +36,7 @@ const SuggestForm: FC<PropsType> = ({ title }) => {
   return (
     <form className='suggest-form'>
       <h3 className='suggest-form__title page__text'>
-        {title}
+        {formNumber}
       </h3>
       <div className='suggest-form__selects'>
         <Select
@@ -48,28 +51,46 @@ const SuggestForm: FC<PropsType> = ({ title }) => {
           arr={category?.languages} />
       </div>
       <div className='suggest-form__areas'>
-        <label className='suggest-form__area-label page__title'>
-          Вопрос
+        <div className='suggest-form__area-label page__title'>
+          <div className='suggest-form__label-container'>
+            <span>Вопрос</span>
+            <span className={`suggest-form__label-error page__text ${errors.text ? 'suggest-form__label-error_type_visible' : ''}`}>
+              {`(${errors.text})`}
+            </span>
+          </div>
           <textarea
+            onChange={handleChange}
             name='text'
             placeholder='Ввести вопрос'
-            className='suggest-form__area page__text'>
+            className={`suggest-form__area page__text ${errors.text ? 'suggest-form__area_type_error' : ''}`}
+            minLength={10}
+            maxLength={500}
+          >
           </textarea>
           <p className='suggest-form__area-hint page__text'>
-            10/500
+            {values.text ? values.text.length : 0}/500
           </p>
-        </label>
-        <label className='suggest-form__area-label page__title'>
-          Ответ
+        </div>
+        <div className='suggest-form__area-label page__title'>
+          <div className='suggest-form__label-container'>
+            <span>Ответ</span>
+            <span className={`suggest-form__label-error page__text ${errors.answer ? 'suggest-form__label-error_type_visible' : ''}`}>
+              {`(${errors.answer})`}
+            </span>
+          </div>
           <textarea
+            onChange={handleChange}
             name='answer'
             placeholder='Ввести ответ'
-            className='suggest-form__area page__text'>
+            className={`suggest-form__area page__text ${errors.answer ? 'suggest-form__area_type_error' : ''}`}
+            minLength={10}
+            maxLength={500}
+          >
           </textarea>
           <p className='suggest-form__area-hint page__text'>
-            10/500
+            {values.answer ? values.answer.length : 0}/500
           </p>
-        </label>
+        </div>
       </div>
       <div className='suggest-form__buttons'>
         <button

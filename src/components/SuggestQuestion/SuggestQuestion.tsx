@@ -1,7 +1,13 @@
 import SuggestForm from 'components/SuggestForm/SuggestForm';
 import { useAppDispatch, useAppSelector } from 'hooks/redux';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { fetchCategories } from 'store/reducers/categories/categoriesActionCreator';
+
+export type FormDataType = {
+  text: string
+  answer: string
+  language: number
+}
 
 const SuggestQuestion = () => {
 
@@ -9,9 +15,16 @@ const SuggestQuestion = () => {
 
   const dispatch = useAppDispatch();
 
+  const [formsData, setFormsData] = useState<FormDataType[] | []>([]);
+
   useEffect(() => {
     dispatch(fetchCategories());
   }, []);
+
+  const handleSaveFormsValues = (values: FormDataType) => {
+    const newDataArr = [...formsData, values];
+    setFormsData(newDataArr);
+  };
 
   return (
     <section className='suggest sections'>
@@ -50,7 +63,10 @@ const SuggestQuestion = () => {
           </p>
         </li>
       </ul>
-      <SuggestForm title={'1'}/>
+      <SuggestForm
+        handleSaveFormsValues={handleSaveFormsValues}
+        formNumber={formsData.length + 1}
+      />
     </section>
   )
 };
