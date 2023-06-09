@@ -102,6 +102,10 @@
   padding-bottom: 30px;
 }
 
+.suggest-form__buttons_type_hidden {
+  display: none;
+}
+
 @media screen and (max-width: 1599px) {
 
   .suggest-form__title {
@@ -121,6 +125,10 @@
   .suggest-form__area-label {
     font-size: 28px;
     line-height: 40px;
+  }
+
+  .suggest-form__label-error {
+    font-size: 14px;
   }
 
   .suggest-form__area {
@@ -157,6 +165,10 @@
     font-size: 44px;
     line-height: 100%;
     width: 100%;
+  }
+
+  .suggest-form__label-error {
+    font-size: 22px;
   }
 
   .suggest-form__area {
@@ -197,6 +209,10 @@
 
   .suggest-form__area-label {
     font-size: 28px;
+  }
+
+  .suggest-form__label-error {
+    font-size: 14px;
   }
 
   .suggest-form__buttons {

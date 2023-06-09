@@ -1,6 +1,6 @@
 import SuggestForm from 'components/SuggestForm/SuggestForm';
 import { useAppDispatch, useAppSelector } from 'hooks/redux';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { fetchCategories } from 'store/reducers/categories/categoriesActionCreator';
 
 export type FormDataType = {
@@ -11,20 +11,19 @@ export type FormDataType = {
 
 const SuggestQuestion = () => {
 
-  const categories = useAppSelector(state => state.categories.categories);
-
   const dispatch = useAppDispatch();
 
-  const [formsData, setFormsData] = useState<FormDataType[] | []>([]);
+  const [formsData, setFormsData] = useState<Record<string, any>[] | []>([]);
 
   useEffect(() => {
     dispatch(fetchCategories());
   }, []);
 
-  const handleSaveFormsValues = (values: FormDataType) => {
+  const handleSaveFormsValues = useCallback((values: Record<string, any>) => {
     const newDataArr = [...formsData, values];
     setFormsData(newDataArr);
-  };
+    console.log(formsData)
+  }, []);
 
   return (
     <section className='suggest sections'>
@@ -63,7 +62,18 @@ const SuggestQuestion = () => {
           </p>
         </li>
       </ul>
+      {
+        formsData.map((formData, index) => {
+          return <SuggestForm
+            key={formData.text.slice(0, 10).replace(/ /g, '') + formData.answer.slice(0, 10).replace(/ /g, '') + index}
+            handleSaveFormsValues={handleSaveFormsValues}
+            formData={formData}
+            formNumber={index + 1}
+          />
+        })
+      }
       <SuggestForm
+        key={formsData.length + 1}
         handleSaveFormsValues={handleSaveFormsValues}
         formNumber={formsData.length + 1}
       />

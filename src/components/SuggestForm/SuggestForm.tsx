@@ -1,14 +1,13 @@
 import Select from 'components/Select/Select';
-import { FormDataType } from 'components/SuggestQuestion/SuggestQuestion';
 import { useAppDispatch, useAppSelector } from 'hooks/redux';
 import { useFormWithValidation } from 'hooks/useFormWithValidation';
-import { ChangeEvent, FC } from 'react';
+import { ChangeEvent, FC, useEffect } from 'react';
 import { fetchCategory } from 'store/reducers/categories/categoriesActionCreator';
 
 type PropsType = {
-  formNumber: number
-  formData?: FormDataType
-  handleSaveFormsValues: (values: FormDataType) => void
+  formNumber?: number
+  formData?: Record<string, any>
+  handleSaveFormsValues: (values: Record<string, any>) => void
 }
 
 const SuggestForm: FC<PropsType> = ({ formNumber, formData, handleSaveFormsValues }) => {
@@ -22,15 +21,28 @@ const SuggestForm: FC<PropsType> = ({ formNumber, formData, handleSaveFormsValue
     values,
     errors,
     handleChange,
-    resetForm } = useFormWithValidation();
+    resetForm,
+    isFormValid } = useFormWithValidation();
 
   const handleSelectCategory = (e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLSelectElement>) => {
     if (e.target.value) {
+      handleChange(e);
       const selectedCategory = categories.find(category => category.title === e.target.value);
       dispatch(fetchCategory(selectedCategory?.id));
     } else {
       return
     }
+  };
+
+  useEffect(() => {
+    if (formData) {
+      resetForm(formData, {}, false);
+    }
+  }, []);
+
+  const handleSaveValues = () => {
+    const subcategoryId = category?.languages.find((language) => language.title.toLowerCase() === values.subcategory.toLowerCase())?.id
+    handleSaveFormsValues({...values, language: Number(subcategoryId)});
   };
 
   return (
@@ -40,15 +52,21 @@ const SuggestForm: FC<PropsType> = ({ formNumber, formData, handleSaveFormsValue
       </h3>
       <div className='suggest-form__selects'>
         <Select
+          disabled={!!formData}
           onChange={handleSelectCategory}
           title='category'
           label='Выберите категорию'
-          arr={categories} />
+          arr={categories}
+          value={values.category}
+        />
         <Select
+          disabled={!!formData}
           onChange={handleChange}
           title='subcategory'
           label='Выберите направление'
-          arr={category?.languages} />
+          arr={category?.languages}
+          value={values.subcategory}
+        />
       </div>
       <div className='suggest-form__areas'>
         <div className='suggest-form__area-label page__title'>
@@ -59,6 +77,9 @@ const SuggestForm: FC<PropsType> = ({ formNumber, formData, handleSaveFormsValue
             </span>
           </div>
           <textarea
+            required
+            disabled={!!formData}
+            value={values.text}
             onChange={handleChange}
             name='text'
             placeholder='Ввести вопрос'
@@ -79,6 +100,9 @@ const SuggestForm: FC<PropsType> = ({ formNumber, formData, handleSaveFormsValue
             </span>
           </div>
           <textarea
+            required
+            disabled={!!formData}
+            value={values.answer}
             onChange={handleChange}
             name='answer'
             placeholder='Ввести ответ'
@@ -92,15 +116,18 @@ const SuggestForm: FC<PropsType> = ({ formNumber, formData, handleSaveFormsValue
           </p>
         </div>
       </div>
-      <div className='suggest-form__buttons'>
+      <div className={`suggest-form__buttons ${formData ? 'suggest-form__buttons_type_hidden' : ''}`}>
         <button
+          onClick={handleSaveValues}
+          disabled={!isFormValid}
           type='button'
-          className='suggest-form__button page__button page__button_type_white'>
+          className={`suggest-form__button page__button page__button_type_white ${isFormValid ? '' : 'page__button_type_disabled'}`}>
           Добавить ещё вопрос
         </button>
         <button
+          disabled={!isFormValid}
           type='button'
-          className='suggest-form__button page__button'>
+          className={`suggest-form__button page__button ${isFormValid ? '' : 'page__button_type_disabled'}`}>
           Отправить вопрос
         </button>
       </div>

@@ -23,6 +23,7 @@
 .select:focus {
   outline: none;
   border: 2px solid #163B88;
+  color: #163B88;
 }
 
 .select__option {
