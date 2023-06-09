@@ -5,7 +5,7 @@ import interviewSlice from './reducers/interview/interviewSlice';
 import userSlice from './reducers/user/userSlice';
 import duelSlice from './reducers/duel/duelSlice';
 
-export const baseUrl = 'https://test-hire-hire.proninteam.ru/api/v1/';
+export const baseUrl = process.env.REACT_APP_API_URL;
 
 export const store = configureStore({
   reducer: {
