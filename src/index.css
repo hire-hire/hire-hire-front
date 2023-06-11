@@ -99,3 +99,9 @@
 
 /* DuelResult */
 @import url(../src/components/DuelResult/DuelResult.css);
+
+/* SuggestForm */
+@import url(../src/components/SuggestForm/SuggestForm.css);
+
+/* Select */
+@import url(../src/components/Select/Select.css);
