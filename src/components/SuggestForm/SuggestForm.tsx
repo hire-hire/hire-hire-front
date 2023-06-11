@@ -1,7 +1,12 @@
 import Select from 'components/Select/Select';
-import { useAppDispatch, useAppSelector } from 'hooks/redux';
+import { 
+  useAppDispatch, 
+  useAppSelector } from 'hooks/redux';
 import { useFormWithValidation } from 'hooks/useFormWithValidation';
-import { ChangeEvent, FC, useEffect } from 'react';
+import { 
+  ChangeEvent, 
+  FC, 
+  useEffect } from 'react';
 import { fetchCategory } from 'store/reducers/categories/categoriesActionCreator';
 
 type PropsType = {
@@ -10,7 +15,10 @@ type PropsType = {
   handleSaveFormsValues: (values: Record<string, any>) => void
 }
 
-const SuggestForm: FC<PropsType> = ({ formNumber, formData, handleSaveFormsValues }) => {
+const SuggestForm: FC<PropsType> = ({ 
+  formNumber, 
+  formData, 
+  handleSaveFormsValues }) => {
 
   const dispatch = useAppDispatch();
 
