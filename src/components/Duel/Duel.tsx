@@ -1,17 +1,21 @@
-import { 
-  FormEvent, 
-  useEffect, 
-  useState } from 'react';
-import { 
-  Navigate, 
-  useNavigate, 
-  useParams } from 'react-router-dom';
-import { 
-  useAppDispatch, 
-  useAppSelector } from '../../hooks/redux';
-import { 
-  getDuel, 
-  patchDuel } from '../../store/reducers/duel/duelActionCreator';
+import {
+  FormEvent,
+  useEffect,
+  useState
+} from 'react';
+import {
+  Navigate,
+  useNavigate,
+  useParams
+} from 'react-router-dom';
+import {
+  useAppDispatch,
+  useAppSelector
+} from '../../hooks/redux';
+import {
+  getDuel,
+  patchDuel
+} from '../../store/reducers/duel/duelActionCreator';
 import { ExtendedCategory } from '../../store/reducers/categories/categoriesActionCreator';
 import arrowToBottom from '../../images/arrowToBottom.png';
 import arrowToRight from '../../images/rightArrow.png';
@@ -121,15 +125,15 @@ const Duel = () => {
               <p className='duel__question page__text'>
                 {duel.duel?.questions[questionCount].question.text}
               </p>
-              <button 
-              disabled={!!answer} 
-              onClick={handleShowAnswer} 
-              type='button' 
-              className={`page__button page__button_type_white ${answer ? 'duel__answer-button_type_disabled' : ''} page__text`}
+              <button
+                disabled={!!answer}
+                onClick={handleShowAnswer}
+                type='button'
+                className={`page__button page__button_type_white ${answer ? 'duel__answer-button_type_disabled' : ''} page__text`}
               >
-                Показать правильный ответ 
+                Показать правильный ответ
                 <img src={arrowToBottom} alt='Стрелочка' className='duel__question-image' />
-                </button>
+              </button>
             </div>
 
             <div className='duel__counter'>
@@ -165,10 +169,10 @@ const Duel = () => {
               </p>
             </div>
             <div className='duel__lang'>
-              <img 
-              src={languageImage} 
-              alt={currentLanguage?.title} 
-              className='duel__lang-image' />
+              <img
+                src={languageImage}
+                alt={currentLanguage?.title}
+                className='duel__lang-image' />
             </div>
           </div>
           <form onSubmit={submitButtonHandler} className='duel__form'>

@@ -4,6 +4,7 @@ import categoriesSlice from './reducers/categories/categoriesSlice';
 import interviewSlice from './reducers/interview/interviewSlice';
 import userSlice from './reducers/user/userSlice';
 import duelSlice from './reducers/duel/duelSlice';
+import suggestQuestionSlice from './reducers/suggestQuestion/suggestQuestionSlice';
 
 export const baseUrl = process.env.REACT_APP_API_URL;
 
@@ -14,6 +15,7 @@ export const store = configureStore({
     interview: interviewSlice,
     user: userSlice,
     duel: duelSlice,
+    suggestQuestion: suggestQuestionSlice,
   },
 });
 

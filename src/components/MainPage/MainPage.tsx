@@ -83,7 +83,7 @@ const MainPage = () => {
           null
       }
       {
-        user
+        user?.is_duel_moderator
           ?
           <section className='games sections'>
             <h2 className='games__title sections__title'>
