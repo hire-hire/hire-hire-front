@@ -32,7 +32,6 @@
   min-height: 240px;
   max-width: 660px;
   overflow: auto;
-  word-break: break-all;
 }
 
 .duel__question-image {
