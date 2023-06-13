@@ -131,8 +131,10 @@
   height: 240px;
   overflow: auto;
   max-width: 660px;
+  width: 100%;
   border: 2px solid #3B3E45;
   word-break: break-all;
+  box-sizing: border-box;
 }
 
 .duel__lang {
