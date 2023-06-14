@@ -1,24 +1,29 @@
 import Select from 'components/Select/Select';
-import { 
-  useAppDispatch, 
-  useAppSelector } from 'hooks/redux';
+import {
+  useAppDispatch,
+  useAppSelector
+} from 'hooks/redux';
 import { useFormWithValidation } from 'hooks/useFormWithValidation';
-import { 
-  ChangeEvent, 
-  FC, 
-  useEffect } from 'react';
+import {
+  ChangeEvent,
+  FC,
+  useEffect
+} from 'react';
 import { fetchCategory } from 'store/reducers/categories/categoriesActionCreator';
+import { QuestionReqType } from 'store/reducers/suggestQuestion/suggestQuestionActionCreator';
 
 type PropsType = {
   formNumber?: number
   formData?: Record<string, any>
-  handleSaveFormsValues: (values: Record<string, any>) => void
+  handleSaveFormsValues?: (values: Record<string, any>) => void
+  handlePostFormsValues?: (values: QuestionReqType) => void
 }
 
-const SuggestForm: FC<PropsType> = ({ 
-  formNumber, 
-  formData, 
-  handleSaveFormsValues }) => {
+const SuggestForm: FC<PropsType> = ({
+  formNumber,
+  formData,
+  handleSaveFormsValues,
+  handlePostFormsValues }) => {
 
   const dispatch = useAppDispatch();
 
@@ -48,10 +53,18 @@ const SuggestForm: FC<PropsType> = ({
     }
   }, []);
 
-  const handleSaveValues = () => {
+  // const handleSaveValues = () => {
+  //   const subcategoryId = category?.languages.find((language) => language.title.toLowerCase() === values.subcategory.toLowerCase())?.id
+  //   handleSaveFormsValues({ ...values, language: Number(subcategoryId) });
+  // };
+
+  const handlePostFormValues = () => {
     const subcategoryId = category?.languages.find((language) => language.title.toLowerCase() === values.subcategory.toLowerCase())?.id
-    handleSaveFormsValues({...values, language: Number(subcategoryId)});
-  };
+    if(handlePostFormsValues) {
+      const {text, answer} = values;
+      handlePostFormsValues({text, answer, language: Number(subcategoryId)});
+    }
+  }
 
   return (
     <form className='suggest-form'>
@@ -126,13 +139,14 @@ const SuggestForm: FC<PropsType> = ({
       </div>
       <div className={`suggest-form__buttons ${formData ? 'suggest-form__buttons_type_hidden' : ''}`}>
         <button
-          onClick={handleSaveValues}
-          disabled={!isFormValid}
+          // onClick={handleSaveValues}
+          disabled={true}
           type='button'
           className={`suggest-form__button page__button page__button_type_white ${isFormValid ? '' : 'page__button_type_disabled'}`}>
           Добавить ещё вопрос
         </button>
         <button
+          onClick={handlePostFormValues}
           disabled={!isFormValid}
           type='button'
           className={`suggest-form__button page__button ${isFormValid ? '' : 'page__button_type_disabled'}`}>

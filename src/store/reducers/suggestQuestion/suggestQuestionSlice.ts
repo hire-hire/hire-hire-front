@@ -30,12 +30,18 @@ export const suggestQuestionSlice = createSlice({
       state.isLoading = false;
       state.error = action.payload;
     },
+    suggestQuestionReset: (state) => {
+      state.isLoading = false;
+      state.questionStatus = null;
+      state.error = '';
+    },
   },
 });
 
 export const { 
   suggestQuestionLoading, 
   suggestQuestionLoaded, 
-  suggestQuestionLoadingError } = suggestQuestionSlice.actions;
+  suggestQuestionLoadingError,
+  suggestQuestionReset } = suggestQuestionSlice.actions;
 
 export default suggestQuestionSlice.reducer;

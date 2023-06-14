@@ -1,6 +1,10 @@
 .suggest {
   max-width: 1440px;
   gap: 80px;
+  background-image: url(../../images/suggestQuestion.png);
+  background-repeat: no-repeat;
+  background-size: 320px;
+  background-position: 100% 2%;
 }
 
 .suggest__title {
@@ -53,10 +57,26 @@
   background-color: #E3E3E3;
 }
 
+.suggest__thanks {
+  font-size: 60px;
+  line-height: 130%;
+  text-align: center;
+}
+
+.suggest__links {
+  display: flex;
+  max-width: 1150px;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 30px;
+}
+
 @media screen and (max-width: 1599px) {
   .suggest {
     max-width: 1080px;
     gap: 60px;
+    background-size: 265px;
   }
   
   .suggest__title {
@@ -75,12 +95,28 @@
     height: 400px;
     padding: 20px 44px;
   }
+
+  .suggest__thanks {
+    font-size: 48px;
+  }
+  
+  .suggest__links {
+    max-width: 950px;
+    padding-bottom: 0;
+  }
+
+  .suggest__link {
+    font-size: 24px;
+    line-height: 36px;
+    width: 368px;
+  }
 }
 
 @media screen and (max-width: 1151px) {
   .suggest {
     max-width: 768px;
     gap: 40px;
+    background-size: 160px;
   }
   
   .suggest__title {
@@ -109,6 +145,22 @@
     font-size: 16px;
     line-height: 24px;
   }
+
+  .suggest__thanks {
+    font-size: 36px;
+    line-height: 150%;
+  }
+  
+  .suggest__links {
+    max-width: 768px;
+    padding-bottom: 0;
+  }
+
+  .suggest__link {
+    font-size: 20px;
+    line-height: 36px;
+    width: 297px;
+  }
 }
 
 @media screen and (max-width: 820px) {
@@ -117,12 +169,15 @@
     padding-left: 25px;
     padding-right: 25px;
     gap: 15px;
+    background-image: none;
   }
   
   .suggest__title {
     font-size: 26px;
     line-height: 36px;
     max-width: 100%;
+    align-self: center;
+    text-align: center;
   }
   
   .suggest__subtitle {
@@ -144,5 +199,24 @@
   .suggest_card-title {
     font-size: 36px;
     line-height: 40px;
+  }
+
+  .suggest__thanks {
+    font-size: 20px;
+    line-height: 200%;
+    max-width: 300px;
+  }
+  
+  .suggest__links {
+    flex-direction: column;
+    gap: 8px;
+    max-width: 272px;
+  }
+
+  .suggest__link {
+    font-size: 18px;
+    line-height: 32px;
+    width: 272px;
+    max-height: 68px;
   }
 }
