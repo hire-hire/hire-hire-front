@@ -26,6 +26,17 @@
   border: 2px solid #88161D;
 }
 
+.input_type_donation {
+  font-size: 40px;
+  color: #163B88;
+  text-align: center;
+}
+
+.input_type_donation::placeholder {
+  color: #163B88;
+  text-align: left;
+}
+
 @media screen and (max-width: 599px) {
   .input {
     font-size: 16px;

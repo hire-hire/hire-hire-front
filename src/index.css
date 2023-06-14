@@ -105,3 +105,6 @@
 
 /* Select */
 @import url(../src/components/Select/Select.css);
+
+/* Donation */
+@import url(../src/components/Donation/Donation.css);

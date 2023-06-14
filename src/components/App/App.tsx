@@ -25,6 +25,7 @@ import ExitConfirm from '../ExitConfirm/ExitConfirm';
 import DuelSettings from '../DuelSettings/DuelSettings';
 import Duel from '../Duel/Duel';
 import DuelResult from '../DuelResult/DuelResult';
+import Donation from 'components/Donation/Donation';
 
 function App() {
 
@@ -270,6 +271,19 @@ function App() {
               />
               <Main key={'main'}>
                 <DuelResult />
+              </Main>
+              <Footer key={'footer'} />
+            </>
+          } />
+          <Route path='/donation' element={
+            <>
+              <Header
+                key={'header'}
+                handleOpenMobileMenu={handleOpenMobileMenu}
+                handleOpenExitConfirm={handleOpenExitConfirm}
+              />
+              <Main key={'main'}>
+                <Donation />
               </Main>
               <Footer key={'footer'} />
             </>
