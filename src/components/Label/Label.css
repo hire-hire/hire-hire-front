@@ -8,6 +8,12 @@
   width: 496px;
 }
 
+.form__label_position_donation {
+  width: 496px;
+  height: 84px;
+  transform: translateX(18px);
+}
+
 @media screen and (max-width: 1599px) {
   .form__label {
     width: 410px;

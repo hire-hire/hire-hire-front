@@ -185,7 +185,8 @@ const Duel = () => {
                 <input
                   checked={duel.duel?.players![0].id === winner}
                   onChange={handleSelectWinner}
-                  disabled={!answer} value={duel.duel?.players[0].id}
+                  disabled={!answer} 
+                  value={duel.duel?.players[0].id}
                   name='duel'
                   type='radio'
                   className='duel__input' />
@@ -197,7 +198,8 @@ const Duel = () => {
                   onChange={handleSelectWinner}
                   disabled={!answer}
                   value={duel.duel?.players[1].id}
-                  name='duel' type='radio'
+                  name='duel' 
+                  type='radio'
                   className='duel__input' />
               </label>
               <label className={`duel__label duel__no-one page__text ${winner === -1 ? 'duel__label_type_checked' : ''} ${answer ? '' : 'duel__no-one_type_disabled'}`}>
