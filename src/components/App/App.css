@@ -93,7 +93,7 @@
 }
 
 .page__button_type_white:disabled {
-  opacity: 0.7;
+  opacity: 0.5;
 }
 
 .sections {

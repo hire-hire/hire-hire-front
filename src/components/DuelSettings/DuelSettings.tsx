@@ -157,28 +157,28 @@ const DuelSettings = () => {
                 <div className='duel-settings__container duel-settings__footer'>
 
                   <Label position='games' title='Игрок 1'>
-                    <LabelContainer position='games' hint='от 2 до 20 символов, Ru/En, прописные и строчные буквы, Цифры, Пробел, -'>
+                    <LabelContainer position='games' hint='от 2 до 15 символов, Ru/En, прописные и строчные буквы, Цифры, Пробел, -'>
                       <Input
                         type='text'
                         name='player1'
                         error={errors.player1}
                         value={values.player1 || ''}
                         handleChange={handleChange}
-                        maxLength={20}
+                        maxLength={15}
                         minLength={2}
                         pattern={playersNamesRegExp} />
                     </LabelContainer>
                     <InputError error={errors.player1} />
                   </Label>
                   <Label position='games' title='Игрок 2'>
-                    <LabelContainer position='games' hint={`от 2 до 20 символов, Ru/En, прописные и строчные буквы, Цифры, Пробел, -`}>
+                    <LabelContainer position='games' hint={`от 2 до 15 символов, Ru/En, прописные и строчные буквы, Цифры, Пробел, -`}>
                       <Input
                         type='text'
                         name='player2'
                         error={errors.player2}
                         value={values.player2 || ''}
                         handleChange={handleChange}
-                        maxLength={20}
+                        maxLength={15}
                         minLength={2}
                         pattern={playersNamesRegExp} />
                     </LabelContainer>
