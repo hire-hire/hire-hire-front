@@ -1,9 +1,25 @@
-import Input from "components/Input/Input";
-import Label from "components/Label/Label";
-import LabelContainer from "components/LabelContainer/LabelContainer";
-import { Link } from "react-router-dom";
+import Input from 'components/Input/Input';
+import Label from 'components/Label/Label';
+import LabelContainer from 'components/LabelContainer/LabelContainer';
+import { useFormWithValidation } from 'hooks/useFormWithValidation';
+import { Link } from 'react-router-dom';
 
 const Donation = () => {
+
+  const {
+    values,
+    resetForm,
+    handleChange } = useFormWithValidation();
+
+  const handleFocus = () => {
+    resetForm({ ...values, radio: '' }, {}, false);
+  };
+
+  const handleChangeRadio = (e: any) => {
+    resetForm({ ...values, cash: '' }, {}, false);
+    handleChange(e);
+  };
+
   return (
     <section className='donation sections'>
       <h1 className='donation__title page__title'>
@@ -41,33 +57,55 @@ const Donation = () => {
                 Выбери <span className='page__span'>сумму доната</span>
               </h2>
               <div className='donation__form-labels'>
-                <label className='donation__form-label page__button page__button_type_white'>
+                <label className={`donation__form-label page__button page__button_type_white ${values.radio === '100' ? 'donation__form-label_type_checked' : ''}`}>
                   100 ₽
-                  <input name='radio' type='radio' className='donation__form-radio' />
+                  <input
+                    checked={values.radio === '100'}
+                    onChange={handleChangeRadio}
+                    value={'100'}
+                    name='radio'
+                    type='radio'
+                    className='donation__form-radio' />
                 </label>
-                <label className='donation__form-label page__button page__button_type_white'>
+                <label className={`donation__form-label page__button page__button_type_white ${values.radio === '300' ? 'donation__form-label_type_checked' : ''}`}>
                   300 ₽
-                  <input name='radio' type='radio' className='donation__form-radio' />
+                  <input
+                    checked={values.radio === '300'}
+                    onChange={handleChangeRadio}
+                    value={'300'}
+                    name='radio'
+                    type='radio'
+                    className='donation__form-radio' />
                 </label>
-                <label className='donation__form-label page__button page__button_type_white'>
+                <label className={`donation__form-label page__button page__button_type_white ${values.radio === '500' ? 'donation__form-label_type_checked' : ''}`}>
                   500 ₽
-                  <input name='radio' type='radio' className='donation__form-radio' />
+                  <input
+                    checked={values.radio === '500'}
+                    onChange={handleChangeRadio}
+                    value={'500'}
+                    name='radio'
+                    type='radio'
+                    className='donation__form-radio' />
                 </label>
               </div>
               <Label position='donation'>
                 <LabelContainer hint='Для ввода суммы можно использовать только цифры. Сумма вводится без копеек'>
                   <Input
+                    value={values.cash && Number(String(Math.floor(values.cash)).slice(0, 6)) > 700000 ? 700000 : values.cash ? Number(String(Math.floor(values.cash)).slice(0, 6)) : ''}
+                    handleChange={handleChange}
+                    handleFocus={handleFocus}
                     type='number'
                     name='cash'
                     maxLength={6}
                     minLength={1}
-                    step='0'
+                    step='1'
                     placeholder='Другая сумма'
                   />
                 </LabelContainer>
               </Label>
               <button
-                className='donation__button page__button'
+                disabled={!values.radio || !values.cash}
+                className={`donation__button page__button ${!values.radio ? !values.cash ? 'page__button_type_disabled' : '' : ''}`}
                 type='button'>
                 ЗаДонатить
               </button>
