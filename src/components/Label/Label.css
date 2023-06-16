@@ -14,11 +14,24 @@
   transform: translateX(18px);
 }
 
+@media screen and (max-width: 1919px) {
+  .form__label_position_donation {
+    width: 376px;
+  }
+}
+
 @media screen and (max-width: 1599px) {
   .form__label {
     width: 410px;
   }
 }
+
+@media screen and (max-width: 1365px) {
+  .form__label_position_donation {
+    width: 272px;
+  }
+}
+
 
 @media screen and (max-width: 1151px) {
   .form__label {
@@ -26,10 +39,28 @@
     font-size: 16px;
     line-height: 100%;
   }
+
+  .form__label_position_donation {
+    width: 272px;
+    transform: translateX(18px);
+    height: 56px;
+  }
+}
+
+@media screen and (max-width: 1023px) {
+  .form__label_position_donation {
+    width: 100%;
+    transform: translateX(0);
+    height: 48px;
+  }
 }
 
 @media screen and (max-width: 900px) {
   .form__label {
     width: 284px;
+  }
+  
+  .form__label_position_donation {
+    width: 100%;
   }
 }
