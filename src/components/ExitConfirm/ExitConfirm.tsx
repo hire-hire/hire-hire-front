@@ -1,6 +1,6 @@
+import { useAppDispatch } from 'hooks/redux';
 import { FC } from 'react';
-import { useAppDispatch } from '../../hooks/redux';
-import { userLoggedOut } from '../../store/reducers/user/userSlice';
+import { userLogOut } from 'store/reducers/user/userActionCreator';
 
 type PropsType = {
   handleCloseExitConfirm: () => void
@@ -11,10 +11,7 @@ const ExitConfirm: FC<PropsType> = ({ handleCloseExitConfirm }) => {
   const dispatch = useAppDispatch();
 
   const handleLogOut = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('refreshToken');
-    localStorage.removeItem('key');
-    dispatch(userLoggedOut());
+    dispatch(userLogOut());
     handleCloseExitConfirm();
   };
 
