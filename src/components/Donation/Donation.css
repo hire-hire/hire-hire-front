@@ -112,6 +112,10 @@
     height: 112px;
     font-size: 48px;
   }
+
+  .donation__link {
+    font-size: 32px;
+  }
 }
 
 @media screen and (max-width: 1365px) {
@@ -151,6 +155,10 @@
     height: 80px;
     font-size: 32px;
   }
+
+  .donation__link {
+    font-size: 32px;
+  }
 }
 
 @media screen and (max-width: 1023px) {
@@ -159,7 +167,7 @@
     background-image: none;
     padding-left: 25px;
     padding-right: 25px;
-    max-width: 550px;
+    max-width: 460px;
   }
   
   .donation__title {
@@ -199,5 +207,11 @@
     width: 100%;
     height: 68px;
     font-size: 28px;
+  }
+
+  .donation__link {
+    font-size: 20px;
+    width: 100%;
+    height: 48px;
   }
 }

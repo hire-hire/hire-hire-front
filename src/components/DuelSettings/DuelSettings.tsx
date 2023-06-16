@@ -19,11 +19,16 @@ const DuelSettings = () => {
   const user = useAppSelector(state => state.user);
 
   const token = JSON.parse(localStorage.getItem('token')!);
+  const isModerator = localStorage.getItem('key') ? true : false;
 
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const { values, handleChange, isFormValid, errors } = useFormWithValidation();
+  const { 
+    values, 
+    handleChange, 
+    isFormValid, 
+    errors } = useFormWithValidation();
 
   const handleSelectCategory = (e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLSelectElement>) => {
     handleChange(e);
@@ -72,7 +77,7 @@ const DuelSettings = () => {
   }, [duel.duel]);
 
   return (
-    !user.user
+    (!user.user && isModerator) || user.isLoading
       ?
       <Preloader />
       :

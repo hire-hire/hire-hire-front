@@ -13,6 +13,7 @@ const ExitConfirm: FC<PropsType> = ({ handleCloseExitConfirm }) => {
   const handleLogOut = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('refreshToken');
+    localStorage.removeItem('key');
     dispatch(userLoggedOut());
     handleCloseExitConfirm();
   };

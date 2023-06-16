@@ -30,7 +30,12 @@ export const getUser = (access: string, refresh: string) => async (dispatch: App
       Authorization: `JWT ${access}`
     }
   })
-    .then((res) => dispatch(userReceived(res.data)))
+    .then((res) => {
+      dispatch(userReceived(res.data));
+      if(res.data.is_duel_moderator) {
+        localStorage.setItem('key', JSON.stringify(true));
+      }
+    })
     .catch((error) => dispatch(userError(error.message)));
 };
 
@@ -71,6 +76,7 @@ export const userLogIn = (user: UserLoginType) => async (dispatch: AppDispatch) 
 export const userLogOut = () => (dispatch: AppDispatch) => {
   localStorage.removeItem('refreshToken');
   localStorage.removeItem('token');
+  localStorage.removeItem('key');
   dispatch(userLoggedOut());
 };
 
