@@ -31,7 +31,7 @@ const Duel = () => {
   const token = JSON.parse(localStorage.getItem('token')!);
   const duel = useAppSelector(state => state.duel);
   const navigate = useNavigate();
-  const user = useAppSelector(state => state.user.user);
+  const user = useAppSelector(state => state.user);
 
   useEffect(() => {
     dispatch(getDuel(duelId!, token));
@@ -40,6 +40,8 @@ const Duel = () => {
       setQuestionCount(JSON.parse(currentDuelQuestion))
     };
   }, []);
+
+  const isModerator = localStorage.getItem('key') ? true : false;
 
   const currentCategory: ExtendedCategory = JSON.parse(localStorage.getItem('duelCategory')!);
   const currentSubcategoryId = JSON.parse(localStorage.getItem('duelSubCategory')!);
@@ -106,11 +108,11 @@ const Duel = () => {
   const finishedButtonHandler = questionNumber === 1 ? handleGoBack : handleDuelComplete;
 
   return (
-    !user
+    (!user.user && isModerator) || user.isLoading
       ?
       <Preloader />
       :
-      user.is_duel_moderator
+      user.user?.is_duel_moderator
         ?
         <section className='duel sections'>
           <h1 className='duel__title page__title'>

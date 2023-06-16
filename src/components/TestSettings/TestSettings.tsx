@@ -7,7 +7,12 @@ import testSettingsImage from '../../images/testSettingsImage.png';
 
 const TestSettings = () => {
 
-  const { values, resetForm, errors, isFormValid, handleChange } = useFormWithValidation();
+  const { 
+    values, 
+    resetForm, 
+    errors, 
+    isFormValid, 
+    handleChange } = useFormWithValidation();
 
   const navigate = useNavigate();
 
