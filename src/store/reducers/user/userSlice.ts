@@ -5,7 +5,7 @@ import { User } from './userActionCreator';
 type InitialStateType = {
   user: User | null
   isLoading: boolean
-  error: string
+  error: any
 };
 
 const initialState: InitialStateType = {
@@ -21,14 +21,18 @@ export const userSlice = createSlice({
     userLoading: (state) => {
       state.isLoading = true;
     },
-    userError: (state, action: PayloadAction<string>) => {
+    userError: (state, action: PayloadAction<any>) => {
       state.isLoading = false;
       state.error = action.payload;
     },
-    userReceived: (state, action: PayloadAction<User>) => {
+    userErrorReset: (state) => {
       state.isLoading = false;
+      state.error = '';
+    },
+    userReceived: (state, action: PayloadAction<User>) => {
       state.user = action.payload;
       state.error = '';
+      state.isLoading = false;
     },
     userCreated: (state, action: PayloadAction<User>) => {
       state.isLoading = false;
@@ -48,6 +52,13 @@ export const userSlice = createSlice({
   },
 });
 
-export const { userLoading, userError, userReceived, userCreated, userPatched, userLoggedOut } = userSlice.actions;
+export const { 
+  userLoading, 
+  userError, 
+  userReceived, 
+  userCreated, 
+  userPatched, 
+  userLoggedOut,
+  userErrorReset } = userSlice.actions;
 
 export default userSlice.reducer;

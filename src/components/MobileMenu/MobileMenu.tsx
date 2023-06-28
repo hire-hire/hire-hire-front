@@ -1,13 +1,17 @@
 import { FC, ReactElement, useState } from "react";
 import { Link } from "react-router-dom";
 import UserLink from "../UserLink/UserLink";
+import { useAppSelector } from "hooks/redux";
 
 type PropsType = {
   children: ReactElement
   handleCloseMobileMenu: () => void
+  handleOpenExitConfirm: () => void
 };
 
-const MobileMenu: FC<PropsType> = ({ children, handleCloseMobileMenu }) => {
+const MobileMenu: FC<PropsType> = ({ children, handleCloseMobileMenu, handleOpenExitConfirm }) => {
+
+  const user = useAppSelector(state => state.user.user);
 
   const [touchStart, setTouchStart] = useState(0);
   const [touchEnd, setTouchEnd] = useState(0);
@@ -31,6 +35,11 @@ const MobileMenu: FC<PropsType> = ({ children, handleCloseMobileMenu }) => {
     handleCloseMobileMenu();
   };
 
+  const handleConfirmOpen = () => {
+    handleCloseMenu();
+    handleOpenExitConfirm();
+  };
+
   return (
     <div
       onTouchStart={handleTouchStart}
@@ -40,12 +49,17 @@ const MobileMenu: FC<PropsType> = ({ children, handleCloseMobileMenu }) => {
       <nav className='mobile-menu__container'>
         <ul className='mobile-menu__items page__list'>
           <li className='mobile-menu__item'>
+            <Link onClick={handleCloseMenu} to='/donation' className='mobile-menu__link page__link page__text'>
+              ЗаДонать
+            </Link>
+          </li>
+          <li className='mobile-menu__item'>
             <Link onClick={handleCloseMenu} to='/suggest-question' className='mobile-menu__link page__link page__text'>
               Предложить вопрос
             </Link>
           </li>
           <li className='mobile-menu__item'>
-            <Link onClick={handleCloseMenu} to='#' className='mobile-menu__link page__link page__text'>
+            <Link onClick={handleCloseMenu} to='/team' className='mobile-menu__link page__link page__text'>
               Команда
             </Link>
           </li>
@@ -53,6 +67,13 @@ const MobileMenu: FC<PropsType> = ({ children, handleCloseMobileMenu }) => {
       </nav>
       <button onClick={handleCloseMenu} type='button' className='mobile-menu__button'></button>
       <UserLink handleCloseMobileMenu={handleCloseMobileMenu} />
+      {
+        user
+          ?
+          <button onClick={handleConfirmOpen} type='button' className='mobile-menu__ext-button'>
+          </button>
+          : null
+      }
     </div>
   )
 };

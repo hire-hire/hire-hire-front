@@ -16,7 +16,7 @@ const UserLink: FC<PropsType> = ({ place, handleCloseMobileMenu }) => {
       {
         user
           ?
-          <Link onClick={handleCloseMobileMenu} to='/profile' className={`user-link page__link ${place ? 'user-link_place_header' : 'user-link_place_menu'}`} >
+          <Link onClick={handleCloseMobileMenu} to={`/profile/${user.username.toLowerCase()}`} className={`user-link page__link ${place ? 'user-link_place_header' : 'user-link_place_menu'}`} >
             <span className={`user-link__login page__text ${place ? 'user-link__login_place_header' : ''}`}>
               {user.username}
             </span>

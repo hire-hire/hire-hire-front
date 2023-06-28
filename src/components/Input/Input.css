@@ -4,14 +4,63 @@
 
 .input {
   width: 100%;
-  padding: 12px 24px;
-  border-radius: 12px;
+  padding: 16px;
   margin-bottom: 4px;
+  margin-top: 4px;
   box-sizing: border-box;
-  border: 1px solid rgba(8, 6, 23, 0.6);
+  border: 2px solid rgba(22, 59, 136, 0.6);
+  color: #748CDB;
+  font-size: 20px;
+}
+
+.input:focus {
+  outline: none;
+  border: 2px solid #163B88;
 }
 
 .input_type_error {
-  border: 1px solid #FF0000;
+  border: 2px solid #88161D;
+}
+
+.input_type_error:focus {
+  border: 2px solid #88161D;
+}
+
+.input_type_donation {
+  font-size: 40px;
+  color: #163B88;
+  text-align: center;
+}
+
+.input_type_donation::placeholder {
+  color: #163B88;
+  text-align: left;
+}
+
+@media screen and (max-width: 1919px) {
+  .input_type_donation {
+    font-size: 32px;
+  }
+}
+
+@media screen and (max-width: 1365px) {
+  .input_type_donation {
+    font-size: 20px;
+    max-height: 56px;
+    margin: 0;
+  }
+}
+
+@media screen and (max-width: 1023px) {
+  .input_type_donation {
+    font-size: 16px;
+    max-height: 48px;
+  }
+}
+
+@media screen and (max-width: 599px) {
+  .input {
+    font-size: 16px;
+  }
 }
 

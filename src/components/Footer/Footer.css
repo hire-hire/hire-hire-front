@@ -1,6 +1,5 @@
 .footer {
   width: 100%;
-  max-width: 1920px;
   background-color: rgba(116, 140, 219, 0.2);
   padding: 30px 15px 15px;
   box-sizing: border-box;
@@ -23,6 +22,13 @@
 .footer__image {
   width: 64px;
   height: 64px;
+  border-radius: 99em;
+  transition: all 0.1s linear;
+}
+
+.footer__image:hover {
+  border-radius: 100%;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 .footer__links {
@@ -45,5 +51,10 @@
   }
   .footer__content {
     gap: 8px;
+  }
+
+  .footer__image {
+    width: 48px;
+    height: 48px;
   }
 }

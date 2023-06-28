@@ -7,6 +7,7 @@ export type Contributor = {
   last_name: string
   middle_name: string
   photo: string
+  thumbnail_image: string
   role: string
   contacts: ContributorContact[]
 };
@@ -24,7 +25,7 @@ export const fetchContributors = () => async (dispatch: AppDispatch) => {
 };
 
 export const fetchContributor = async (id: number) => {
-  return await axios.get<Contributor>(`${baseUrl}contributors/${id}`)
+  return await axios.get<Contributor>(`${baseUrl}contributors/${id}/`)
   .then(res => res.data)
   .catch(err => err);
 };

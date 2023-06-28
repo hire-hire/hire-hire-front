@@ -37,9 +37,6 @@
 /* FormSubmitButton */
 @import url(../src/components//FormSubmitButton/FormSubmitButton.css);
 
-/* FormLink */
-@import url(../src/components/FormLink/FormLink.css);
-
 /* RegisterForm */
 @import url(../src/components/RegisterForm/RegisterForm.css);
 
@@ -90,3 +87,24 @@
 
 /* NotFound */
 @import url(../src/components/NotFound/NotFound.css);
+
+/* ExitConfirm */
+@import url(../src/components/ExitConfirm/ExitConfirm.css);
+
+/* DuelSettings */
+@import url(../src/components/DuelSettings/DuelSettings.css);
+
+/* Duel */
+@import url(../src/components/Duel/Duel.css);
+
+/* DuelResult */
+@import url(../src/components/DuelResult/DuelResult.css);
+
+/* SuggestForm */
+@import url(../src/components/SuggestForm/SuggestForm.css);
+
+/* Select */
+@import url(../src/components/Select/Select.css);
+
+/* Donation */
+@import url(../src/components/Donation/Donation.css);

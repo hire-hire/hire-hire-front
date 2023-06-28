@@ -36,3 +36,20 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+.mobile-menu__ext-button {
+  border: none;
+  padding: 0;
+  background-color: #fff;
+  margin-top: 20px;
+  width: 40px;
+  height: 44px;
+  background-image: url(../../images/exitButton.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+
+.mobile-menu__ext-button:hover {
+  background-image: url(../../images/hoveredExitButton.png);
+}

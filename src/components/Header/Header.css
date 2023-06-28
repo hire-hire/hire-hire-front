@@ -29,7 +29,7 @@
 
 .header__container {
   display: flex;
-  gap: 40px;
+  gap: 20px;
 }
 
 .header__image {
@@ -47,6 +47,23 @@
   justify-content: center;
   align-items: center;
   font-weight: bold;
+}
+
+.header__ext-button {
+  width: 60px;
+  height: 66px;
+  border: none;
+  padding: none;
+  background-color: #E3E8F8;
+  background-image: url(../../images/exitButton.png);
+  background-size: 60px 66px;
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+}
+
+.header__ext-button:hover {
+  background-image: url(../../images/hoveredExitButton.png);
 }
 
 @media screen and (max-width: 1200px) {

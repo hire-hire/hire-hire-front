@@ -1,69 +1,84 @@
 import { FormEvent, useEffect } from 'react';
 import { useFormWithValidation } from '../../hooks/useFormWithValidation';
 import Form from '../Form/Form';
-import FormLink from '../FormLink/FormLink';
 import FormSubmitButton from '../FormSubmitButton/FormSubmitButton';
 import Input from '../Input/Input';
 import InputError from '../InputError/InputError';
 import Label from '../Label/Label';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { userLogIn } from '../../store/reducers/user/userActionCreator';
+import { userErrorReset } from 'store/reducers/user/userSlice';
 
 const LoginForm = () => {
 
-  const { values, handleChange, isFormValid, resetForm, errors } = useFormWithValidation();
+  const { values, handleChange, isFormValid, errors, resetForm } = useFormWithValidation();
 
-  const userName = useAppSelector(state => state.user.user?.username);
+  const user = useAppSelector(state => state.user);
 
   const navigate = useNavigate();
 
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    if(userName) {
-      resetForm({...values, userName}, errors, false);
+    if (user.user) {
+      navigate(`/profile/${user.user.username.toLowerCase()}`)
     }
-  }, []);
+  }, [user]);
+  
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const user = {
+    const userObj = {
       username: values.username,
       password: values.password
     };
-    dispatch(userLogIn(user));
-    navigate('/');
+    dispatch(userLogIn(userObj));
+    if (user.error) {
+      resetForm(
+        { ...values },
+        {
+          username: 'Неверный логин или пароль',
+          password: 'Неверный логин или пароль'
+        },
+        false
+      );
+      dispatch(userErrorReset());
+    }
   };
 
   return (
-    <Form onSubmit={handleSubmit} title='Вход'>
-      <Label title='Юзернейм'>
-        <Input
-          type='text'
-          name='username'
-          error={errors.username}
-          value={values.username || ''}
-          handleChange={handleChange}
-          maxLength={150}
-          minLength={1} />
-        <InputError error={errors.username} />
-      </Label>
-      <Label title='Пароль'>
-        <Input
-          type='password'
-          name='password'
-          error={errors.password}
-          value={values.password || ''}
-          handleChange={handleChange}
-          maxLength={128}
-          minLength={8} />
-        <InputError error={errors.password} />
-      </Label>
-      <FormSubmitButton title='Войти' disabled={!isFormValid} />
-      <p className='login-form__hint page__text'>В первый раз здесь?</p>
-      <FormLink path='/register' title='Зарегистрироваться' />
-    </Form>
+    <section className='login'>
+      <Form type='auth' onSubmit={handleSubmit} title='Войти'>
+        <Label title='Логин'>
+          <Input
+            type='text'
+            name='username'
+            error={errors.username}
+            value={values.username || ''}
+            handleChange={handleChange}
+            maxLength={25}
+            minLength={2} />
+          <InputError error={errors.username} />
+        </Label>
+        <Label title='Пароль'>
+          <Input
+            type='password'
+            name='password'
+            error={errors.password}
+            value={values.password || ''}
+            handleChange={handleChange}
+            maxLength={40}
+            minLength={8} />
+          <InputError error={errors.password} />
+        </Label>
+        <FormSubmitButton title='Войти' disabled={!isFormValid} />
+        <p className='login__text page__title'>
+          В <span className='page__span'>первый раз</span> здесь?
+        </p>
+        <Link to='/register' className='login__link sections__link'>Зарегистрироваться</Link>
+      </Form>
+    </section>
   )
 };
 

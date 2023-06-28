@@ -1,5 +1,5 @@
-import YTimg from '../../images/yticon.png';
-import TGimg from '../../images/tgicon.png';
+import YTimg from '../../images/YouTube.png';
+import TGimg from '../../images/Telegram.png';
 
 const Footer = () => {
 

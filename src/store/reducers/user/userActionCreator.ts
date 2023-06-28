@@ -5,6 +5,7 @@ import { userLoading, userError, userReceived, userCreated, userPatched, userLog
 export type User = {
   username: string
   id: number
+  is_duel_moderator?: boolean
 }
 
 export type UserRequestType = {
@@ -31,7 +32,9 @@ export const getUser = (access: string, refresh: string) => async (dispatch: App
   })
     .then((res) => {
       dispatch(userReceived(res.data));
-      refreshToken(refresh);
+      if(res.data.is_duel_moderator) {
+        localStorage.setItem('key', JSON.stringify(true));
+      }
     })
     .catch((error) => dispatch(userError(error.message)));
 };
@@ -48,14 +51,14 @@ export const getUsers = async (token: string) => {
 
 export const postUser = (user: UserRequestType) => async (dispatch: AppDispatch) => {
   dispatch(userLoading());
-  await axios.post<User>(`${baseUrl}auth/users/`, user)
+  await axios.post<User | any>(`${baseUrl}auth/users/`, user)
     .then((res) => dispatch(userCreated(res.data)))
-    .catch((error) => dispatch(userError(error.message)));
+    .catch((error) => dispatch(userError(error.response.data)));
 };
 
 export const patchUser = (user: any) => async (dispatch: AppDispatch) => {
   dispatch(userLoading());
-  await axios.patch<User>(`${baseUrl}auth/users/me`, user)
+  await axios.patch<User>(`${baseUrl}auth/users/me/`, user)
     .then((res) => dispatch(userPatched(res.data)))
     .catch((error) => dispatch(userError(error.message)));
 };
@@ -67,12 +70,13 @@ export const userLogIn = (user: UserLoginType) => async (dispatch: AppDispatch) 
       localStorage.setItem('token', JSON.stringify(res.data.access));
       dispatch(getUser(res.data.access, res.data.refresh));
     })
-    .catch((error) => error);
+    .catch((error) => dispatch(userError(error.response.data)));
 };
 
 export const userLogOut = () => (dispatch: AppDispatch) => {
   localStorage.removeItem('refreshToken');
   localStorage.removeItem('token');
+  localStorage.removeItem('key');
   dispatch(userLoggedOut());
 };
 

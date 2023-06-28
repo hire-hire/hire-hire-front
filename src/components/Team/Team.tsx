@@ -3,176 +3,6 @@ import { Contributor, fetchContributors } from '../../store/reducers/contributor
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import TeamCard from '../TeamCard/TeamCard';
 
-const contributorPM = {
-  first_name: 'Privet',
-  last_name: 'Privetov',
-  middle_name: 'Privetovich',
-  photo: 'https://i.pinimg.com/236x/05/30/4c/05304c9e8d8b327db682d23cde2244b3.jpg',
-  role: 'Project Manager',
-  contacts: [
-    {
-      social_network: 'Telegram',
-      contact: 'blabla',
-    },
-    {
-      social_network: 'GitHub',
-      contact: 'blabla',
-    },
-    {
-      social_network: 'Instagram',
-      contact: 'blabla',
-    },
-  ]
-};
-
-const contributorBE = {
-  first_name: 'Privet',
-  last_name: 'Privetov',
-  middle_name: 'Privetovich',
-  photo: 'https://i.pinimg.com/236x/05/30/4c/05304c9e8d8b327db682d23cde2244b3.jpg',
-  role: 'Backend',
-  contacts: [
-    {
-      social_network: 'Telegram',
-      contact: 'blabla',
-    },
-    {
-      social_network: 'GitHub',
-      contact: 'blabla',
-    },
-    {
-      social_network: 'Instagram',
-      contact: 'blabla',
-    },
-  ]
-};
-
-const contributorFE = {
-  first_name: 'Privet',
-  last_name: 'Privetov',
-  middle_name: 'Privetovich',
-  photo: 'https://i.pinimg.com/236x/05/30/4c/05304c9e8d8b327db682d23cde2244b3.jpg',
-  role: 'Frontend',
-  contacts: [
-    {
-      social_network: 'Telegram',
-      contact: 'blabla',
-    },
-    {
-      social_network: 'GitHub',
-      contact: 'blabla',
-    },
-    {
-      social_network: 'Instagram',
-      contact: 'blabla',
-    },
-  ]
-};
-
-const contributorUI = {
-  first_name: 'Privet',
-  last_name: 'Privetov',
-  middle_name: 'Privetovich',
-  photo: 'https://i.pinimg.com/236x/05/30/4c/05304c9e8d8b327db682d23cde2244b3.jpg',
-  role: 'UI/UX дизайнер',
-  contacts: [
-    {
-      social_network: 'Telegram',
-      contact: 'blabla',
-    },
-    {
-      social_network: 'GitHub',
-      contact: 'blabla',
-    },
-    {
-      social_network: 'Instagram',
-      contact: 'blabla',
-    },
-  ]
-};
-
-const contributorEN = {
-  first_name: 'Privet',
-  last_name: 'Privetov',
-  middle_name: 'Privetovich',
-  photo: 'https://i.pinimg.com/236x/05/30/4c/05304c9e8d8b327db682d23cde2244b3.jpg',
-  role: 'QA Engineer',
-  contacts: [
-    {
-      social_network: 'Telegram',
-      contact: 'blabla',
-    },
-    {
-      social_network: 'GitHub',
-      contact: 'blabla',
-    },
-    {
-      social_network: 'Instagram',
-      contact: 'blabla',
-    },
-  ]
-};
-
-const contributorCO = {
-  first_name: 'Privet',
-  last_name: 'Privetov',
-  middle_name: 'Privetovich',
-  photo: 'https://i.pinimg.com/236x/05/30/4c/05304c9e8d8b327db682d23cde2244b3.jpg',
-  role: 'QA Consultant',
-  contacts: [
-    {
-      social_network: 'Telegram',
-      contact: 'blabla',
-    },
-    {
-      social_network: 'GitHub',
-      contact: 'blabla',
-    },
-    {
-      social_network: 'Instagram',
-      contact: 'blabla',
-    },
-  ]
-};
-
-const contributorPO = {
-  first_name: 'Privet',
-  last_name: 'Privetov',
-  middle_name: 'Privetovich',
-  photo: 'https://i.pinimg.com/236x/05/30/4c/05304c9e8d8b327db682d23cde2244b3.jpg',
-  role: 'Product Owner',
-  contacts: [
-    {
-      social_network: 'Telegram',
-      contact: 'blabla',
-    },
-    {
-      social_network: 'GitHub',
-      contact: 'blabla',
-    },
-    {
-      social_network: 'Instagram',
-      contact: 'blabla',
-    },
-  ]
-};
-
-const contributors = [
-  contributorPM,
-  contributorPM,
-  contributorPM,
-  contributorBE,
-  contributorBE,
-  contributorBE,
-  contributorBE,
-  contributorBE,
-  contributorFE,
-  contributorUI,
-  contributorEN,
-  contributorCO,
-  contributorPO
-];
-
 const Team = () => {
 
   const dispatch = useAppDispatch();
@@ -189,7 +19,7 @@ const Team = () => {
 
   let sectionsArr: SectionType[] = [];
 
-  contributors.forEach((contributor) => {
+  team.forEach((contributor) => {
     const sectionObj = sectionsArr.find(section => section.sectionName === contributor.role);
     if (!sectionObj) {
       sectionsArr.push({
@@ -226,10 +56,10 @@ const Team = () => {
                         </span> {section.sectionName.split(' ')[1]}
                       </>
                       :
-                      section.sectionName.includes('end')
+                      section.sectionName.toLowerCase().includes('end')
                         ?
                         <>
-                          {section.sectionName.slice(0)}<span className='page__span'>{section.sectionName.slice(-3)}</span>
+                          {section.sectionName.slice(0, - 3)}<span className='page__span'>{section.sectionName.slice(-3)}</span>
                         </>
                         :
                         null
@@ -266,7 +96,7 @@ const Team = () => {
                         section.sectionName.includes('end')
                           ?
                           <>
-                            {section.sectionName.slice(0)}<span className='page__span'>{section.sectionName.slice(-3)}</span>
+                            {section.sectionName.slice(0, - 3)}<span className='page__span'>{section.sectionName.slice(-3)}</span>
                           </>
                           :
                           null
@@ -300,13 +130,7 @@ const Team = () => {
                         </span> {section.sectionName.split(' ')[1]}
                       </>
                       :
-                      section.sectionName.includes('end')
-                        ?
-                        <>
-                          {section.sectionName.slice(0)}<span className='page__span'>{section.sectionName.slice(-3)}</span>
-                        </>
-                        :
-                        null
+                      null
                   }
                 </h2>
                 <ul className='contributors__items page__list'>

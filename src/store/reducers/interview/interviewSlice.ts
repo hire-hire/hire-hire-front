@@ -30,9 +30,14 @@ export const interviewSlice = createSlice({
       state.isLoading = false;
       state.error = action.payload;
     },
+    interviewReset: (state) => {
+      state.isLoading = false;
+      state.interview = null;
+      state.error = '';
+    },
   },
 });
 
-export const { interviewLoading, interviewLoaded, interviewLoadingError } = interviewSlice.actions;
+export const { interviewLoading, interviewLoaded, interviewLoadingError, interviewReset } = interviewSlice.actions;
 
 export default interviewSlice.reducer;

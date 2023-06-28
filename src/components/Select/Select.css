@@ -1,0 +1,70 @@
+.label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: flex-start;
+  color: #163B88;
+}
+
+.select {
+  padding: 19px;
+  width: 464px;
+  color: rgba(22, 59, 136, 0.6);
+  border: 2px solid rgba(22, 59, 136, 0.6);
+  box-sizing: border-box;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  background-image: url(../../images/selectArrow.png);
+  background-repeat: no-repeat;
+  background-size: 12px 6px;
+  background-position: 95% 55%;
+}
+
+.select:focus {
+  outline: none;
+  border: 2px solid #163B88;
+  color: #163B88;
+}
+
+.select__option {
+  color: #080617;
+}
+
+@media screen and (max-width: 1599px) {
+  
+  .select {
+    padding: 17px;
+    width: 332px;
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 1151px) {
+
+  .label {
+    font-size: 16px;
+    line-height: 100%;
+    width: 100%;
+  }
+
+  .select {
+    padding: 20px;
+    width: 368px;
+    font-size: 20px;
+    line-height: 100%;
+  }
+}
+
+@media screen and (max-width: 820px) {
+
+  .label {
+    max-width: 272px;
+  }
+
+  .select {
+    width: 100%;
+    font-size: 16px;
+    align-self: center;
+    justify-self: center;
+  }
+}

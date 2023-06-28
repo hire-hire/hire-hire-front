@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import { useAppDispatch } from '../../hooks/redux';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { getUser } from '../../store/reducers/user/userActionCreator';
 import Category from '../Category/Category';
 import Footer from '../Footer/Footer';
@@ -19,10 +19,19 @@ import InterviewRedirect from '../InterviewRedirect/InterviewRedirect';
 import Interview from '../Interview/Interview';
 import Team from '../Team/Team';
 import NotFound from '../NotFound/NotFound';
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
+import Profile from '../Profile/Profile';
+import ExitConfirm from '../ExitConfirm/ExitConfirm';
+import DuelSettings from '../DuelSettings/DuelSettings';
+import Duel from '../Duel/Duel';
+import DuelResult from '../DuelResult/DuelResult';
+import Donation from 'components/Donation/Donation';
 
 function App() {
 
   const dispatch = useAppDispatch();
+
+  const user = useAppSelector(state => state.user.user);
 
   useEffect(() => {
     const token = JSON.parse(localStorage.getItem('token')!);
@@ -35,6 +44,7 @@ function App() {
   }, []);
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isExitConfirmOpen, setIsExitConfirmOpen] = useState(false);
 
   const handleOpenMobileMenu = () => {
     setIsMobileMenuOpen(true);
@@ -44,12 +54,30 @@ function App() {
     setIsMobileMenuOpen(false);
   };
 
+  const handleOpenExitConfirm = () => {
+    setIsExitConfirmOpen(true);
+  };
+
+  const handleCloseExitConfirm = () => {
+    setIsExitConfirmOpen(false);
+  };
+
   return (
     <>
-      <Modal isModalOpen={isMobileMenuOpen} handleCloseMobileMenu={handleCloseMobileMenu}>
-        <MobileMenu handleCloseMobileMenu={handleCloseMobileMenu}>
+      <Modal
+        isModalOpen={isMobileMenuOpen}
+        handleCloseModal={handleCloseMobileMenu}>
+        <MobileMenu 
+        handleCloseMobileMenu={handleCloseMobileMenu}
+        handleOpenExitConfirm={handleOpenExitConfirm}
+        >
           <Logo />
         </MobileMenu>
+      </Modal>
+      <Modal
+        isModalOpen={isExitConfirmOpen}
+        handleCloseModal={handleCloseExitConfirm}>
+        <ExitConfirm handleCloseExitConfirm={handleCloseExitConfirm} />
       </Modal>
       <div className={`page ${isMobileMenuOpen ? 'page_disabled' : ''}`}>
 
@@ -59,6 +87,7 @@ function App() {
               <Header
                 key={'header'}
                 handleOpenMobileMenu={handleOpenMobileMenu}
+                handleOpenExitConfirm={handleOpenExitConfirm}
               />
               <Main key={'main'}>
                 <MainPage />
@@ -71,6 +100,7 @@ function App() {
               <Header
                 key={'header'}
                 handleOpenMobileMenu={handleOpenMobileMenu}
+                handleOpenExitConfirm={handleOpenExitConfirm}
               />
               <Main key={'main'}>
                 <LoginForm />
@@ -84,6 +114,7 @@ function App() {
               <Header
                 key={'header'}
                 handleOpenMobileMenu={handleOpenMobileMenu}
+                handleOpenExitConfirm={handleOpenExitConfirm}
               />
               <Main key={'main'}>
                 <RegisterForm />
@@ -96,6 +127,7 @@ function App() {
               <Header
                 key={'header'}
                 handleOpenMobileMenu={handleOpenMobileMenu}
+                handleOpenExitConfirm={handleOpenExitConfirm}
               />
               <Main key={'main'}>
                 <SuggestQuestion />
@@ -108,6 +140,7 @@ function App() {
               <Header
                 key={'header'}
                 handleOpenMobileMenu={handleOpenMobileMenu}
+                handleOpenExitConfirm={handleOpenExitConfirm}
               />
               <Main key={'main'}>
                 <Category />
@@ -116,61 +149,141 @@ function App() {
             </>
           } />
           <Route path='/:categoryTitle/:languageTitle' element={
-            <>
-              <Header
-                key={'header'}
-                handleOpenMobileMenu={handleOpenMobileMenu}
-              />
-              <Main key={'main'}>
-                <TestSettings />
-              </Main>
-              <Footer key={'footer'} />
-            </>
+            <ProtectedRoute isLoggedIn={!!user}>
+              <>
+                <Header
+                  key={'header'}
+                  handleOpenMobileMenu={handleOpenMobileMenu}
+                  handleOpenExitConfirm={handleOpenExitConfirm}
+                />
+                <Main key={'main'}>
+                  <TestSettings />
+                </Main>
+                <Footer key={'footer'} />
+              </>
+            </ProtectedRoute>
           } />
           <Route path='/:categoryTitle/:languageTitle/interview' element={
-            <>
-              <Header
-                key={'header'}
-                handleOpenMobileMenu={handleOpenMobileMenu}
-              />
-              <Main key={'main'}>
-                <InterviewRedirect />
-              </Main>
-              <Footer key={'footer'} />
-            </>
+            <ProtectedRoute isLoggedIn={!!user}>
+              <>
+                <Header
+                  key={'header'}
+                  handleOpenMobileMenu={handleOpenMobileMenu}
+                  handleOpenExitConfirm={handleOpenExitConfirm}
+                />
+                <Main key={'main'}>
+                  <InterviewRedirect />
+                </Main>
+                <Footer key={'footer'} />
+              </>
+            </ProtectedRoute>
           } />
           <Route path='/:categoryTitle/:languageTitle/interview/:interviewId' element={
-            <>
-              <Header
-                key={'header'}
-                handleOpenMobileMenu={handleOpenMobileMenu}
-              />
-              <Main key={'main'}>
-                <Interview />
-              </Main>
-              <Footer key={'footer'} />
-            </>
+            <ProtectedRoute isLoggedIn={!!user}>
+              <>
+                <Header
+                  key={'header'}
+                  handleOpenMobileMenu={handleOpenMobileMenu}
+                  handleOpenExitConfirm={handleOpenExitConfirm}
+                />
+                <Main key={'main'}>
+                  <Interview />
+                </Main>
+                <Footer key={'footer'} />
+              </>
+            </ProtectedRoute>
           } />
           <Route path='/:categoryTitle/:languageTitle/interview/:interviewId/interview-result' element={
-            <>
-              <Header
-                key={'header'}
-                handleOpenMobileMenu={handleOpenMobileMenu}
-              />
-              <Main key={'main'}>
-                <InterviewResult />
-              </Main>
-              <Footer key={'footer'} />
-            </>
+            <ProtectedRoute isLoggedIn={!!user}>
+              <>
+                <Header
+                  key={'header'}
+                  handleOpenMobileMenu={handleOpenMobileMenu}
+                  handleOpenExitConfirm={handleOpenExitConfirm}
+                />
+                <Main key={'main'}>
+                  <InterviewResult />
+                </Main>
+                <Footer key={'footer'} />
+              </>
+            </ProtectedRoute>
           } />
           <Route path='/team' element={
             <>
               <Header
                 key={'header'}
                 handleOpenMobileMenu={handleOpenMobileMenu}
+                handleOpenExitConfirm={handleOpenExitConfirm}
               />
               <Main key={'main'}>
                 <Team />
+              </Main>
+              <Footer key={'footer'} />
+            </>
+          } />
+          <Route path='/profile/:userName' element={
+            <ProtectedRoute isLoggedIn={!!user}>
+              <>
+                <Header
+                  key={'header'}
+                  handleOpenMobileMenu={handleOpenMobileMenu}
+                  handleOpenExitConfirm={handleOpenExitConfirm}
+                />
+                <Main key={'main'}>
+                  <Profile />
+                </Main>
+                <Footer key={'footer'} />
+              </>
+            </ProtectedRoute>
+          } />
+          <Route path='/games' element={
+            <>
+              <Header
+                key={'header'}
+                handleOpenMobileMenu={handleOpenMobileMenu}
+                handleOpenExitConfirm={handleOpenExitConfirm}
+              />
+              <Main key={'main'}>
+                <DuelSettings />
+              </Main>
+              <Footer key={'footer'} />
+            </>
+          } />
+          <Route path='/games/:duelId' element={
+            <>
+              <Header
+                key={'header'}
+                handleOpenMobileMenu={handleOpenMobileMenu}
+                handleOpenExitConfirm={handleOpenExitConfirm}
+              />
+              <Main key={'main'}>
+                <Duel />
+              </Main>
+              <Footer key={'footer'} />
+            </>
+          } />
+          <Route path='/games/:duelId/result' element={
+            <>
+              <Header
+                key={'header'}
+                handleOpenMobileMenu={handleOpenMobileMenu}
+                handleOpenExitConfirm={handleOpenExitConfirm}
+              />
+              <Main key={'main'}>
+                <DuelResult />
+              </Main>
+              <Footer key={'footer'} />
+            </>
+          } />
+          <Route path='/donation' element={
+            <>
+              <Header
+                key={'header'}
+                handleOpenMobileMenu={handleOpenMobileMenu}
+                handleOpenExitConfirm={handleOpenExitConfirm}
+              />
+              <Main key={'main'}>
+                <Donation />
               </Main>
               <Footer key={'footer'} />
             </>

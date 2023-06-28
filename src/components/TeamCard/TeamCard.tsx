@@ -3,16 +3,20 @@ import { Contributor } from '../../store/reducers/contributors/contributorsActio
 
 import Telegram from '../../images/Telegram.png';
 import GitHub from '../../images/Github.png';
-import Instagram from '../../images/Instagram.png';
+import LinkedIn from '../../images/LinkedIn.png';
+import Email from '../../images/Email.png';
 
 type PropsType = {
   contributor: Contributor
 }
 
 const TeamCard: FC<PropsType> = ({ contributor }) => {
+
+  const baseURL = 'https://test-hire-hire.proninteam.ru';
+
   return (
     <li className='contributor'>
-      <img src={contributor.photo} alt={`${contributor.first_name} ${contributor.last_name}`} className='contributor__image' />
+      <img src={`${baseURL}${contributor.thumbnail_image}`} alt={`${contributor.first_name} ${contributor.last_name}`} className='contributor__image' />
       <div className='contributor__content'>
         <h3 className='contributor__title page__text'>
           {contributor.first_name} {contributor.last_name}
@@ -21,21 +25,25 @@ const TeamCard: FC<PropsType> = ({ contributor }) => {
           {
             contributor.contacts.map((contact) => {
               return (
-                <li className='contributor__contact'>
-                  <a href={contact.contact} className='contributor__link'>
+                <li key={contact.contact} className='contributor__contact'>
+                  <a target='_blank' href={`${contact.social_network.toLowerCase() === 'email' ? `mailto:${contact.contact.replace('http://', '')}` : `${contact.contact}`}`} className='contributor__link' rel='noreferrer'>
                     <img 
                     src={
-                      contact.social_network === 'Telegram'
+                      contact.social_network.toLowerCase() === 'telegram'
                        ?
                        Telegram
                        :
-                       contact.social_network === 'GitHub'
+                       contact.social_network.toLowerCase() === 'github'
                        ?
                        GitHub
                        :
-                       contact.social_network === 'Instagram'
+                       contact.social_network.toLowerCase() === 'linkedin'
                        ?
-                       Instagram
+                       LinkedIn
+                       :
+                       contact.social_network.toLowerCase() === 'email'
+                       ?
+                       Email
                        :
                        undefined
                   } 

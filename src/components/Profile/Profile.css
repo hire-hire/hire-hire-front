@@ -1,9 +1,45 @@
-.profile__exit-button {
-  background: none;
-  padding: 12px 88px;
-  border-radius: 12px;
-  border: 2px solid #000AFF;
-  color: #000AFF;
-  margin-top: 30px;
-  cursor: pointer;
+.profile {
+  flex: 1 1 auto;
+  background-image: url(../../images/profileLeft.png), url(../../images/profileRight.png);
+  background-repeat: no-repeat;
+  background-size: 250px, 230px;
+  background-position: 6% 87%, 95% 32%;
+}
+
+.profile__title {
+  font-size: 100px;
+  line-height: 100%;
+}
+
+@media screen and (max-width: 1599px) {
+  .profile {
+    background-size: 190px, 150px;
+  }
+  
+  .profile__title {
+    font-size: 64px;
+    line-height: 125%;
+  }
+}
+
+@media screen and (max-width: 1175px) {
+  .profile {
+    background-size: 140px, 110px;
+  }
+  
+  .profile__title {
+    font-size: 48px;
+    line-height: 100%;
+  }
+}
+
+@media screen and (max-width: 849px) {
+  .profile {
+    background-image: none, none;
+  }
+  
+  .profile__title {
+    font-size: 24px;
+    line-height: 200%;
+  }
 }

@@ -1,0 +1,255 @@
+.duel {
+  max-width: 1440px;
+  gap: 80px;
+}
+
+.duel__title {
+  font-size: 96px;
+  line-height: 100%;
+}
+
+.duel__subtitle {
+  font-size: 48px;
+  line-height: 100%;
+}
+
+.duel__content {
+  display: grid;
+  grid-template-columns: 660px 660px;
+  column-gap: 120px;
+  row-gap: 60px;
+}
+
+.duel__question-container {
+  display: grid;
+  gap: 40px;
+}
+
+.duel__question {
+  background-color: #E3E8F8;
+  padding: 12px 24px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  min-height: 240px;
+  max-width: 660px;
+  overflow: auto;
+}
+
+.duel__question-image {
+  width: 24px;
+  height: 24px;
+}
+
+.duel__answer-button_type_disabled {
+  opacity: 0.6;
+}
+
+.duel__counter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 30px;
+}
+
+.duel__players {
+  display: grid;
+  grid-template-columns: 330px 330px;
+}
+
+.duel__player {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.duel__player_type_left {
+  transform: rotate(-10deg);
+}
+
+.duel__player_type_right {
+  transform: rotate(10deg);
+}
+
+.duel__player-score_type_result {
+  background-color: #7990A3;
+  color: #163B88;
+}
+
+.duel__player-name {
+  font-size: 32px;
+  line-height: 44px;
+  text-align: center;
+}
+
+.duel__player-name_type_left {
+  color: #748CDB;
+}
+
+.duel__player-name_type_right {
+  color: #163B88;
+}
+
+.duel__player-score {
+  width: 200px;
+  height: 200px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 100px;
+}
+
+.duel__player-score_type_left {
+  background-color: #C1DFF9;
+  color: #163B88;
+}
+
+.duel__player-score_type_right {
+  background-color: #748CDB;
+  color: #C1DFF9;
+}
+
+.duel__answer-container {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  justify-content: flex-start;
+  align-items: flex-start;
+  opacity: 0;
+}
+
+.duel__answer-container_type_visible {
+  opacity: 1;
+}
+
+.duel__answer {
+  padding: 12px 24px;
+  background-color: #fff;
+  height: 240px;
+  overflow: auto;
+  max-width: 660px;
+  width: 100%;
+  border: 2px solid #3B3E45;
+  word-break: break-all;
+  box-sizing: border-box;
+}
+
+.duel__lang {
+  position: relative;
+  background-image: url(../../images/duelBG.png);
+  background-repeat: no-repeat;
+  background-size: 485px;
+  background-position: 100% 0%;
+}
+
+
+.duel__lang-image {
+  position: absolute;
+  top: 17%;
+  left: 57%;
+  width: 200px;
+  height: 170px;
+  object-fit: contain;
+  object-position: center;
+  transform: rotate(11deg);
+}
+
+.duel__form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 55px;
+}
+
+.duel__form-title {
+  font-size: 56px;
+  line-height: 100%;
+  text-align: center;
+}
+
+.duel__labels {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  justify-content: center;
+}
+
+.duel__label {
+  width: 464px;
+  height: 84px;
+  background-color: #C1DFF9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #163B88;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  box-sizing: border-box;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.duel__label:hover {
+  border: 2px inset #163B88;
+}
+
+.duel__label_type_checked {
+  background-color: #C1DFF9;
+  box-shadow: inset 0 4px 20px rgba(0, 0, 0, 0.25);
+}
+
+.duel__player1 {
+  background-color: #C1DFF9;
+}
+
+.duel__player1_type_disabled {
+  background-color: #DAECFB;
+}
+
+.duel__player1_type_disabled:hover {
+  border: none;
+}
+
+.duel__player2 {
+  background-color: #748CDB;
+  color: #C1DFF9;
+}
+
+.duel__player2_type_disabled {
+  background-color: #ACBAE9;
+  color: #C1DFF9;
+}
+
+.duel__player2_type_disabled:hover {
+  border: none;
+}
+
+.duel__no-one {
+  background-color: #ACBAC6;
+}
+
+.duel__no-one_type_disabled {
+  background-color: #CDD6DD;
+}
+
+.duel__no-one_type_disabled:hover {
+  border: none;
+}
+
+.duel__input {
+  display: none;
+}
+
+.duel__buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 268px;
+  width: 1196px;
+}
+
+.duel__link {
+  text-decoration: none;
+}
