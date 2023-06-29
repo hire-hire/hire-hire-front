@@ -13,25 +13,21 @@ export type QuestionReqType = {
 }
 
 export type QuestionResType = {
-  id: number
-  extra_data: {
-    add_questions_for24_count: number,
-    limit_add_questions_per_day: number
-  }
-  text: string
-  answer: string
-  ip_address: string
-  pub_date: string
-  status: string
-  user_cookie_id: string
-  language: number
-  author: number
+  add_questions_for24_count: number
+  limit_add_questions_per_day: number
 }
 
-export const postQuestion = (question: QuestionReqType) => async (dispatch: AppDispatch) => {
+export const postQuestion = (questions: QuestionReqType[]) => async (dispatch: AppDispatch) => {
   dispatch(suggestQuestionLoading)
   await axios.post(`${baseUrl}add_question/`,
-    question,
+    questions,
+    {withCredentials: true,})
+    .catch((error) => dispatch(suggestQuestionLoadingError(error.message)));
+};
+
+export const checkQuestionsLimit = () => async (dispatch: AppDispatch) => {
+  dispatch(suggestQuestionLoading)
+  await axios.get(`${baseUrl}added_qestions_and_limit`,
     {withCredentials: true,})
     .then((res) => dispatch(suggestQuestionLoaded(res.data)))
     .catch((error) => dispatch(suggestQuestionLoadingError(error.message)));

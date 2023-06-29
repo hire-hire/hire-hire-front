@@ -15,7 +15,7 @@ import { QuestionReqType } from 'store/reducers/suggestQuestion/suggestQuestionA
 type PropsType = {
   formNumber?: number
   formData?: Record<string, any>
-  handleSaveFormsValues?: (values: Record<string, any>) => void
+  handleSaveFormsValues: (values: Record<string, any>) => void
   handlePostFormsValues?: (values: QuestionReqType) => void
 }
 
@@ -53,13 +53,13 @@ const SuggestForm: FC<PropsType> = ({
     }
   }, []);
 
-  // const handleSaveValues = () => {
-  //   const subcategoryId = category?.languages.find((language) => language.title.toLowerCase() === values.subcategory.toLowerCase())?.id
-  //   handleSaveFormsValues({ ...values, language: Number(subcategoryId) });
-  // };
+  const handleSaveValues = () => {
+    const subcategoryId = category?.languages.find((language) => language.title.toLowerCase() === values.subcategory.toLowerCase())?.id;
+    handleSaveFormsValues({...values, language: Number(subcategoryId)});
+  };
 
   const handlePostFormValues = () => {
-    const subcategoryId = category?.languages.find((language) => language.title.toLowerCase() === values.subcategory.toLowerCase())?.id
+    const subcategoryId = category?.languages.find((language) => language.title.toLowerCase() === values.subcategory.toLowerCase())?.id;
     if(handlePostFormsValues) {
       const {text, answer} = values;
       handlePostFormsValues({text, answer, language: Number(subcategoryId)});
@@ -139,10 +139,10 @@ const SuggestForm: FC<PropsType> = ({
       </div>
       <div className={`suggest-form__buttons ${formData ? 'suggest-form__buttons_type_hidden' : ''}`}>
         <button
-          // onClick={handleSaveValues}
-          disabled={true}
+          onClick={handleSaveValues}
+          disabled={!isFormValid || formNumber === 10}
           type='button'
-          className={`suggest-form__button page__button page__button_type_white ${isFormValid ? '' : 'page__button_type_disabled'}`}>
+          className={`suggest-form__button page__button page__button_type_white ${isFormValid || formNumber === 10 ? '' : 'page__button_type_disabled'}`}>
           Добавить ещё вопрос
         </button>
         <button
