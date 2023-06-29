@@ -42,7 +42,7 @@ const SuggestQuestion = () => {
       const { text, answer, language } = formData;
       return { text, answer, language };
     });
-    dispatch(postQuestion(formsDataForSave));
+    // dispatch(postQuestion(formsDataForSave));
     setFormsData([]);
     setIsThanksOpen(true);
   };
