@@ -14,8 +14,10 @@ const SuggestQuestionThanks: FC<PropsType> = ({handleCloseThanks}) => {
   const suggestQuestionsResult = useAppSelector(state => state.suggestQuestion.questionStatus);
 
   useEffect(() => {
-    dispatch(checkQuestionsLimit());
-  }, []);
+    if(suggestQuestionsResult?.add_questions_for24_count === 0) {
+      dispatch(checkQuestionsLimit());
+    }
+  }, [suggestQuestionsResult]);
 
   return (
     <>
