@@ -26,7 +26,9 @@ const SuggestQuestion = () => {
   }, []);
 
   const handleSaveFormsValues = (values: Record<string, any>) => {
-    if (!(formsData.length === suggestQuestionsResult?.limit_add_questions_per_day)) {
+    if (suggestQuestionsResult && !(formsData.length ===
+      suggestQuestionsResult?.limit_add_questions_per_day - suggestQuestionsResult?.add_questions_for24_count
+    )) {
       const newDataArr = [...formsData, values];
       setFormsData(newDataArr);
     }
@@ -46,6 +48,8 @@ const SuggestQuestion = () => {
     setFormsData([]);
     setIsThanksOpen(true);
   };
+
+  const limit = suggestQuestionsResult?.limit_add_questions_per_day! - suggestQuestionsResult?.add_questions_for24_count!;
 
   return (
     <section className='suggest sections'>
@@ -110,6 +114,7 @@ const SuggestQuestion = () => {
               handleSaveFormsValues={handleSaveFormsValues}
               formNumber={formsData ? formsData.length + 1 : 1}
               handlePostFormsValues={handleSaveQuestions}
+              limit={limit}
             />
           </>
       }
