@@ -34,6 +34,7 @@ const Duel = () => {
   const user = useAppSelector(state => state.user);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     dispatch(getDuel(duelId!, token));
     const currentDuelQuestion = localStorage.getItem('currentDuelQuestion');
     if (currentDuelQuestion) {
@@ -78,6 +79,7 @@ const Duel = () => {
     setWinner(0);
     dispatch(patchDuel(duelId!, token, result));
     localStorage.setItem('currentDuelQuestion', JSON.stringify(questionCount));
+    window.scrollTo(0, 0);
   };
 
   const handleGoToResultPage = (e: FormEvent<HTMLFormElement>) => {

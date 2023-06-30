@@ -23,6 +23,7 @@ const TestSettings = () => {
   const currentCategoryFromLS = JSON.parse(localStorage.getItem('currentCategory')!);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     if (!currentCategoryFromLS.languages.find((language: any) => language.title.toLowerCase() === languageTitle)) {
       navigate('/404');
       return

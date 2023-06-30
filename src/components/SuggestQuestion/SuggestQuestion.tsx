@@ -21,6 +21,7 @@ const SuggestQuestion = () => {
   const suggestQuestionsResult = useAppSelector(state => state.suggestQuestion.questionStatus);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     dispatch(fetchCategories());
     dispatch(checkQuestionsLimit());
   }, []);
@@ -49,7 +50,11 @@ const SuggestQuestion = () => {
     setIsThanksOpen(true);
   };
 
-  const limit = suggestQuestionsResult?.limit_add_questions_per_day! - suggestQuestionsResult?.add_questions_for24_count!;
+  let limit = 10;
+
+  if (suggestQuestionsResult) {
+    limit = suggestQuestionsResult?.limit_add_questions_per_day - suggestQuestionsResult?.add_questions_for24_count;
+  }
 
   return (
     <section className='suggest sections'>
