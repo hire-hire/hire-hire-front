@@ -36,6 +36,7 @@ const Interview = () => {
     const questionNumber = questionCount + 1 // cuz many times qC + 1
 
     useEffect(() => {
+        window.scrollTo(0, 0);
         fetchInterview(interviewId!, token)
             .then((interview) => {
                 setInterview(interview)
@@ -66,6 +67,7 @@ const Interview = () => {
             setAnswer(null);
             setQuestionCount(questionNumber);
         }
+        window.scrollTo(0, 0);
     };
 
     const handleInterviewFinished = (e: SyntheticEvent) => {

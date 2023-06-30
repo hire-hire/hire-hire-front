@@ -13,6 +13,7 @@ import { fetchCategory } from 'store/reducers/categories/categoriesActionCreator
 import { QuestionReqType } from 'store/reducers/suggestQuestion/suggestQuestionActionCreator';
 
 type PropsType = {
+  limit?: number 
   formNumber?: number
   formData?: Record<string, any>
   handleSaveFormsValues: (values: Record<string, any>) => void
@@ -23,7 +24,8 @@ const SuggestForm: FC<PropsType> = ({
   formNumber,
   formData,
   handleSaveFormsValues,
-  handlePostFormsValues }) => {
+  handlePostFormsValues,
+  limit }) => {
 
   const dispatch = useAppDispatch();
 
@@ -140,9 +142,9 @@ const SuggestForm: FC<PropsType> = ({
       <div className={`suggest-form__buttons ${formData ? 'suggest-form__buttons_type_hidden' : ''}`}>
         <button
           onClick={handleSaveValues}
-          disabled={!isFormValid || formNumber === 10}
+          disabled={!isFormValid || formNumber === limit}
           type='button'
-          className={`suggest-form__button page__button page__button_type_white ${isFormValid || formNumber === 10 ? '' : 'page__button_type_disabled'}`}>
+          className={`suggest-form__button page__button page__button_type_white ${isFormValid || formNumber === limit ? '' : 'page__button_type_disabled'}`}>
           Добавить ещё вопрос
         </button>
         <button

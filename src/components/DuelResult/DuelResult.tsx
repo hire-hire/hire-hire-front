@@ -13,6 +13,7 @@ const DuelResult = () => {
   const duel = useAppSelector(state => state.duel);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     dispatch(getDuel(duelId!, token));
     return () => {
       dispatch(duelReset());
@@ -23,7 +24,6 @@ const DuelResult = () => {
   const currentSubcategoryId = JSON.parse(localStorage.getItem('duelSubCategory')!);
   const currentLanguage = currentCategory.languages.find(language => language.id === Number(currentSubcategoryId));
 
-  console.log(currentLanguage)
 
   const handleLinkClick = () => {
     localStorage.removeItem('duelCategory');
