@@ -17,6 +17,7 @@ const Category = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     if(categories && categories.length > 0) {
 
       if(!categories.find(category => category.title.toLowerCase() === categoryTitle)) {
