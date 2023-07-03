@@ -1,0 +1,29 @@
+.agreement {
+  max-width: 1440px;
+  padding: 85px 20px 85px;
+  font-size: 40px;
+  line-height: 62px;
+}
+
+.agreement__title {
+  font-size: 48px;
+  line-height: 50px;
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+.agreement__text {
+  font-size: 40px;
+  line-height: 62px;
+  margin: 20px 0;
+}
+
+.agreement__list {
+  font-size: 40px;
+  line-height: 62px;
+  font-weight: normal;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+}

@@ -27,6 +27,7 @@ import Duel from '../Duel/Duel';
 import DuelResult from '../DuelResult/DuelResult';
 import Donation from 'components/Donation/Donation';
 import Layout from 'components/Layout/Layout';
+import Agreement from 'components/Agreement/Agreement';
 
 function App() {
 
@@ -197,6 +198,9 @@ function App() {
               handleOpenExitConfirm={handleOpenExitConfirm}>
               <Donation />
             </Layout>
+          } />
+          <Route path='/agreement' element={
+            <Agreement />
           } />
           <Route path='*' element={
             <NotFound />
