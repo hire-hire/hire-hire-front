@@ -143,8 +143,8 @@ const Donation = () => {
               </div>
               <button
                 onClick={handleGoToResult}
-                disabled={values.radio ? false : values.cash ? false : true}
-                className={`donation__button page__button ${!values.radio ? !values.cash ? 'page__button_type_disabled' : '' : ''}`}
+                disabled={(values.radio && isAgreementChecked) ? false : (values.cash && isAgreementChecked) ? false : true}
+                className={`donation__button page__button ${(values.radio && isAgreementChecked) || (values.cash && isAgreementChecked) ? '' : 'page__button_type_disabled'}`}
                 type='button'>
                 ЗаДонатить
               </button>
