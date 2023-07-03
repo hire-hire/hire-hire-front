@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 const Donation = () => {
 
   const [isFinished, setIsFinished] = useState(false);
+  const [isAgreementChecked, setIsAgreementChecked] = useState(false);
 
   const {
     values,
@@ -28,13 +29,17 @@ const Donation = () => {
   };
 
   const handleChangeWithValidation = (e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLSelectElement> | ChangeEvent<HTMLTextAreaElement>) => {
-    if(Number(e.target.value) === 0) {
+    if (Number(e.target.value) === 0) {
       resetForm();
     } else {
-      let {value} = e.target;
+      let { value } = e.target;
       value = String(Math.ceil(Number(value.slice(0, 6))));
-      resetForm({cash: value}, {}, true);
+      resetForm({ cash: value }, {}, true);
     }
+  };
+
+  const handleChangeAgreement = () => {
+    setIsAgreementChecked(prev => !prev);
   };
 
   return (
@@ -120,6 +125,22 @@ const Donation = () => {
                   />
                 </LabelContainer>
               </Label>
+              <div className='donation__agreement'>
+                <label className={`donation__agreement-label ${isAgreementChecked ? 'donation__agreement-label_type_checked' : ''}`}>
+                  <input
+                    onChange={handleChangeAgreement}
+                    checked={isAgreementChecked}
+                    name='agreement'
+                    type='checkbox'
+                    className='donation__agreement-checkbox'
+                    required />
+                </label>
+                <p className='donation__agreement-text page__text'>
+                  Ознакомлен с <a target='_blank' href={`${process.env.REACT_APP_BASE_URL}/agreement`} className='donation__agreement-link page__span'>
+                    Пользовательским соглашением
+                  </a>
+                </p>
+              </div>
               <button
                 onClick={handleGoToResult}
                 disabled={values.radio ? false : values.cash ? false : true}
