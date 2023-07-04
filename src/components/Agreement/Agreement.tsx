@@ -1,9 +1,16 @@
+import { Link } from 'react-router-dom';
+import upload from '../../images/upload.png';
+
 const Agreement = () => {
   return (
     <section className='agreement'>
       <h1 className='agreement__title page__text'>Пользовательское соглашение</h1>
+      <Link className='agreement__download page__text' to='/files/agreement.pdf' target='_blank' download >
+        <img className='agreement__download-image' src={upload} alt='Скачать пользовательское соглашение' />
+        Скачать документ
+      </Link>
       <p className='agreement__text page__text'>
-        Пользовательское соглашение о добровольном пожертвовании в адрес сайта Индивидуальный Предприниматель Пронин Андрей Александрович, именуемое в дальнейшем “Благополучатель”, предлагает пользователям ресурса <a href='https://hire-hire.proninteam.ru' className='agreement-link page__span' target='_blank'>https://hire-hire.proninteam.ru</a> (далее – Ресурс), в дальнейшем именуемые как “Жертвователь” (“Жертвователи”), в добровольном порядке осуществить безвозмездное пожертвование в адрес вышеуказанного Ресурса для его развития. Пожертвование в адрес Ресурса осуществляется на следующих условиях:
+        Пользовательское соглашение о добровольном пожертвовании в адрес сайта Индивидуальный Предприниматель Пронин Андрей Александрович, именуемое в дальнейшем “Благополучатель”, предлагает пользователям ресурса <a href='https://hire-hire.proninteam.ru' className='agreement-link page__span' target='_blank' rel='noreferrer'>https://hire-hire.proninteam.ru</a> (далее – Ресурс), в дальнейшем именуемые как “Жертвователь” (“Жертвователи”), в добровольном порядке осуществить безвозмездное пожертвование в адрес вышеуказанного Ресурса для его развития. Пожертвование в адрес Ресурса осуществляется на следующих условиях:
       </p>
       <ul
         className='agreement__list page__text'>
@@ -14,7 +21,7 @@ const Agreement = () => {
           Акцептом настоящей оферты является осуществление Жертвователем перечисления денежных средств на расчётный счёт Благополучателя в качестве добровольного безвозмездного пожертвования на уставную деятельность Благополучателя. Акцепт данного предложения Жертвователем означает, что последний ознакомился и согласен со всеми условиями настоящего Соглашения о добровольном пожертвовании с Благополучателем.
         </li>
         <li>
-          Оферта вступает в силу со дня, следующего за днём её публикации на официальном сайте Благополучателя – <a href='https://hire-hire.proninteam.ru/donation' className='agreement-link page__span' target='_blank'>https://hire-hire.proninteam.ru/donation</a>, именуемом в дальнейшем «Сайт».
+          Оферта вступает в силу со дня, следующего за днём её публикации на официальном сайте Благополучателя – <a href='https://hire-hire.proninteam.ru/donation' className='agreement-link page__span' target='_blank' rel='noreferrer'>https://hire-hire.proninteam.ru/donation</a>, именуемом в дальнейшем «Сайт».
         </li>
 
         <li>
@@ -36,7 +43,7 @@ const Agreement = () => {
       <ul
         className='agreement__list page__text'>
         <li>
-          По настоящему договору Жертвователь в качестве добровольного пожертвования перечисляет собственные денежные средства на расчётный счёт Благополучателя, а Благополучатель принимает пожертвование и использует на развитие ресурса <a href='https://hire-hire.proninteam.ru' className='agreement-link page__span' target='_blank'>https://hire-hire.proninteam.ru</a>.
+          По настоящему договору Жертвователь в качестве добровольного пожертвования перечисляет собственные денежные средства на расчётный счёт Благополучателя, а Благополучатель принимает пожертвование и использует на развитие ресурса <a href='https://hire-hire.proninteam.ru' className='agreement-link page__span' target='_blank' rel='noreferrer'>https://hire-hire.proninteam.ru</a>.
         </li>
         <li>
           Выполнение Жертвователем действий по настоящему договору является пожертвованием в соответствии со статьей 582 Гражданского кодекса Российской Федерации.
@@ -49,7 +56,7 @@ const Agreement = () => {
       <ul
         className='agreement__list page__text'>
         <li>
-          Жертвователь самостоятельно определяет размер суммы добровольного пожертвования и перечисляет его Благополучателю любым платёжным методом, указанным на сайте <a href='https://hire-hire.proninteam.ru' className='agreement-link page__span' target='_blank'>https://hire-hire.proninteam.ru</a>.
+          Жертвователь самостоятельно определяет размер суммы добровольного пожертвования и перечисляет его Благополучателю любым платёжным методом, указанным на сайте <a href='https://hire-hire.proninteam.ru' className='agreement-link page__span' target='_blank' rel='noreferrer'>https://hire-hire.proninteam.ru</a>.
         </li>
         <li>
           Сайт подключен к платежному сервису, и вы можете сделать пожертвование банковской картой: Visa, MasterCard, Maestro и МИР; электронными деньгами: ЮMoney, QIWI, Wallet или инвойсингом . После выбора суммы и подтверждения перевода, откроется защищенное окно с платежной страницей ЮКасса, где вам необходимо ввести данные вашей банковской карты.
