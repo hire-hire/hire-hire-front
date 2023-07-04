@@ -77,6 +77,7 @@ export const userLogOut = () => (dispatch: AppDispatch) => {
   localStorage.removeItem('refreshToken');
   localStorage.removeItem('token');
   localStorage.removeItem('key');
+  localStorage.removeItem('currentDuelQuestion');
   dispatch(userLoggedOut());
 };
 
