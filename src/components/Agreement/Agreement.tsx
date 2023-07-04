@@ -4,16 +4,16 @@ import upload from '../../images/upload.png';
 const Agreement = () => {
   return (
     <section className='agreement'>
-      <h1 className='agreement__title page__text'>Пользовательское соглашение</h1>
-      <Link className='agreement__download page__text' to='/files/agreement.pdf' target='_blank' download >
+      <h1 className='agreement__title'>Пользовательское соглашение</h1>
+      <Link className='agreement__download' to='/files/agreement.pdf' target='_blank' download >
         <img className='agreement__download-image' src={upload} alt='Скачать пользовательское соглашение' />
         Скачать документ
       </Link>
-      <p className='agreement__text page__text'>
+      <p className='agreement__text'>
         Пользовательское соглашение о добровольном пожертвовании в адрес сайта Индивидуальный Предприниматель Пронин Андрей Александрович, именуемое в дальнейшем “Благополучатель”, предлагает пользователям ресурса <a href='https://hire-hire.proninteam.ru' className='agreement-link page__span' target='_blank' rel='noreferrer'>https://hire-hire.proninteam.ru</a> (далее – Ресурс), в дальнейшем именуемые как “Жертвователь” (“Жертвователи”), в добровольном порядке осуществить безвозмездное пожертвование в адрес вышеуказанного Ресурса для его развития. Пожертвование в адрес Ресурса осуществляется на следующих условиях:
       </p>
       <ul
-        className='agreement__list page__text'>
+        className='agreement__list'>
         <li>
           Данное Соглашение является публичной офертой в соответствии с пунктом 2 статьи 437 Гражданского Кодекса РФ.
         </li>
@@ -36,12 +36,12 @@ const Agreement = () => {
         <li>
           Принимая условия данного соглашения, Жертвователь подтверждает добровольный и безвозмездный характер пожертвования.
         </li>
-        <p className='agreement__text page__text'>
+        <p className='agreement__text'>
           Предмет Соглашения:
         </p>
       </ul>
       <ul
-        className='agreement__list page__text'>
+        className='agreement__list'>
         <li>
           По настоящему договору Жертвователь в качестве добровольного пожертвования перечисляет собственные денежные средства на расчётный счёт Благополучателя, а Благополучатель принимает пожертвование и использует на развитие ресурса <a href='https://hire-hire.proninteam.ru' className='agreement-link page__span' target='_blank' rel='noreferrer'>https://hire-hire.proninteam.ru</a>.
         </li>
@@ -49,12 +49,12 @@ const Agreement = () => {
           Выполнение Жертвователем действий по настоящему договору является пожертвованием в соответствии со статьей 582 Гражданского кодекса Российской Федерации.
         </li>
       </ul>
-      <p className='agreement__text page__text'>
+      <p className='agreement__text'>
 
         Форма осуществления пожертвования:
       </p>
       <ul
-        className='agreement__list page__text'>
+        className='agreement__list'>
         <li>
           Жертвователь самостоятельно определяет размер суммы добровольного пожертвования и перечисляет его Благополучателю любым платёжным методом, указанным на сайте <a href='https://hire-hire.proninteam.ru' className='agreement-link page__span' target='_blank' rel='noreferrer'>https://hire-hire.proninteam.ru</a>.
         </li>
@@ -71,18 +71,18 @@ const Agreement = () => {
           Гарантии безопасности:- платежная система ЮКасса защищает и обрабатывает данные вашей банковской карты;
         </li>
       </ul>
-      <p className='agreement__text page__text'>
+      <p className='agreement__text'>
         - Передача информации в платежный шлюз происходит с применением технологии шифрования SSL;
 
       </p>
-      <p className='agreement__text page__text'>
+      <p className='agreement__text'>
         - Дальнейшая передача информации происходит по закрытым банковским сетям, имеющим наивысший уровень надежности;
       </p>
-      <p className='agreement__text page__text'>
+      <p className='agreement__text'>
         - ЮКасса не передает данные вашей карты нам и иным третьим лицам. Для дополнительной аутентификации держателя карты используется протокол 3D Secure.
       </p>
       <ul
-        className='agreement__list page__text'>
+        className='agreement__list'>
         <li>
           В случае, если у вас есть вопросы по совершенному платежу, вы можете обратиться в службу поддержки клиентов платежного сервиса по электронной почте <a className='page__span' href='mailto: A@proninteam.ru'>A@proninteam.ru</a>.
         </li>
@@ -90,10 +90,10 @@ const Agreement = () => {
           Безопасность онлайн платежей:- Предоставляемая вами персональная информация (имя, адрес, телефон, e-mail, номер кредитной карты) является конфиденциальной и не подлежит разглашению. Данные вашей кредитной карты передаются только в зашифрованном виде и не сохраняются на нашем Webсервере.- Мы рекомендуем вам проверить, что ваш браузер достаточно безопасен для проведения платежей онлайн, на специальной странице.- Безопасность обработки Интернет-платежей гарантирует ООО НКО «ЮМани». Все операции с платежными картами происходят в соответствии с требованиями VISA International, MasterCard и других платежных систем. При передаче информации используются специальные технологии безопасности карточных онлайн-платежей, данных ведется на безопасном высокотехнологичном сервере процессинговой компании.
         </li>
       </ul>
-      <p className='agreement__text page__text'>
+      <p className='agreement__text'>
         Права и обязанности Сторон:
       </p>
-      <ul className='agreement__list page__text'>
+      <ul className='agreement__list'>
         <li>
           Благополучатель обязуется использовать полученные от Жертвователя по настоящему Соглашению денежные средства строго в рамках деятельности, развития и поддержания деятельности редакции Сайта.
         </li>
