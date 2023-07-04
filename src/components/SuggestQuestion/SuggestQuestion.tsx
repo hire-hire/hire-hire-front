@@ -48,6 +48,7 @@ const SuggestQuestion = () => {
     dispatch(postQuestion(formsDataForSave));
     setFormsData([]);
     setIsThanksOpen(true);
+    dispatch(checkQuestionsLimit());
   };
 
   let limit = 10;
