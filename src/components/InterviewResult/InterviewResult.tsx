@@ -1,14 +1,17 @@
 import { useAppSelector } from 'hooks/redux';
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 const InterviewResult = () => {
 
   const interview = useAppSelector(state => state.interview.interview);
 
+  const { categoryTitle } = useParams();
+
   const [rightAnswersCount, setRightAnswersCount ] = useState(0);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     const rightAnswersFromLS = JSON.parse(localStorage.getItem('rightAnswers')!);
     setRightAnswersCount(rightAnswersFromLS);
   }, []);
@@ -31,7 +34,7 @@ const InterviewResult = () => {
       <div className='interview-result__links'>
         <Link to='/' className='interview-result__link page__button page__button_type_white'>На главную</Link>
         <Link to='/suggest-question' className='interview-result__link page__button'>Предложить свой вопрос</Link>
-        <Link to='/' className='interview-result__link page__button page__button_type_white'>Новое испытание</Link>
+        <Link to={`/${categoryTitle}`} className='interview-result__link page__button page__button_type_white'>Новое испытание</Link>
       </div>
     </section>
   )

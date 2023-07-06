@@ -9,8 +9,6 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 import deleteInterviewAndNavigateToNotFound
     from 'utils/deleteInterviewAndNavigateToNotFound';
-import interviewImage from 'images/interviewImage.png';
-import InterviewUserAnswer from '../InterviewUserAnswer/InterviewUserAnswer';
 import useNavigateToNotFound from 'hooks/useNavigateToNotFound';
 import {
     fetchAnswer,
@@ -67,7 +65,6 @@ const Interview = () => {
             setAnswer(null);
             setQuestionCount(questionNumber);
         }
-        window.scrollTo(0, 0);
     };
 
     const handleGoToNextQuestionWithRightAnswer = (e: SyntheticEvent) => {
