@@ -33,14 +33,26 @@ const Duel = () => {
   const navigate = useNavigate();
   const user = useAppSelector(state => state.user);
 
+  const [questionCount, setQuestionCount] = useState(0);
+
   useEffect(() => {
     window.scrollTo(0, 0);
-    dispatch(getDuel(duelId!, token));
-    const currentDuelQuestion = localStorage.getItem('currentDuelQuestion');
-    if (currentDuelQuestion) {
-      setQuestionCount(JSON.parse(currentDuelQuestion))
-    };
-  }, []);
+    // dispatch(getDuel(duelId!, token));
+    // const currentDuelQuestion = localStorage.getItem('currentDuelQuestion');
+    // if (currentDuelQuestion) {
+    //   setQuestionCount(JSON.parse(currentDuelQuestion))
+    // };
+    if (!duel.duel) {
+      dispatch(getDuel(duelId!, token));
+    } else {
+      const currentDuelFinishedQuestions =
+        duel.duel.players[0].good_answers_count +
+        duel.duel.players[1].good_answers_count +
+        duel.duel.wrong_answers_count;
+      setQuestionCount(currentDuelFinishedQuestions);
+    }
+
+  }, [duel.duel]);
 
   const isModerator = localStorage.getItem('key') ? true : false;
 
@@ -50,7 +62,6 @@ const Duel = () => {
 
   const languageImage = currentLanguage?.icon ? currentLanguage?.icon : currentCategory.icon;
 
-  const [questionCount, setQuestionCount] = useState(0);
   const [answer, setAnswer] = useState(null);
   const [winner, setWinner] = useState(0);
 
@@ -189,7 +200,7 @@ const Duel = () => {
                 <input
                   checked={duel.duel?.players![0].id === winner}
                   onChange={handleSelectWinner}
-                  disabled={!answer} 
+                  disabled={!answer}
                   value={duel.duel?.players[0].id}
                   name='duel'
                   type='radio'
@@ -202,7 +213,7 @@ const Duel = () => {
                   onChange={handleSelectWinner}
                   disabled={!answer}
                   value={duel.duel?.players[1].id}
-                  name='duel' 
+                  name='duel'
                   type='radio'
                   className='duel__input' />
               </label>

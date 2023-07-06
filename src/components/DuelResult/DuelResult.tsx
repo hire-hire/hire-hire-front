@@ -17,6 +17,7 @@ const DuelResult = () => {
     dispatch(getDuel(duelId!, token));
     return () => {
       dispatch(duelReset());
+      localStorage.removeItem('currentDuelQuestion');
     }
   }, []);
 
