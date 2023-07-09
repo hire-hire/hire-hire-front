@@ -34,6 +34,8 @@ const Interview = () => {
     const questionNumber = questionCount + 1 // cuz many times qC + 1
 
     useEffect(() => {
+        localStorage.removeItem('rightAnswers');
+        localStorage.removeItem('wrongAnswers');
         window.scrollTo(0, 0);
         fetchInterview(interviewId!, token)
             .then((interview) => {

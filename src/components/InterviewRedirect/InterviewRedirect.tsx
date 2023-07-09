@@ -13,11 +13,11 @@ const InterviewRedirect = () => {
   useEffect(() => {
     localStorage.removeItem('rightAnswers');
     localStorage.removeItem('wrongAnswers');
-    const refirectDelay = setTimeout(() => {
+    const redirectDelay = setTimeout(() => {
       navigate(`/${categoryTitle}/${languageTitle}/interview/${interviewId}`);
       dispatch(interviewReset);
     }, 1000);
-    return () => clearTimeout(refirectDelay);
+    return () => clearTimeout(redirectDelay);
   }, [interviewId]);
 
   return <Preloader />

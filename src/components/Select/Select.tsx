@@ -30,7 +30,10 @@ const Select: FC<PropsType> = ({ label, arr, title, onChange, value, disabled })
         className='select page__text'>
         <option
           value=''
-          className='select__option'>{label}
+          className='select__option'
+          disabled
+        >
+          {label}
         </option>
         {
           arr?.map((item) => {
