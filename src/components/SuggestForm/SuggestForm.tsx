@@ -57,14 +57,23 @@ const SuggestForm: FC<PropsType> = ({
 
   const handleSaveValues = () => {
     const subcategoryId = category?.languages.find((language) => language.title.toLowerCase() === values.subcategory.toLowerCase())?.id;
-    handleSaveFormsValues({...values, language: Number(subcategoryId)});
+    const {text, answer} = values;
+    if (text.trim() && answer.trim()) {
+      handleSaveFormsValues({...values, language: Number(subcategoryId)})
+    } else {
+      resetForm({...values, text: '', answer: ''}, {...errors, text: 'Поле не может быть пустым', answer: 'Поле не может быть пустым'}, false);
+    }
   };
 
   const handlePostFormValues = () => {
     const subcategoryId = category?.languages.find((language) => language.title.toLowerCase() === values.subcategory.toLowerCase())?.id;
     if(handlePostFormsValues) {
       const {text, answer} = values;
-      handlePostFormsValues({text, answer, language: Number(subcategoryId)});
+      if (text.trim() && answer.trim()) {
+        handlePostFormsValues({text, answer, language: Number(subcategoryId)});
+      } else {
+        resetForm({...values, text: '', answer: ''}, {...errors, text: 'Поле не может быть пустым', answer: 'Поле не может быть пустым'}, false);
+      }
     }
   }
 

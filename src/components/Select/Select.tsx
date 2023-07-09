@@ -31,7 +31,6 @@ const Select: FC<PropsType> = ({ label, arr, title, onChange, value, disabled })
         <option
           value=''
           className='select__option'
-          disabled
         >
           {label}
         </option>
