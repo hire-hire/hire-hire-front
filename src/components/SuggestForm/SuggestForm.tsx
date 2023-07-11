@@ -13,7 +13,7 @@ import { fetchCategory } from 'store/reducers/categories/categoriesActionCreator
 import { QuestionReqType } from 'store/reducers/suggestQuestion/suggestQuestionActionCreator';
 
 type PropsType = {
-  limit?: number 
+  limit?: number
   formNumber?: number
   formData?: Record<string, any>
   handleSaveFormsValues: (values: Record<string, any>) => void
@@ -55,24 +55,35 @@ const SuggestForm: FC<PropsType> = ({
     }
   }, []);
 
+  const validateTextAreas = (question: string, answer: string) => {
+    if (
+      (question.trim() && question.trim().length > 2)
+      &&
+      (answer.trim() && answer.trim().length > 2)) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
   const handleSaveValues = () => {
     const subcategoryId = category?.languages.find((language) => language.title.toLowerCase() === values.subcategory.toLowerCase())?.id;
-    const {text, answer} = values;
-    if (text.trim() && answer.trim()) {
-      handleSaveFormsValues({...values, language: Number(subcategoryId)})
+    const { text, answer } = values;
+    if (validateTextAreas(text, answer)) {
+      handleSaveFormsValues({ ...values, language: Number(subcategoryId) })
     } else {
-      resetForm({...values, text: '', answer: ''}, {...errors, text: 'Поле не может быть пустым', answer: 'Поле не может быть пустым'}, false);
+      resetForm({ ...values, text: '', answer: '' }, { ...errors, text: 'Поле не может быть пустым', answer: 'Поле не может быть пустым' }, false);
     }
   };
 
   const handlePostFormValues = () => {
     const subcategoryId = category?.languages.find((language) => language.title.toLowerCase() === values.subcategory.toLowerCase())?.id;
-    if(handlePostFormsValues) {
-      const {text, answer} = values;
-      if (text.trim() && answer.trim()) {
-        handlePostFormsValues({text, answer, language: Number(subcategoryId)});
+    if (handlePostFormsValues) {
+      const { text, answer } = values;
+      if (validateTextAreas(text, answer)) {
+        handlePostFormsValues({ text, answer, language: Number(subcategoryId) });
       } else {
-        resetForm({...values, text: '', answer: ''}, {...errors, text: 'Поле не может быть пустым', answer: 'Поле не может быть пустым'}, false);
+        resetForm({ ...values, text: '', answer: '' }, { ...errors, text: 'Поле не может быть пустым', answer: 'Поле не может быть пустым' }, false);
       }
     }
   }

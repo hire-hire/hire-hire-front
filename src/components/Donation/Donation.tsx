@@ -2,13 +2,22 @@ import Input from 'components/Input/Input';
 import Label from 'components/Label/Label';
 import LabelContainer from 'components/LabelContainer/LabelContainer';
 import { useFormWithValidation } from 'hooks/useFormWithValidation';
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { getAmounts } from 'store/reducers/donation/donationActionCreator';
 
 const Donation = () => {
 
   const [isFinished, setIsFinished] = useState(false);
   const [isAgreementChecked, setIsAgreementChecked] = useState(false);
+  const [amounts, setAmounts] = useState<any>();
+
+  useEffect(() => {
+    getAmounts()
+    .then(res => setAmounts(res))
+    .catch(err => console.log(err));
+    console.log(amounts)
+  }, []);
 
   const {
     values,
