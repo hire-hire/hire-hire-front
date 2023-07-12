@@ -57,9 +57,9 @@ const SuggestForm: FC<PropsType> = ({
 
   const validateTextAreas = (question: string, answer: string) => {
     if (
-      (question.trim() && question.trim().length > 2)
+      (question.trim() && question.trim().length > 10)
       &&
-      (answer.trim() && answer.trim().length > 2)) {
+      (answer.trim() && answer.trim().length > 10)) {
       return true;
     } else {
       return false;
