@@ -2,7 +2,7 @@ import Input from 'components/Input/Input';
 import Label from 'components/Label/Label';
 import LabelContainer from 'components/LabelContainer/LabelContainer';
 import { useFormWithValidation } from 'hooks/useFormWithValidation';
-import { ChangeEvent, useEffect, useState } from 'react';
+import { ChangeEvent, SyntheticEvent, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { getAmounts } from 'store/reducers/donation/donationActionCreator';
 
@@ -14,8 +14,8 @@ const Donation = () => {
 
   useEffect(() => {
     getAmounts()
-    .then(res => setAmounts(res))
-    .catch(err => console.log(err));
+      .then(res => setAmounts(res))
+      .catch(err => console.log(err));
     console.log(amounts)
   }, []);
 
@@ -37,7 +37,10 @@ const Donation = () => {
     setIsFinished(!isFinished);
   };
 
+  const handleKeyPress = (e: any) => ['e', 'E', '+', '-', '.', ','].includes(e.key) && e.preventDefault();
+
   const handleChangeWithValidation = (e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLSelectElement> | ChangeEvent<HTMLTextAreaElement>) => {
+
     if (Number(e.target.value) === 0) {
       resetForm();
     } else {
@@ -131,6 +134,8 @@ const Donation = () => {
                     minLength={1}
                     step='1'
                     placeholder='Другая сумма'
+                    min={0}
+                    handleKeyPress={handleKeyPress}
                   />
                 </LabelContainer>
               </Label>
