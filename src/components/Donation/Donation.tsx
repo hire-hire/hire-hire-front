@@ -2,7 +2,7 @@ import Input from 'components/Input/Input';
 import Label from 'components/Label/Label';
 import LabelContainer from 'components/LabelContainer/LabelContainer';
 import { useFormWithValidation } from 'hooks/useFormWithValidation';
-import { ChangeEvent, SyntheticEvent, useEffect, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { getAmounts } from 'store/reducers/donation/donationActionCreator';
 
@@ -45,9 +45,13 @@ const Donation = () => {
       resetForm();
     } else {
       let { value } = e.target;
-      value = String(Math.ceil(Number(value.slice(0, 6))));
+      value = String(Math.ceil(parseInt(value.slice(0, 6))))
       resetForm({ cash: value }, {}, true);
     }
+  };
+
+  const handlePasteWithValidation = (e: any) => {
+    e.preventDefault();
   };
 
   const handleChangeAgreement = () => {
@@ -136,6 +140,7 @@ const Donation = () => {
                     placeholder='Другая сумма'
                     min={0}
                     handleKeyPress={handleKeyPress}
+                    handlePaste={handlePasteWithValidation}
                   />
                 </LabelContainer>
               </Label>
