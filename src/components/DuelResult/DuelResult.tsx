@@ -33,25 +33,37 @@ const DuelResult = () => {
   };
 
   return (
-    <section className={`duel-result ${!currentLanguage ? 'duel-result_type_general' : currentLanguage?.id === 1 ? 'duel-result_type_phyton' :  'duel-result_type_docker'} sections`}>
+    <section className={`duel-result ${!currentLanguage ? 'duel-result_type_general' : currentLanguage?.id === 1 ? 'duel-result_type_phyton' : 'duel-result_type_docker'} sections`}>
       <h1 className='duel-result__title page__title'>
-        <span className='page__span'>Результаты</span>
+        Результаты
       </h1>
-      <div className='duel__counter'>
+      <div className='duel__counter duel__counter_type_result'>
         <p className='duel__subtitle page__title'>
-          Счёт
+          <span className='page__span'>
+            Счёт
+          </span>
         </p>
-        <div className='duel__players'>
+        <div className='duel__players duel__players_type_result'>
           <div className='duel__player duel__player_type_left'>
-            <p className='duel__player-name duel__player-name_type_left page__title'>
+            <p className='duel__player-name duel__player-name_type_result duel__player-name_type_left page__title'>
               {duel.duel?.players[0].name}
             </p>
             <p className='duel__player-score page__title duel__player-score_type_left'>
               {duel.duel?.players[0].good_answers_count}
             </p>
           </div>
+
+          <div className='duel__player duel__player_type_wrong'>
+            <p className='duel__player-name duel__player-name_type_wrong duel__player-name_type_result page__title'>
+              Неправильные ответы
+            </p>
+            <p className='duel__player-score duel__player-score_type_result page__title'>
+              {duel.duel?.wrong_answers_count}
+            </p>
+          </div>
+
           <div className='duel__player duel__player_type_right'>
-            <p className='duel__player-name duel__player-name_type_right page__title'>
+            <p className='duel__player-name duel__player-name_type_result duel__player-name_type_right page__title'>
               {duel.duel?.players[1].name}
             </p>
             <p className='duel__player-score page__title duel__player-score_type_right'>
@@ -60,12 +72,6 @@ const DuelResult = () => {
           </div>
         </div>
       </div>
-      <p className='duel__subtitle page__title'>
-        Неправильных ответов
-      </p>
-      <p className='duel__player-score duel__player-score_type_result page__title'>
-        {duel.duel?.wrong_answers_count}
-      </p>
       <div className='duel-result__links'>
         <Link onClick={handleLinkClick} to={'/'} className='duel-result__link page__button page__button_type_white page__text'>На главную</Link>
         <Link onClick={handleLinkClick} to={'/games'} className='duel-result__link page__button page__text'>Новое соревнование</Link>
