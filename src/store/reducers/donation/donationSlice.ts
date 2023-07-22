@@ -29,9 +29,19 @@ export const donationSlice = createSlice({
       state.donationLink = action.payload;
       state.error = '';
     },
+    donationLinkReset: (state) => {
+      state.isLoading = false;
+      state.donationLink = null;
+      state.error = '';
+    },
   },
 });
 
-export const { donationLoading, donationLoadingError, donationLinkLoaded } = donationSlice.actions;
+export const {
+  donationLoading,
+  donationLoadingError,
+  donationLinkLoaded,
+  donationLinkReset,
+} = donationSlice.actions;
 
 export default donationSlice.reducer;

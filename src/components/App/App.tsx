@@ -25,6 +25,7 @@ import DuelResult from '../DuelResult/DuelResult';
 import Donation from 'components/Donation/Donation';
 import Layout from 'components/Layout/Layout';
 import Agreement from 'components/Agreement/Agreement';
+import DonationResult from 'components/DonationResult/DonationResult';
 
 function App() {
 
@@ -194,6 +195,13 @@ function App() {
               handleOpenMobileMenu={handleOpenMobileMenu}
               handleOpenExitConfirm={handleOpenExitConfirm}>
               <Donation />
+            </Layout>
+          } />
+          <Route path='/donation/result' element={
+            <Layout
+              handleOpenMobileMenu={handleOpenMobileMenu}
+              handleOpenExitConfirm={handleOpenExitConfirm}>
+              <DonationResult/>
             </Layout>
           } />
           <Route path='/agreement' element={
