@@ -197,7 +197,7 @@ function App() {
               <Donation />
             </Layout>
           } />
-          <Route path='/donation/result' element={
+          <Route path='/donation/callback' element={
             <Layout
               handleOpenMobileMenu={handleOpenMobileMenu}
               handleOpenExitConfirm={handleOpenExitConfirm}>
