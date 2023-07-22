@@ -1,23 +1,32 @@
 import Input from 'components/Input/Input';
 import Label from 'components/Label/Label';
 import LabelContainer from 'components/LabelContainer/LabelContainer';
+import { useAppDispatch, useAppSelector } from 'hooks/redux';
 import { useFormWithValidation } from 'hooks/useFormWithValidation';
-import { ChangeEvent, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { getAmounts } from 'store/reducers/donation/donationActionCreator';
+import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
+import { DonationAmountType, getAmounts, makeDonation } from 'store/reducers/donation/donationActionCreator';
+import { donationLinkReset } from 'store/reducers/donation/donationSlice';
 
 const Donation = () => {
 
-  const [isFinished, setIsFinished] = useState(false);
+  const dispatch = useAppDispatch();
+  const donationLink = useAppSelector(state => state.donation.donationLink);
+
   const [isAgreementChecked, setIsAgreementChecked] = useState(false);
-  const [amounts, setAmounts] = useState<any>();
+  const [amounts, setAmounts] = useState<DonationAmountType[]>();
+
+
 
   useEffect(() => {
-    getAmounts()
+    if(donationLink) {
+      window.location.assign(donationLink);
+      dispatch(donationLinkReset());
+    } else {
+      getAmounts()
       .then(res => setAmounts(res))
       .catch(err => console.log(err));
-    console.log(amounts)
-  }, []);
+    }
+  }, [donationLink]);
 
   const {
     values,
@@ -31,10 +40,6 @@ const Donation = () => {
   const handleChangeRadio = (e: any) => {
     resetForm({ ...values, cash: '' }, {}, false);
     handleChange(e);
-  };
-
-  const handleGoToResult = () => {
-    setIsFinished(!isFinished);
   };
 
   const handleKeyPress = (e: any) => ['e', 'E', '+', '-', '.', ','].includes(e.key) && e.preventDefault();
@@ -58,118 +63,108 @@ const Donation = () => {
     setIsAgreementChecked(prev => !prev);
   };
 
+  const handleSubmitDonation = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    if (values.radio && !values.cash) {
+      dispatch(makeDonation(Number(values.radio), 'RUB'))
+    };
+
+    if (values.cash && !values.radio) {
+      dispatch(makeDonation(Number(values.cash), 'RUB'))
+    };
+
+  };
+
   return (
+
     <section className='donation sections'>
       <h1 className='donation__title page__title'>
         За<span className='page__span'>Донатить</span>
       </h1>
-      {
-        isFinished
-          ?
-          <>
-            <p className='page__text donation__text donation__text_type_thanks'>
-              <span className='page__span'>Спасибо</span>, что ты с нами!
-            </p>
-            <p className='page__text donation__text donation__text_type_thanks'>
-              Мы <span className='page__span'>очень рады</span>, что <span className='donation__span'>НаймиНайми</span> находит <span className='page__span'>отклик в сердцах</span> людей. <span className='page__span'>Твоя поддержка</span> и донаты помогают нам <span className='page__span'>развиваться и двигаться</span> вперед. <span className='page__span'>Спасибо</span>, что <span className='page__span'>веришь</span> в нас и <span className='page__span'>поддерживаешь наш труд</span>. Мы ценим <span className='page__span'>твое участие</span> и будем продолжать работать над тем, чтобы сделать наш проект <span className='page__span'>еще лучше</span> и полезнее для всех.
-            </p>
-            <Link to='/' className='donation__link page__link page__button'>На главную страницу</Link>
-          </>
-          :
-          <>
-            <p className='donation__text page__text'>
-              <span className='page__span'>Спасибо,</span> что интересуешься нашим проектом!
-            </p>
-            <p className='donation__text page__text'>
-              <span className='page__span'>Мы очень рады, </span>
-              что наша работа находит <span className='page__span'>отклик в сердцах</span> людей. Если хочешь <span className='page__span'>поддержать</span> наш проект, будем <span className='page__span'>очень благодарны</span> за любую помощь.
-            </p>
-            <p className='donation__text page__text'>
-              Ты можешь<span className='page__span'> сделать пожертвование</span> на <span className='page__span'>развитие проекта.</span> Твоя поддержка позволит нам оплачивать сервер, продолжать развиваться и <span className='page__span'>мотивировать ребят,</span> участвующих в проекте, <span className='page__span'>делать наш мир лучше.</span>
-            </p>
-            <p className='donation__text page__text'>
-              Спасибо еще раз за <span className='page__span'>твоё участие!</span>
-            </p>
-            <form className='donation__form'>
-              <h2 className='page__title donation__form-title'>
-                Выбери <span className='page__span'>сумму доната</span>
-              </h2>
-              <div className='donation__form-labels'>
-                <label className={`donation__form-label page__button page__button_type_white ${values.radio === '100' ? 'donation__form-label_type_checked' : ''}`}>
-                  100 ₽
-                  <input
-                    checked={values.radio === '100'}
-                    onChange={handleChangeRadio}
-                    value={'100'}
-                    name='radio'
-                    type='radio'
-                    className='donation__form-radio' />
-                </label>
-                <label className={`donation__form-label page__button page__button_type_white ${values.radio === '300' ? 'donation__form-label_type_checked' : ''}`}>
-                  300 ₽
-                  <input
-                    checked={values.radio === '300'}
-                    onChange={handleChangeRadio}
-                    value={'300'}
-                    name='radio'
-                    type='radio'
-                    className='donation__form-radio' />
-                </label>
-                <label className={`donation__form-label page__button page__button_type_white ${values.radio === '500' ? 'donation__form-label_type_checked' : ''}`}>
-                  500 ₽
-                  <input
-                    checked={values.radio === '500'}
-                    onChange={handleChangeRadio}
-                    value={'500'}
-                    name='radio'
-                    type='radio'
-                    className='donation__form-radio' />
-                </label>
-              </div>
-              <Label position='donation'>
-                <LabelContainer hint='Для ввода суммы можно использовать только цифры. Сумма вводится без копеек'>
-                  <Input
-                    value={values.cash || ''}
-                    handleChange={handleChangeWithValidation}
-                    handleFocus={handleFocus}
-                    type='number'
-                    name='cash'
-                    maxLength={6}
-                    minLength={1}
-                    step='1'
-                    placeholder='Другая сумма'
-                    min={0}
-                    handleKeyPress={handleKeyPress}
-                    handlePaste={handlePasteWithValidation}
-                  />
-                </LabelContainer>
-              </Label>
-              <div className='donation__agreement'>
-                <label className={`donation__agreement-label ${isAgreementChecked ? 'donation__agreement-label_type_checked' : ''}`}>
-                  <input
-                    onChange={handleChangeAgreement}
-                    checked={isAgreementChecked}
-                    name='agreement'
-                    type='checkbox'
-                    className='donation__agreement-checkbox'
-                    required />
-                </label>
-                <p className='donation__agreement-text page__text'>
-                  Ознакомлен с <a target='_blank' href={`${process.env.REACT_APP_BASE_URL}/agreement`} className='donation__agreement-link page__span'>
-                    Пользовательским соглашением
-                  </a>
-                </p>
-              </div>
-              <button
-                onClick={handleGoToResult}
-                disabled={(values.radio && isAgreementChecked) ? false : (values.cash && isAgreementChecked) ? false : true}
-                className={`donation__button page__button ${(values.radio && isAgreementChecked) || (values.cash && isAgreementChecked) ? '' : 'page__button_type_disabled'}`}
-                type='button'>
-                ЗаДонатить
-              </button>
-            </form>
-          </>
-      }
+      <p className='donation__text page__text'>
+        <span className='page__span'>Спасибо,</span> что интересуешься нашим проектом!
+      </p>
+      <p className='donation__text page__text'>
+        <span className='page__span'>Мы очень рады, </span>
+        что наша работа находит <span className='page__span'>отклик в сердцах</span> людей. Если хочешь <span className='page__span'>поддержать</span> наш проект, будем <span className='page__span'>очень благодарны</span> за любую помощь.
+      </p>
+      <p className='donation__text page__text'>
+        Ты можешь<span className='page__span'> сделать пожертвование</span> на <span className='page__span'>развитие проекта.</span> Твоя поддержка позволит нам оплачивать сервер, продолжать развиваться и <span className='page__span'>мотивировать ребят,</span> участвующих в проекте, <span className='page__span'>делать наш мир лучше.</span>
+      </p>
+      <p className='donation__text page__text'>
+        Спасибо еще раз за <span className='page__span'>твоё участие!</span>
+      </p>
+      <form
+        onSubmit={handleSubmitDonation}
+        className='donation__form'
+        noValidate
+      >
+        <h2 className='page__title donation__form-title'>
+          Выбери <span className='page__span'>сумму доната</span>
+        </h2>
+        <div className='donation__form-labels'>
+          {
+            amounts ?
+              amounts.map((amount) => {
+                return (
+                  <label key={amount.id} className={`donation__form-label page__button page__button_type_white ${Number(values.radio) === amount.value ? 'donation__form-label_type_checked' : ''}`}>
+                    {amount.value} ₽
+                    <input
+                      checked={values.radio === amount.value}
+                      onChange={handleChangeRadio}
+                      value={amount.value}
+                      name='radio'
+                      type='radio'
+                      className='donation__form-radio' />
+                  </label>
+                )
+              })
+              : null
+          }
+        </div>
+        <Label position='donation'>
+          <LabelContainer hint='Для ввода суммы можно использовать только цифры. Сумма вводится без копеек'>
+            <Input
+              value={values.cash || ''}
+              handleChange={handleChangeWithValidation}
+              handleFocus={handleFocus}
+              type='number'
+              name='cash'
+              maxLength={6}
+              minLength={1}
+              step='1'
+              placeholder='Другая сумма'
+              min={0}
+              handleKeyPress={handleKeyPress}
+              handlePaste={handlePasteWithValidation}
+            />
+          </LabelContainer>
+        </Label>
+        <div className='donation__agreement'>
+          <label className={`donation__agreement-label ${isAgreementChecked ? 'donation__agreement-label_type_checked' : ''}`}>
+            <input
+              onChange={handleChangeAgreement}
+              checked={isAgreementChecked}
+              name='agreement'
+              type='checkbox'
+              className='donation__agreement-checkbox'
+              required />
+          </label>
+          <p className='donation__agreement-text page__text'>
+            Ознакомлен с <a rel='noreferrer' target='_blank' href={`${process.env.REACT_APP_BASE_URL}/agreement`} className='donation__agreement-link page__span'>
+              Пользовательским соглашением
+            </a>
+          </p>
+        </div>
+        <button
+          disabled={(values.radio && isAgreementChecked) ? false : (values.cash && isAgreementChecked) ? false : true}
+          className={`donation__button page__button ${(values.radio && isAgreementChecked) || (values.cash && isAgreementChecked) ? '' : 'page__button_type_disabled'}`}
+          type='submit'
+        >
+          ЗаДонатить
+        </button>
+      </form>
     </section>
   )
 };

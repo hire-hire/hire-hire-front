@@ -16,6 +16,6 @@ export const makeDonation = (amount: number, currency: string) => async (dispatc
 };
 
 export const getAmounts = async () => {
-  return await axios.get<DonationAmountType>(`${baseUrl}donation/`)
+  return await axios.get<DonationAmountType[]>(`${baseUrl}donation/`)
     .then(res => res.data)
 };

@@ -139,6 +139,10 @@
   border: 12px solid #163B88;
 }
 
+.duel__player-score_type_double {
+  font-size: 70px;
+}
+
 .duel__player-decrement {
   padding: 0 0 20px;
   display: flex;
