@@ -22,6 +22,7 @@ const MainPage = () => {
   const user = useAppSelector(state => state.user.user);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     dispatch(fetchCategories());
   }, []);
 
