@@ -42,7 +42,11 @@ const Donation = () => {
     handleChange(e);
   };
 
-  const handleKeyPress = (e: any) => ['e', 'E', '+', '-', '.', ','].includes(e.key) && e.preventDefault();
+  const handleKeyPress = (e: any) => {
+    if (['e', 'E', '+', '-', '.', ','].includes(e.key) || (e.key === 'ArrowUp' || e.key === 'ArrowDown')) {
+      e.preventDefault()
+    }
+  };
 
   const handleChangeWithValidation = (e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLSelectElement> | ChangeEvent<HTMLTextAreaElement>) => {
 
