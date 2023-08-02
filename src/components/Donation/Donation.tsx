@@ -3,21 +3,25 @@ import Label from 'components/Label/Label';
 import LabelContainer from 'components/LabelContainer/LabelContainer';
 import { useAppDispatch, useAppSelector } from 'hooks/redux';
 import { useFormWithValidation } from 'hooks/useFormWithValidation';
-import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
+import { ChangeEvent, FC, FormEvent, useEffect, useState } from 'react';
 import { DonationAmountType, getAmounts, makeDonation } from 'store/reducers/donation/donationActionCreator';
 import { donationLinkReset } from 'store/reducers/donation/donationSlice';
 
-const Donation = () => {
+type PropsType = {
+  handleOpenErrorPopup: () => void
+}
+
+const Donation:FC<PropsType> = ({ handleOpenErrorPopup }) => {
 
   const dispatch = useAppDispatch();
   const donationLink = useAppSelector(state => state.donation.donationLink);
+  const donationError = useAppSelector(state => state.donation.error);
 
   const [isAgreementChecked, setIsAgreementChecked] = useState(false);
   const [amounts, setAmounts] = useState<DonationAmountType[]>();
 
-
-
   useEffect(() => {
+    
     if(donationLink) {
       window.location.assign(donationLink);
       dispatch(donationLinkReset());
@@ -26,7 +30,12 @@ const Donation = () => {
       .then(res => setAmounts(res))
       .catch(err => console.log(err));
     }
-  }, [donationLink]);
+
+    if(donationError) {
+      handleOpenErrorPopup();
+    }
+
+  }, [donationLink, donationError]);
 
   const {
     values,
