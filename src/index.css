@@ -108,3 +108,9 @@
 
 /* Donation */
 @import url(../src/components/Donation/Donation.css);
+
+/* Agreement */
+@import url(../src/components/Agreement/Agreement.css);
+
+/* GeneralError */
+@import url(../src/components/GeneralError/GeneralError.css);

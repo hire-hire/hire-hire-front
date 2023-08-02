@@ -1,23 +1,42 @@
 .duel-result {
-  gap: 60px;
+  padding-top: 50px;
+  gap: 50px;
   flex: 1 1 auto;
-  background-image: url(../../images/duelResultLeft.png), url(../../images/duelResultPhyton.png);
+  background-image: url(../../images/duelResultLeft.png), url(../../images/duelResultRight.png);
   background-repeat: no-repeat;
-  background-size: 285px, 280px;
-  background-position: 6% 65%, 94% 18%;
+  background-size: 240px, 280px;
+  background-position: 8% 25%, 96% 31%;
 }
 
-.duel-result_type_docker {
-  background-image: url(../../images/duelResultLeft.png), url(../../images/duelResultDocker.png);
+/* .duel-result_type_docker {
+  background-image:  url(../../images/duelResultDocker.png);
 }
 
 .duel-result_type_general {
-  background-image: url(../../images/duelResultLeft.png), url(../../images/duelResultGeneral.png);
-}
+  background-image:  url(../../images/duelResultGeneral.png);
+} */
 
 .duel-result__title {
-  font-size: 96px;
+  font-size: 60px;
   line-height: 100%;
+}
+
+.duel__counter_type_result {
+  gap: 0;
+}
+
+.duel__players_type_result {
+  height: 300px;
+  max-width: 1100px;
+  gap: 110px;
+}
+
+.duel__player_type_wrong {
+  align-self: flex-start;
+}
+
+.duel__player-name_type_wrong {
+  width: 325px;
 }
 
 .duel-result__links {
@@ -25,6 +44,7 @@
   align-items: center;
   justify-content: center;
   gap: 80px;
+  margin-top: 45px;
 }
 
 .duel-result__link {

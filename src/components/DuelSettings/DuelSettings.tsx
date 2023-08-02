@@ -67,6 +67,7 @@ const DuelSettings = () => {
   };
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     dispatch(fetchCategories());
     if (duel.duel) {
       navigate(`/games/${duel.duel?.id}`)

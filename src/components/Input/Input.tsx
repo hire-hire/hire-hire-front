@@ -13,6 +13,9 @@ type PropsType = {
   inputRef?: any
   step?: string
   handleFocus?: () => void
+  min?: number
+  handleKeyPress?: (e: any) => any
+  handlePaste?: (e: any) => any
 }
 
 const Input: FC<PropsType> = ({
@@ -27,7 +30,10 @@ const Input: FC<PropsType> = ({
   minLength,
   maxLength,
   pattern,
-  handleFocus }) => {
+  handleFocus,
+  min,
+  handleKeyPress,
+  handlePaste }) => {
 
   return (
     <input
@@ -45,6 +51,9 @@ const Input: FC<PropsType> = ({
       pattern={pattern}
       required
       step={step}
+      min={min}
+      onKeyDown={handleKeyPress}
+      onPaste={handlePaste}
     />
   )
 };
