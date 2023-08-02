@@ -12,7 +12,13 @@ export const makeDonation = (amount: number, currency: string) => async (dispatc
   dispatch(donationLoading());
   await axios.post(`${baseUrl}donation/`, {amount, currency})
     .then((res) => dispatch(donationLinkLoaded(res.data)))
-    .catch((error) => dispatch(donationLoadingError(error.message)));
+    .catch((error) => {
+      if (error.response.data.indexOf('!DOCTYPE') === -1) {
+        dispatch(donationLoadingError(error.response.data))
+      } else {
+        dispatch(donationLoadingError(error.message))
+      }
+    });
 };
 
 export const getAmounts = async () => {

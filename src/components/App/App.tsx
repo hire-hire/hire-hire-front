@@ -26,6 +26,8 @@ import Donation from 'components/Donation/Donation';
 import Layout from 'components/Layout/Layout';
 import Agreement from 'components/Agreement/Agreement';
 import DonationResult from 'components/DonationResult/DonationResult';
+import GeneralError from 'components/GeneralError/GeneralError';
+import { donationLinkReset } from 'store/reducers/donation/donationSlice';
 
 function App() {
 
@@ -33,18 +35,23 @@ function App() {
 
   const user = useAppSelector(state => state.user.user);
 
+  const donationError = useAppSelector(state => state.donation.error);
+
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isExitConfirmOpen, setIsExitConfirmOpen] = useState(false);
+  const [isErrorModalOpen, setIsErrorModalOpen] = useState(false);
+
   useEffect(() => {
     const token = JSON.parse(localStorage.getItem('token')!);
     const refreshToken = JSON.parse(localStorage.getItem('refreshToken')!);
+
     if (!token) {
       return
     } else {
       dispatch(getUser(token, refreshToken));
     };
-  }, []);
 
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isExitConfirmOpen, setIsExitConfirmOpen] = useState(false);
+  }, []);
 
   const handleOpenMobileMenu = () => {
     setIsMobileMenuOpen(true);
@@ -62,6 +69,15 @@ function App() {
     setIsExitConfirmOpen(false);
   };
 
+  const handleCloseErrorPopup = () => {
+    setIsErrorModalOpen(false);
+    dispatch(donationLinkReset());
+  };
+
+  const handleOpenErrorPopup = () => {
+    setIsErrorModalOpen(true);
+  };
+
   return (
     <>
       <Modal
@@ -74,6 +90,16 @@ function App() {
           <Logo />
         </MobileMenu>
       </Modal>
+
+      <Modal
+        isModalOpen={isErrorModalOpen}
+        handleCloseModal={handleCloseErrorPopup}>
+        <GeneralError
+          errorText={donationError}
+          handleCloseErrorPopup={handleCloseErrorPopup}
+        />
+      </Modal>
+
       <Modal
         isModalOpen={isExitConfirmOpen}
         handleCloseModal={handleCloseExitConfirm}>
@@ -194,14 +220,14 @@ function App() {
             <Layout
               handleOpenMobileMenu={handleOpenMobileMenu}
               handleOpenExitConfirm={handleOpenExitConfirm}>
-              <Donation />
+              <Donation handleOpenErrorPopup={handleOpenErrorPopup} />
             </Layout>
           } />
           <Route path='/donation/callback' element={
             <Layout
               handleOpenMobileMenu={handleOpenMobileMenu}
               handleOpenExitConfirm={handleOpenExitConfirm}>
-              <DonationResult/>
+              <DonationResult />
             </Layout>
           } />
           <Route path='/agreement' element={
