@@ -24,6 +24,7 @@ const LoginForm = () => {
     if (user.user) {
       navigate(`/profile/${user.user.username.toLowerCase()}`)
     }
+    return () => resetForm();
   }, [user]);
   
 

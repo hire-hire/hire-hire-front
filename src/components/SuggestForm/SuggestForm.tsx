@@ -13,9 +13,10 @@ import { fetchCategory } from 'store/reducers/categories/categoriesActionCreator
 import { QuestionReqType } from 'store/reducers/suggestQuestion/suggestQuestionActionCreator';
 
 type PropsType = {
+  limit?: number
   formNumber?: number
   formData?: Record<string, any>
-  handleSaveFormsValues?: (values: Record<string, any>) => void
+  handleSaveFormsValues: (values: Record<string, any>) => void
   handlePostFormsValues?: (values: QuestionReqType) => void
 }
 
@@ -23,7 +24,8 @@ const SuggestForm: FC<PropsType> = ({
   formNumber,
   formData,
   handleSaveFormsValues,
-  handlePostFormsValues }) => {
+  handlePostFormsValues,
+  limit }) => {
 
   const dispatch = useAppDispatch();
 
@@ -53,16 +55,36 @@ const SuggestForm: FC<PropsType> = ({
     }
   }, []);
 
-  // const handleSaveValues = () => {
-  //   const subcategoryId = category?.languages.find((language) => language.title.toLowerCase() === values.subcategory.toLowerCase())?.id
-  //   handleSaveFormsValues({ ...values, language: Number(subcategoryId) });
-  // };
+  const validateTextAreas = (question: string, answer: string) => {
+    if (
+      (question.trim() && question.trim().length > 10)
+      &&
+      (answer.trim() && answer.trim().length > 10)) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
+  const handleSaveValues = () => {
+    const subcategoryId = category?.languages.find((language) => language.title.toLowerCase() === values.subcategory.toLowerCase())?.id;
+    const { text, answer } = values;
+    if (validateTextAreas(text, answer)) {
+      handleSaveFormsValues({ ...values, language: Number(subcategoryId) })
+    } else {
+      resetForm({ ...values, text: '', answer: '' }, { ...errors, text: 'Поле не может быть пустым', answer: 'Поле не может быть пустым' }, false);
+    }
+  };
 
   const handlePostFormValues = () => {
-    const subcategoryId = category?.languages.find((language) => language.title.toLowerCase() === values.subcategory.toLowerCase())?.id
-    if(handlePostFormsValues) {
-      const {text, answer} = values;
-      handlePostFormsValues({text, answer, language: Number(subcategoryId)});
+    const subcategoryId = category?.languages.find((language) => language.title.toLowerCase() === values.subcategory.toLowerCase())?.id;
+    if (handlePostFormsValues) {
+      const { text, answer } = values;
+      if (validateTextAreas(text, answer)) {
+        handlePostFormsValues({ text, answer, language: Number(subcategoryId) });
+      } else {
+        resetForm({ ...values, text: '', answer: '' }, { ...errors, text: 'Поле не может быть пустым', answer: 'Поле не может быть пустым' }, false);
+      }
     }
   }
 
@@ -139,10 +161,10 @@ const SuggestForm: FC<PropsType> = ({
       </div>
       <div className={`suggest-form__buttons ${formData ? 'suggest-form__buttons_type_hidden' : ''}`}>
         <button
-          // onClick={handleSaveValues}
-          disabled={true}
+          onClick={handleSaveValues}
+          disabled={!isFormValid || formNumber === limit}
           type='button'
-          className={`suggest-form__button page__button page__button_type_white ${isFormValid ? '' : 'page__button_type_disabled'}`}>
+          className={`suggest-form__button page__button page__button_type_white ${isFormValid || formNumber === limit ? '' : 'page__button_type_disabled'}`}>
           Добавить ещё вопрос
         </button>
         <button

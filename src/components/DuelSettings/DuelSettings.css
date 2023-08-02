@@ -1,5 +1,7 @@
 .duel-settings {
   flex: 1 1 auto;
+  padding-top: 0;
+  padding-bottom: 20px;
 }
 
 .duel-settings__form {
@@ -7,40 +9,41 @@
 }
 
 .duel-settings__title {
-  font-size: 100px;
-  line-height: 100%;
+  font-size: 60px;
+  line-height: 100px;
 }
 
 .duel-settings__top-title {
-  font-size: 64px;
+  font-size: 48px;
   text-align: center;
-  margin-top: 80px;
+  margin-top: 5px;
 }
 
 .duel-settings__bottom-title {
-  font-size: 56px;
+  font-size: 48px;
   text-align: center;
+  line-height: 100%;
 }
 
 .duel-settings__container {
   display: flex;
   justify-content: space-between;
-  padding: 60px 0 0;
+  padding: 0;
   width: 100%;
 }
 
 .duel-settings__header {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  row-gap: 120px;
+  row-gap: 80px;
   justify-content: space-between;
   background-image: url(../../images/gameSettingsBG.png);
   background-repeat: no-repeat;
   background-size: 650px;
   background-position: 92% 88%;
   padding-right: 150px;
-  padding-bottom: 250px;
-  padding-top: 80px;
+  padding-bottom: 125px;
+  padding-top: 12px;
 }
 
 .duel-settings__footer {
@@ -89,7 +92,7 @@
 }
 
 .duel-settings__button {
-  margin: 15px auto;
+  margin: 0 auto;
 }
 
 .duel-settings__button_type_disabled {

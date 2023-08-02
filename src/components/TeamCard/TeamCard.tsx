@@ -12,7 +12,7 @@ type PropsType = {
 
 const TeamCard: FC<PropsType> = ({ contributor }) => {
 
-  const baseURL = 'https://test-hire-hire.proninteam.ru';
+  const baseURL = process.env.REACT_APP_BASE_URL;
 
   return (
     <li className='contributor'>

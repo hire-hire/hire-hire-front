@@ -1,10 +1,9 @@
 import SuggestForm from 'components/SuggestForm/SuggestForm';
+import SuggestQuestionThanks from 'components/SuggestQuestionThanks/SuggestQuestionThanks';
 import { useAppDispatch, useAppSelector } from 'hooks/redux';
-import { useCallback, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 import { fetchCategories } from 'store/reducers/categories/categoriesActionCreator';
-import { QuestionReqType, QuestionResType, postQuestion } from 'store/reducers/suggestQuestion/suggestQuestionActionCreator';
-import { suggestQuestionLoaded, suggestQuestionReset } from 'store/reducers/suggestQuestion/suggestQuestionSlice';
+import { checkQuestionsLimit, postQuestion } from 'store/reducers/suggestQuestion/suggestQuestionActionCreator';
 
 export type FormDataType = {
   text: string
@@ -16,29 +15,47 @@ const SuggestQuestion = () => {
 
   const dispatch = useAppDispatch();
 
-  // const [formsData, setFormsData] = useState<Record<string, any>[] | []>([]);
+  const [formsData, setFormsData] = useState<Record<string, any>[] | []>([]);
+  const [isThanksOpen, setIsThanksOpen] = useState<boolean>(false);
 
   const suggestQuestionsResult = useAppSelector(state => state.suggestQuestion.questionStatus);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     dispatch(fetchCategories());
-    // if (suggestQuestionsResult) {
-    //   document.cookie = `user_cookie_id=${suggestQuestionsResult.user_cookie_id}`
-    // }
+    dispatch(checkQuestionsLimit());
   }, []);
 
-  // const handleSaveFormsValues = useCallback((values: Record<string, any>) => {
-  //   const newDataArr = [...formsData, values];
-  //   setFormsData(newDataArr);
-  // }, []);
-
-  const handleResetSuggestResult = () => {
-    dispatch(suggestQuestionReset());
+  const handleSaveFormsValues = (values: Record<string, any>) => {
+    if (suggestQuestionsResult && !(formsData.length ===
+      suggestQuestionsResult?.limit_add_questions_per_day - suggestQuestionsResult?.add_questions_for24_count
+    )) {
+      const newDataArr = [...formsData, values];
+      setFormsData(newDataArr);
+    }
   };
 
-  const handleSaveQuestions = (values: QuestionReqType) => {
-    dispatch(postQuestion(values));
+  const handleCloseThanks = () => {
+    setIsThanksOpen(false);
   };
+
+  const handleSaveQuestions = (values: Record<string, any>) => {
+    const updatedFormsData = [...formsData, values];
+    const formsDataForSave = updatedFormsData.map((formData) => {
+      const { text, answer, language } = formData;
+      return { text, answer, language };
+    });
+    dispatch(postQuestion(formsDataForSave));
+    setFormsData([]);
+    setIsThanksOpen(true);
+    dispatch(checkQuestionsLimit());
+  };
+
+  let limit = 10;
+
+  if (suggestQuestionsResult) {
+    limit = suggestQuestionsResult?.limit_add_questions_per_day - suggestQuestionsResult?.add_questions_for24_count;
+  }
 
   return (
     <section className='suggest sections'>
@@ -46,21 +63,14 @@ const SuggestQuestion = () => {
         Предложи<span className='page__span'> свой вопрос</span>
       </h1>
       {
-        suggestQuestionsResult
+        isThanksOpen ||
+          suggestQuestionsResult?.add_questions_for24_count ===
+          suggestQuestionsResult?.limit_add_questions_per_day
           ?
-          <>
-            <p className='page__text suggest__thanks'>
-              <span className='page__span'>Спасибо за</span> твой вклад<span className='page__span'>, сегодня ты отправил (а)</span> {suggestQuestionsResult.extra_data.add_questions_for24_count} вопрос из {suggestQuestionsResult.extra_data.limit_add_questions_per_day}!<span className='page__span'> Мы проверим вопросы и</span> добавим их<span className='page__span'> в свою базу</span>
-            </p>
-            <div className='suggest__links'>
-              <button onClick={handleResetSuggestResult}
-                type='button'
-                className='suggest__link page__button page__button_type_white'>
-                Предложить новый вопрос
-              </button>
-              <Link to='/' className='suggest__link page__button page__link'>На главную</Link>
-            </div>
-          </>
+          <SuggestQuestionThanks
+            key={suggestQuestionsResult?.add_questions_for24_count}
+            handleCloseThanks={handleCloseThanks}
+          />
           :
           <>
             <p className='suggest__subtitle page__text'>
@@ -95,7 +105,7 @@ const SuggestQuestion = () => {
                 </p>
               </li>
             </ul>
-            {/* {
+            {
               formsData.map((formData, index) => {
                 return <SuggestForm
                   key={formData.text.slice(0, 10).replace(/ /g, '') + formData.answer.slice(0, 10).replace(/ /g, '') + index}
@@ -104,16 +114,16 @@ const SuggestQuestion = () => {
                   formNumber={index + 1}
                 />
               })
-            } */}
+            }
             <SuggestForm
-              key={1}
-              // handleSaveFormsValues={handleSaveFormsValues}
-              formNumber={1}
+              key={formsData.length + 1}
+              handleSaveFormsValues={handleSaveFormsValues}
+              formNumber={formsData ? formsData.length + 1 : 1}
               handlePostFormsValues={handleSaveQuestions}
+              limit={limit}
             />
           </>
       }
-
     </section>
   )
 };

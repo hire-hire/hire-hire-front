@@ -42,6 +42,7 @@
   align-items: center;
   justify-content: center;
   padding-top: 80px;
+  flex-wrap: wrap;
 }
 
 @media screen and (max-width: 1700px) {
