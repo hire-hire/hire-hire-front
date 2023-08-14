@@ -59,7 +59,7 @@ const SuggestForm: FC<PropsType> = ({
     if (
       (question.trim() && question.trim().length > 10)
       &&
-      (answer.trim() && answer.trim().length > 10)) {
+      (answer.trim() && answer.trim().length > 1)) {
       return true;
     } else {
       return false;
@@ -150,7 +150,7 @@ const SuggestForm: FC<PropsType> = ({
             name='answer'
             placeholder='Ввести ответ'
             className={`suggest-form__area page__text ${errors.answer ? 'suggest-form__area_type_error' : ''}`}
-            minLength={10}
+            minLength={2}
             maxLength={500}
           >
           </textarea>
