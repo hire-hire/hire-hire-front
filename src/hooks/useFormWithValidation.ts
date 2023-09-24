@@ -4,6 +4,7 @@ import { ChangeEvent } from 'react';
 type useFormWithValidationTypes = {
   values: Record<string, any> 
   handleChange: (e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLSelectElement> | ChangeEvent<HTMLTextAreaElement>) => void
+  //handleBlur: (e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLSelectElement> | ChangeEvent<HTMLTextAreaElement>) => void
   errors: Record<string, string>
   isFormValid: boolean
   resetForm: (
@@ -28,6 +29,16 @@ export function useFormWithValidation ():useFormWithValidationTypes {
       setIsFormValid(input.closest('form')!.checkValidity());
     }
   }
+
+  // const handleBlur = (e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLSelectElement> | ChangeEvent<HTMLTextAreaElement>) => {
+  //   const input: EventTarget & HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement = e.target;
+  //   const name: string = input.name;
+  //   setErrors((prevErrors) => ({
+  //     ...prevErrors,
+  //     [name]: '', // Очищаем ошибку для данного поля при потере фокуса
+  //   }));
+  // }
+  
 
   const resetForm = useCallback((
     newValues = {}, 
