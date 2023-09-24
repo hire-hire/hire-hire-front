@@ -745,7 +745,9 @@ template {
 
 .footer__image:hover {
   border-radius: 100%;
-  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  /* box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25); */
+  -webkit-filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+          filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
 
 .footer__links {
@@ -5377,6 +5379,30 @@ template {
   cursor: default;
 }
 
+/* /GREY/ */
+.primary-button_variant_grey {
+  background-color: rgba(121, 144, 163, 0.62);
+  color: #163B88;
+  box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.25);
+  border: 2px solid transparent;
+  
+}
+
+.primary-button_variant_grey:hover {
+  border: 2px solid rgba(22, 59, 136, 0.6);
+}
+
+.primary-button_variant_grey:active {
+  box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.25) inset;
+}
+
+.primary-button_variant_grey:disabled {
+  background: rgba(172, 186, 198, 0.60);
+  box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.25);
+  border: 2px solid transparent;
+  cursor: default;
+}
+
 @media screen and (max-width: 1151px) {
   .primary-button {
     width: 297px;
@@ -5582,4 +5608,4 @@ template {
 /* GeneralError */
 
 
-/*# sourceMappingURL=main.76347f56.css.map*/
+/*# sourceMappingURL=main.665525bc.css.map*/
