@@ -6,4 +6,5 @@
   align-items: center;
   flex-grow: 1;
   box-sizing: border-box;
+  overflow: hidden;
 }
