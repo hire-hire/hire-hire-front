@@ -27,7 +27,7 @@ const SuggestForm: FC<PropsType> = ({
   const categories = useAppSelector((state) => state.categories.categories);
   const category = useAppSelector((state) => state.categories.category);
 
-  const { values, errors, handleChange, resetForm, isFormValid } =
+  const { values, setValues, errors, handleChange, resetForm, isFormValid } =
     useFormWithValidation();
 
   const handleSelectCategory = (
@@ -44,6 +44,27 @@ const SuggestForm: FC<PropsType> = ({
     }
   };
 
+  // INITIAL SELECTS & VALUES (?)
+  const initialSelectValues = () => {
+    if (categories.length > 0) {
+      // Подгрузить список подкатегорий
+      const firstElId = categories[0].id;
+      dispatch(fetchCategory(firstElId));
+      // Установить начальные значения
+      setValues({
+        ...values,
+        category: categories[0].title, // Программирование
+        subcategory: category?.languages[0]?.title, // Python
+      });
+    }
+  };
+
+  useEffect(() => {
+    if (categories.length > 0) {
+      initialSelectValues();
+    }
+  }, [categories]);
+
   useEffect(() => {
     if (formData) {
       resetForm(formData, {}, false);
@@ -53,9 +74,9 @@ const SuggestForm: FC<PropsType> = ({
   const validateTextAreas = (question: string, answer: string) => {
     if (
       question.trim() &&
-      question.trim().length > 10 &&
+      question.trim().length > 5 &&
       answer.trim() &&
-      answer.trim().length > 10
+      answer.trim().length > 2
     ) {
       return true;
     } else {
@@ -64,10 +85,11 @@ const SuggestForm: FC<PropsType> = ({
   };
 
   const handleSaveValues = () => {
-    const subcategoryId = category?.languages.find(
+    const subcategoryId = category?.languages?.find(
       (language) =>
         language.title.toLowerCase() === values.subcategory.toLowerCase()
     )?.id;
+    console.log(subcategoryId);
     const { text, answer } = values;
     if (validateTextAreas(text, answer)) {
       handleSaveFormsValues({ ...values, language: Number(subcategoryId) });
@@ -119,7 +141,7 @@ const SuggestForm: FC<PropsType> = ({
           disabled={!!formData}
           onChange={handleSelectCategory}
           title='category'
-          label='Выберите категорию'
+          label='Категория'
           arr={categories}
           value={values.category}
         />
@@ -127,7 +149,7 @@ const SuggestForm: FC<PropsType> = ({
           disabled={!!formData}
           onChange={handleChange}
           title='subcategory'
-          label='Выберите направление'
+          label='Подкатегория'
           arr={category?.languages}
           value={values.subcategory}
         />
@@ -140,8 +162,8 @@ const SuggestForm: FC<PropsType> = ({
           placeholder='Ввести вопрос'
           value={values.text}
           errors={errors.text}
-          minLen={10}
-          maxLen={5500}
+          minLen={5}
+          maxLen={500}
           onChange={handleChange}
           disabled={!!formData}
         />
@@ -152,8 +174,8 @@ const SuggestForm: FC<PropsType> = ({
           placeholder='Ввести ответ'
           value={values.answer}
           errors={errors.answer}
-          minLen={10}
-          maxLen={2500}
+          minLen={2}
+          maxLen={500}
           onChange={handleChange}
           disabled={!!formData}
         />
@@ -181,89 +203,3 @@ const SuggestForm: FC<PropsType> = ({
 };
 
 export default SuggestForm;
-
-{
-  /* <div className='suggest-form__area-label page__title'>
-            <div className='suggest-form__label-container'>
-              <span>Вопрос</span>
-              <span
-                className={`suggest-form__label-error page__text ${
-                  errors.text ? 'suggest-form__label-error_type_visible' : ''
-                }`}
-              >
-                {`(${errors.text})`}
-              </span>
-            </div>
-            <textarea
-              required
-              disabled={!!formData}
-              value={values.text}
-              onChange={handleChange}
-              name='text'
-              placeholder='Ввести вопрос'
-              className={`suggest-form__area page__text ${
-                errors.text ? 'suggest-form__area_type_error' : ''
-              }`}
-              minLength={10}
-              maxLength={5500}
-            />
-            <p className='suggest-form__area-hint page__text'>
-              {values.text ? values.text.length : 0}/5-500
-            </p>
-          </div> */
-}
-{
-  /* <div className='suggest-form__area-label page__title'>
-          <div className='suggest-form__label-container'>
-            <span>Ответ</span>
-            <span
-              className={`suggest-form__label-error page__text ${
-                errors.answer ? 'suggest-form__label-error_type_visible' : ''
-              }`}
-            >
-              {`(${errors.answer})`}
-            </span>
-          </div>
-          <textarea
-            required
-            disabled={!!formData}
-            value={values.answer}
-            onChange={handleChange}
-            name='answer'
-            placeholder='Ввести ответ'
-            className={`suggest-form__area page__text ${
-              errors.answer ? 'suggest-form__area_type_error' : ''
-            }`}
-            minLength={10}
-            maxLength={2500}
-          />
-          <p className='suggest-form__area-hint page__text'>
-            {values.answer ? values.answer.length : 0}/2-500
-          </p>
-        </div> */
-}
-
-{
-  /* <button
-          onClick={handleSaveValues}
-          disabled={!isFormValid || formNumber === limit}
-          type='button'
-          className={`suggest-form__button page__button page__button_type_white ${
-            isFormValid || formNumber === limit
-              ? ''
-              : 'page__button_type_disabled'
-          }`}
-        >
-          Добавить ещё вопрос
-        </button> 
-        <button
-          onClick={handlePostFormValues}
-          disabled={!isFormValid}
-          type='button'
-          className={`suggest-form__button page__button ${
-            isFormValid ? '' : 'page__button_type_disabled'
-          }`}
-        >
-          Отправить вопрос
-        </button> */
-}
