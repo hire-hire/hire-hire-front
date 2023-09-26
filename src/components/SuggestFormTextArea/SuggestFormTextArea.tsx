@@ -51,10 +51,9 @@ const SuggestFormTextArea: React.FC<SuggestFormTextAreaProps> = ({
         minLength={minLen}
         maxLength={maxLen}
       />
-      <p className='suggest-form__area-hint page__text'>
-      {value ? value.length : 0}/{`${maxLen.toString().charAt(0)}-${maxLen.toString().slice(1)}`}
-
-      </p>
+      <span className='suggest-form__area-hint page__text'>
+        {value ? value.length : 0} / {minLen}-{maxLen}
+      </span>
     </fieldset>
   );
 };

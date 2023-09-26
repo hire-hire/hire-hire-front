@@ -19,8 +19,8 @@ export default {
     placeholder: 'Введите вопрос',
     onChange: () => {},
     name: 'text',
-    minLen: 50,
-    maxLen: 5500,
+    minLen: 5,
+    maxLen: 500,
   },
   argTypes: {
     id: {
