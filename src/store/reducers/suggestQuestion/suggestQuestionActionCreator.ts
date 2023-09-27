@@ -27,7 +27,7 @@ export const postQuestion = (questions: QuestionReqType[]) => async (dispatch: A
 
 export const checkQuestionsLimit = () => async (dispatch: AppDispatch) => {
   dispatch(suggestQuestionLoading)
-  await axios.get(`${baseUrl}added_qestions_and_limit`,
+  await axios.get(`${baseUrl}added_questions_and_limit`,
     {withCredentials: true,})
     .then((res) => dispatch(suggestQuestionLoaded(res.data)))
     .catch((error) => dispatch(suggestQuestionLoadingError(error.message)));
