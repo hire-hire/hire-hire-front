@@ -18,7 +18,7 @@ const ExitConfirm: FC<PropsType> = ({ handleCloseExitConfirm }) => {
   return (
     <div className='exit-confirm'>
       <h1 className='exit-confirm__title page__title'>
-        Вы <span className='page__span'>уверены</span> что хотите выйти?
+        Вы <span className='page__span'>уверены</span>, что хотите выйти?
       </h1>
       <div className='exit-confirm__buttons'>
         <button onClick={handleCloseExitConfirm} type='button' className='exit-confirm__button exit-confirm__title_type_white sections__link'>

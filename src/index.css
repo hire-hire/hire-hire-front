@@ -1,6 +1,10 @@
 @import url(../src/vendor/normalize.css);
 @import url(../src/vendor/fonts/fonts.css);
 
+/* * {
+    outline: 1px solid green
+} */
+
 /* App */
 @import url(../src/components/App/App.css);
 
@@ -114,3 +118,6 @@
 
 /* GeneralError */
 @import url(../src/components/GeneralError/GeneralError.css);
+
+@import url(../src/components/PrimaryButton/PrimaryButton.css);
+@import url(../src/components/SuggestFormTextArea/SuggestFormTextArea.css);

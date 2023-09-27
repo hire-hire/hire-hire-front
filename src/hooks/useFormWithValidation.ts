@@ -1,8 +1,9 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, SetStateAction } from 'react';
 import { ChangeEvent } from 'react';
 
 type useFormWithValidationTypes = {
   values: Record<string, any> 
+  setValues:  React.Dispatch<SetStateAction<Record<string, any>>>
   handleChange: (e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLSelectElement> | ChangeEvent<HTMLTextAreaElement>) => void
   errors: Record<string, string>
   isFormValid: boolean
@@ -29,6 +30,16 @@ export function useFormWithValidation ():useFormWithValidationTypes {
     }
   }
 
+  // const handleBlur = (e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLSelectElement> | ChangeEvent<HTMLTextAreaElement>) => {
+  //   const input: EventTarget & HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement = e.target;
+  //   const name: string = input.name;
+  //   setErrors((prevErrors) => ({
+  //     ...prevErrors,
+  //     [name]: '', // Очищаем ошибку для данного поля при потере фокуса
+  //   }));
+  // }
+  
+
   const resetForm = useCallback((
     newValues = {}, 
     newErrors = {}, 
@@ -38,5 +49,5 @@ export function useFormWithValidation ():useFormWithValidationTypes {
     setIsFormValid(newIsFormValid);
   }, [setValues, setErrors, setIsFormValid]);
 
-  return {values, handleChange, errors, isFormValid, resetForm}
+  return {values, setValues, handleChange, errors, isFormValid, resetForm}
 }
